@@ -1,0 +1,31 @@
+Standardna biblioteka u programiranju je biblioteka koja je dostupna kroz mnoge implementacije u programskom jeziku. Ove biblioteke su konvencionalno opisane u specifikacijama programskog jezika; kakogod, sadržaji biblioteke tog jezika takođe mogu biti određeni (u delu ili celini) sa više informativnih vežbi jezika zajednice.
+Standardna biblioteka jezika je često tretirana kao deo jetika njenih korisnika, iako su ih dizajneri možda tretirali kao posebnu jedinicu. Mnoge jezičke specifikacije definišu jezgarni skup koji mora biti dostupan u svim implementacijama, kao dodatak drugim delovima koja mogu biti opciono ugrađena. Linija između jezika i njenih biblioteka se zato razlikuje od jezika do jezika. Upravo, neki jezici su dizajnirani tako da značenja određenih sintatičkih konstrukcija ni ne mogu biti opisani bez navođenja na jezgro biblioteke. Na primer, u Javi, string literal je definisan kao instanca java.lang.String klase; slično, u Smalltalk-u, anonimni izraz funkcije ("blok") konstruiše instancu klase biblioteke BlockContext. S druge strane, Scheme sadrži višestruke koherentne podskupove koji konstruišu ostatak jezika kao makroi biblioteke, i tako dizajneri jezika se ni ne trude da kažu koji delovi jezika moraju biti ugrađeni kao jezičke konstrukcije, i koji moraju biti ugrađeni kao delovi biblioteke.
+
+Sadržaji
+Standardne biblioteke tipično uključuju definicije za često korišćene algoritme, strukture podataka, i mehanizme za unos i izvoz. Zavisno od konstrukcije dostupne od strane domaćina jezika, standardna biblioteka može sadržati:
+
+Potprogram
+Macro definicije
+Globalne promenljive
+Definicije klasa
+Šabloni
+Mnoge standardne biblioteke uključuju definicije za barem sledeće često korišćena postrojenja:
+
+Algoritmi (kao što je algoritam za sortiranje)
+Struktura podataka (kao što su liste, stabla, i heš tabele)
+Interakcija sa platformom domaćina, uključujući uvoz/izvoz i pozive operativnih sistema
+
+Filozofije
+Filozofije dizajna standardne biblioteke široko variraju. Na primer, Bjarne Stravstrup, dizajner C++-a, piše:
+Ovo sugeriše relativno malu standardnu biblioteku, koja sadrži samo konstrukcije koje "svaki programer" može razumno zahtevati prilikom pravljenja velike kolekcije softvera. Ovo je filozofija koja se koristi u C i C++ standardnim bibliotekama.
+U suprotnosti, Gvido van Rosum, dizajner Pajtona, je imao mnogo više zaključnu viziju standardne biblioteke; u priručniku Pajtona, on piše:
+Van Rosum ide na listu biblioteka za obrađivanje XML, XML-RPC, imejl poruka, i lokalizaciju, postrojeći izostavljanje biblioteka u C++-u. Ova druga filozofija je često nađena u skriptnim jezicima (kao što su Pajton ili Rubi) ili jezicima koji koriste virtualne mašine, kao što su Java ili .NET Framework jezici. U C++, ovakva postrojenja nisu deo standardne biblioteke, već su druge biblioteke, kao što je Boost.
+
+Primeri standardnih biblioteka
+C standardna biblioteka, za C programski jezik
+C++ standardna biblioteka, za C++ programski jezik
+Biblioteka Klase Okvira (FCL), za .NET Framework
+Biblioteka Klase Java (JCL), za Java programski jezik, i Java Platformu
+Factor standardna biblioteka, za Factor programski jezik
+Ruby standardna biblioteka, za Rubi programski jezik
+Biblioteka baznih klasa (CLI)

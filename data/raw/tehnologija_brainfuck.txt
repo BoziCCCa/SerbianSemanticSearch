@@ -1,0 +1,394 @@
+Brainfuck je ezoteričan programski jezik koji je 1993. godine napravio Urban Miler (nem. Urban Müller), a poznat je po svom minimalizmu.
+Ime jezika potiče od engleske fraze "brainfuck", koja se odnosi na stvar toliko komplikovanu i neobičnu da prevazilazi granice razumevanja. Ime ovog programskog jezika se često za potrebe pravopisa ne tretira kao vlastita imenica, već je običaj da se piše velikim početnim slovom samo u slučajevima gde bi se i zajednička imenica pisala na taj način (na primer, na početku rečenice).
+Jezik se sastoji od samo 8 jednostavnih komandi i instrukcionog pokazivača. On ne razlikuje tipove podataka, već sve posmatra kao cele brojeve i podržava samo dve aritmetičke operacije, i to dodavanje jedinice i oduzimanje jedinice. Ovakve instrukcije u velikoj meri oslikavaju komande Tjuringove mašine, te se lako dokazuje da je brainfuck Tjuring-potpun i da može izračunati sve što i klasičniji programski jezici. Međutim, brainfuck od programera zahteva da podeli komande na mikroskopski sitne korake i nije namenjen praktičnoj upotrebi, već kao izazov za programere.
+
+Istorija
+1992. je švajcarski student fizike, Urban Miler, preuzeo malu online arhivu Amiga softvera. Arhiva je ubrzo postala popularna i počela je da se širi svuda po svetu. Danas je to najveća Amiga arhiva poznata pod imenom Aminet. U ovoj arhivi se pojavila prva implementacija brainfuck jezika.
+Miler je dizajnirao brainfuck sa ciljem da ga implementira u obliku najmanjeg mogućeg kompajlera, inspirisan 1024-bitnim kompajlerom za FALSE programski jezik. Milerov originalni kompajler je implementiran u mašinskom jeziku i preveden je u binarni fajl veličine 296 bajta. Okačio je prvi brainfuck kompajler na Aminet 1993. godine. Program je dolazio sa 'readme' datotekom, koja je ukratko opisivala jezik i izazivala čitaoca porukom: "Ko može isprogramirati bilo šta korisno ovime? :)". Miler je takođe uključio i prevodioca i neke kompleksnije primere. Druga verzija kompajlera je bila još kraća i zauzimala je samo 240 bajta.
+Kako je Aminet rastao, tako je kompajler postajao popularan širom Amiga zajednice i vremenom je implementiran i na drugim platformama. Vremenom je i pisanje najkraćeg, ali i najobimnijeg interpretera postalo izazov za sebe, tako da danas postoje brojne imenovane i neimenovane implementacije ovog jezika.
+
+P", brainfuck-ov zvanični "roditeljski" jezik
+Izuzev svoje dve ulazno-izlazne komande, brainfuck je mala varijacija programskog jezika P”, koji je napravio Korado Bom (ita. Corrado Böhm) 1964. godine i koji je eksplicitno zasnovan na Tjuringovoj mašini. U stvari, koristeći 6 simbola ekvivalentnih brainfuck naredbama +, -, <, >, [, ], Bom je pružio eksplicitan program za svaku od osnovnih funkcija koje zajedno služe za izračunavanje bilo koje izračunljive funkcije. Prvi programi u jeziku koji se može smatrati brainfuck-ovim roditeljskim jezikom su se pojavili u Bomovom radu iz 1964. godine i oni su bili dovoljni za dokazivanje Tjuringove potpunosti.
+
+The Infinite Abacus: Brainfuck-ov "pra-roditeljski" jezik
+Joakim Lambek (eng. Joachim Lambek) je 1961. godine predstavio "beskonačni abakus", matematičku i računarsku alatku sa eksplicitnim memorijskim adresiranjem, bez steka i bez uslovnog skoka. Ova alatka se sastoji od beskonačnog broja ćelija i dve instrukcije:
+
+X+ = uvećanje ćelije X;
+X- else jump T = smanjenje X ako je tačno, inače skoči na T.
+Dokazao je da beskonačni abakus može izračunati bilo koju izračunljivu rekurzivnu funkciju, programiranjem Klinijevih osnovnih μ-rekurzivnih funkcija.
+Njegovu mašinu simulirala je Melzakova mašina za izračunavanje modela pomoću aritmetike, a ne logike koja imitira operatera koji pomera oblutke po abakusu. Ovakav model nije mogao da podrži rad sa označenim brojevima, te otuda uslov da svaki broj mora biti pozitivan. Melzak, čiji jednoinstrukcijski računar je očigledno ekvivalentan beskonačnom abakusu, daje programe za množenje, pronalaženje najvećeg zajedničkog delioca, n-tog prostog broja, predstavljanje u bazi b i sortiranje po veličini. Na ovaj način je pokazano da i ovakva mašina može da simulira proizvoljnu Tjuringovu mašinu.
+Ne bi bilo teško zameniti direktno adresiranu memoriju stekom i dvema instrukcijama < i > i tako dobiti jezik koji naliči brainfuck-u.
+
+Dizajn jezika
+Brainfuck se sastoji od osam komandi, prikazanih u tabeli ispod. Jedan program čini niz ovih komandi, koje mogu biti razdvojene proizvoljnim karakterima. Proizvoljni karakteri se ignorišu, dok se komande izvršavaju sekvencijalno uz izuzetke poput skokova koji preskaču neki deo koda ili vraćaju instrukcijski pokazivač unazad. Instrukcijski pokazivač inicijalno pokazuje na prvu komandu, a svaka komanda na koju ona ukazuje se izvršava, nakon čega se, osim u slučaju skokova, program pomera na sledeću komandu. Program se prekida kada se pokazivač pomeri iza poslednje komande.
+Brainfuck koristi jednostavan mašinski model koji se sastoji od programa i instrukcijskog pokazivača, kao i niza od najmanje 30000 jednobajtnih ćelija inicijalizovanih na nulu i pokretnog pokazivača podataka inicijalizovanog da pokazuje na prvi (najlevlji) bajt niza. Ovakav memorijski model je koristila originalna implementacija, i dan danas je najčešće u upotrebi. Niz jednobajtnih ćelija je ekvivalent traci u Tjuringovoj mašini, pri čemu je najveća razlika to što Tjuringova mašina ima neograničen broj ćelija na raspolaganju. Za ulaz i izlaz se koriste dva toka bajtova (najčešće povezanih sa tastaturom i monitorom, pri čemu se karakteri kodiraju u ASCII kodiranju).
+
+Komande
+Osam komandi brainfuck jezika se sastoje od po jednog karaktera:
+
+(Alternativno, ] naredba može biti prevedena kao bezuslovni skok na odgovarajuću [ naredbu i obrnuto; programi će imati istu funkciju i ponašati se identično, ali sporije, zbog nepotrebnog dvostrukog pretraživanja.)
+[ i ] se ponašaju kao zagrade: svaki [ odgovara tačno jednom ] i obrnuto. [ je uvek prva i ne može postojati neuparena [ ili ] između nje i odgovarajuće ].
+Brainfuck programi mogu biti prevedeni u C korišćenjem sledećih zamena, pod pretpostavkom da je ptr (od eng. pointer, u značenju pokazivač) tipa char* i inicijalno ukazuje na niz anuliranih bajtova:
+
+Kao što samo ime sugeriše, brainfuck programi su teško razumljivi. Ovo je delom zato što svaki malo kompleksniji zadatak zahteva dugačak niz komandi, a delom zato što tekst programa ne daje direktne indikacije stanja programa. Ovi razlozi, kao i neefikasnost brainfuck jezika i ograničene ulazno-izlazne mogućnosti su su glavni razlog zašto se jezik ne koristi za ozbiljnije i kompleksnije programe. Bez obzira na to, kao i svaki Tjuring-potpun jezik, brainfuck u teoriji može izračunati bilo koju izračunljivu funkciju ili simulirati bilo koji računarski model, ako mu je dat pristup neograničenoj količini memorije. Napisani su raznovrsni brainfuck programi. Iako su programi u ovom jeziku teški i za pisanje, posebno oni kompleksniji, trivijalno je napisati interpreter ili kompajler za ovaj jezik u nekom tipičnijem jeziku, poput jezika C, zbog jednostavnosti samog jezika. Postoje čak i prevodioci za ovaj jezik koji su pisani u samom brainfuck jeziku.
+Brainfuck je pravi primer takozvanog Tjuring tarpita: može se koristiti za pisanje bilo kojeg programa, ali nije praktično to učiniti zbog toga što jezik pruža samo minimum mogućnosti koje su neophodne za Tjuring-potpunost, ali ne i mnogo prostora za apstraktno razmišljanje i stoga programi umeju biti izuzetno dugački i komplikovani.
+
+Primeri
+Hello World!
+Sledeći program ispisuje "Hello World!" i novu liniju na ekranu:
+
+Zbog čitljivosti, ovaj kod je raširen na više linija i dodate su praznine i komentari koji objašnjavaju proces izvršavanja programa. Brainfuck ignoriše sve znakove, osim osam komandi +, -, <, >, [, ], ., , tako da nije potrebna posebna sintaksa za komentare, sve dok sami komentari ne sadrže komandne znakove. Kao što je gore pokazano, i ovo ograničenje se može zaobići uvođenjem petlje koja se nikad ne izvršava. Identičan kod se može zapisati i kao:
+
+Najkraći poznat program koji štampa "Hello, World!" broji 72 karaktera i glasi:
+
+ROT13
+Ovaj program šifrira svoj ulaz pomoću ROT13 šifre. Da bi to uradio, mora mapirati karaktere A-M (ASCII 65-77) do N-Z (78-90) i obrnuto. Takođe mora da mapira i a-m (97-109) do (110-122) i obrnuto. Mora mapirati sve ostale karaktere same u sebe; program čita karaktere jednog po jednog i ispisuje njihove šifrovane ekvivalente dok ne pročita kraj datoteke, i tada se završava.
+Jednostavan pristup koji se koristi je sledeći: učitavanje ulaznog karaktera 
+ 
+ 
+ 
+ x
+ 
+ 
+ {\displaystyle x}
+ 
+, deljenje 
+ 
+ 
+ 
+ x
+ −
+ 1
+ 
+ 
+ {\displaystyle x-1}
+ 
+ sa 32, zadržavajući količnik i ostatak. Osim ako je količnik 2 ili 3, izlaz je 
+ 
+ 
+ 
+ x
+ 
+ 
+ {\displaystyle x}
+ 
+, zadržavajući kopiju u toku podele. Ako je količnik 2 ili 3, ostatak ((
+ 
+ 
+ 
+ (
+ x
+ −
+ 1
+ )
+ 
+ mod
+ 
+ 
+ 32
+ 
+ 
+ {\displaystyle (x-1)\mod 32}
+ 
+) se deli sa 13. Ako je količnik 0, izlaz je 
+ 
+ 
+ 
+ x
+ +
+ 13
+ 
+ 
+ {\displaystyle x+13}
+ 
+; ako je 1, izlaz je 
+ 
+ 
+ 
+ x
+ −
+ 13
+ 
+ 
+ {\displaystyle x-13}
+ 
+; ako je 2, izlaz je 
+ 
+ 
+ 
+ x
+ 
+ 
+ {\displaystyle x}
+ 
+.
+Što se tiče algoritma podele, kada se deli 
+ 
+ 
+ 
+ y
+ 
+ 
+ {\displaystyle y}
+ 
+ sa 
+ 
+ 
+ 
+ z
+ 
+ 
+ {\displaystyle z}
+ 
+ da se dobije količnik 
+ 
+ 
+ 
+ q
+ 
+ 
+ {\displaystyle q}
+ 
+ i ostatak 
+ 
+ 
+ 
+ r
+ 
+ 
+ {\displaystyle r}
+ 
+, postoji spoljna petlja koja prvo postavlja 
+ 
+ 
+ 
+ q
+ 
+ 
+ {\displaystyle q}
+ 
+ i 
+ 
+ 
+ 
+ r
+ 
+ 
+ {\displaystyle r}
+ 
+ na količnik i ostatak od 
+ 
+ 
+ 
+ 
+ 
+ 1
+ z
+ 
+ 
+ 
+ 
+ {\displaystyle {\frac {1}{z}}}
+ 
+, zatim na količnik i ostatak od 
+ 
+ 
+ 
+ 
+ 
+ 2
+ z
+ 
+ 
+ 
+ 
+ {\displaystyle {\frac {2}{z}}}
+ 
+ i tako dalje. Nakon izvršavanja petlje 
+ 
+ 
+ 
+ y
+ 
+ 
+ {\displaystyle y}
+ 
+ puta, spoljna petlja se završava i ostavlja 
+ 
+ 
+ 
+ q
+ 
+ 
+ {\displaystyle q}
+ 
+ i 
+ 
+ 
+ 
+ r
+ 
+ 
+ {\displaystyle r}
+ 
+ postavljene na količnik i ostatak od 
+ 
+ 
+ 
+ 
+ 
+ y
+ z
+ 
+ 
+ 
+ 
+ {\displaystyle {\frac {y}{z}}}
+ 
+. Deljenik 
+ 
+ 
+ 
+ y
+ 
+ 
+ {\displaystyle y}
+ 
+ se koristi kao brojač koji se umanjuje i kontroliše koliko puta se petlja izvršava. U okviru petlje, postoji kod za povećanje 
+ 
+ 
+ 
+ r
+ 
+ 
+ {\displaystyle r}
+ 
+ i smanjenje 
+ 
+ 
+ 
+ y
+ 
+ 
+ {\displaystyle y}
+ 
+, što je uglavnom dovoljno. Međutim, svaki 
+ 
+ 
+ 
+ z
+ 
+ 
+ {\displaystyle z}
+ 
+-ti put u spoljnoj petlji, neophodno je da se anulira 
+ 
+ 
+ 
+ r
+ 
+ 
+ {\displaystyle r}
+ 
+ i uveća 
+ 
+ 
+ 
+ q
+ 
+ 
+ {\displaystyle q}
+ 
+. To se postiže smanjenjem brojača tako da bude deljiv sa 
+ 
+ 
+ 
+ z
+ 
+ 
+ {\displaystyle z}
+ 
+. Svaki put kad prođe kroz spoljnu petlju, brojač se smanjuje, a kada dostigne nulu, popunjava se premeštanjem vrednosti 
+ 
+ 
+ 
+ r
+ 
+ 
+ {\displaystyle r}
+ 
+ nazad.
+
+Aritmetičke operacije
+Dodavanje dve vrednosti
+Kao jednostavan primer, sledeći deo koda ce dodati vrednost trenutne ćelije sledećoj ćeliji. Svaki put kada se petlja izvrši, trenutna ćelija se smanjuje, pokazivač se pomera u desnu stranu, a sledeća ćelija se uvećava i pokazivač se pomera levo. Ova sekvenca se ponavlja dok početna ćelija ne bude 0.
+
+Ovo se može pripojiti jednostavnom programu za dodavanje na sledeći način:
+
+Oduzimanje dve vrednosti
+Oduzimanje dva broja se može implementirati na sličan način kao i sabiranje, samo što se umesto povećavanja polja rezultata ono smanjuje. Na primer, kod koji oduzima trojku od petice može izgledati ovako:
+
+Množenje dve vrednosti
+Množenje dva broja se može izvršiti kao višestruko sabiranje. U svakoj iteraciji petlje, jedan činilac se smanjuje, a drugi povećava za konstantnu vrednost.
+
+Pošto brainfuck ne podržava numeričke literale, svaku netrivijalno malu vrednosti nije praktično dobiti kao uzastopno dodavanje jedinice. Umesto toga, najčešće se koristi algoritam za množenje sličan ovom kako bi se od manjih vrednosti došlo do većih, na koje se zatim dodaje neka mala vrednost.
+
+Deljenje dve vrednosti
+Logika iza deljenja dva broja je slična onoj za množenje. U svakoj iteraciji petlje, od jednog broja se oduzima konstantna vrednost, dok se druga povećava za jedan, sve dok je prva vrednost različita od nule. Ova bazična implementacija ispravno radi samo u implementacijama čija je minimalna vrednost nula i ne dolazi do potkoračenja, ili u slučaju da je deljenik deljiv deliocem.
+
+Štampanje vrednosti
+Brainfuck ne razlikuje tipove podataka, i pri štampanju većina implementacija štampa ASCII karakter koji odgovara datoj vrednosti. Za jednocifrene brojeve, dodavanje konstantne vrednosti 48 (što je razlika između numeričke vrednosti i ASCII koda za tu cifru) kao što je to urađeno u primeru za sabiranje je dovoljno. Međutim, kada se štampaju veći brojevi, ovo nije adekvatno rešenje, već se višecifren broj mora deliti sa 10 i ostatak pri tom deljenju čuvati u zasebnim ćelijama, koje se na kraju ispisuju. Algoritam koji ispisuje broj u ćeliji na koji pokazuje pokazivač i koristi ćelije desno od njega kao "radnu površinu" je dat ispod. Ovaj algoritam funkcioniše za sve vrednosti, nezavisno od veličine ćelije.
+
+Problemi sa prenosivošću
+Do ovih problema dolazi delimično zato što Urban Miler nije napisao temeljnu specifikaciju jezika, a delimično zato što mnogi kasniji prevodioci i kompilatori koriste nešto drugačije dijalekte programskog jezika brainfuck.
+
+Veličina ćelije
+U klasičnoj verziji programskog jezika, ćelije su široke 8 bitova (ćelije su bajtovi), što je i dalje najčešća veličina. Međutim, da bi se pročitali ne-tekstualni podaci, brainfuck treba da pravi razliku između kraja fajla (EOF karaktera) od ostalih upisanih vrednosti, zbog čega se koriste 16-bitne ćelije. Neke implementacije jezika su koristile i 32-bitne ili 64-bitne ćelije ili ćelije arbitrarne veličine (bignum). Programi koji koriste bignum ćelije su dosta sporiji, jer se čuvanje neke vrednosti u ćeliji vrši u Ω(n) vremenu, što se brzo nagomila s obzirom na često izvršavanje + i - komandi.
+U svim ovim varijantama, komande , i . i dalje čitaju i pišu vrednosti u bajtove. U većini slučajeva ćelije mogu da obuhvate te vrednosti, a kada se ćelija koja ima maksimalnu vrednost poveća (+ komandom), u ćeliju se smešta minimalna vrednost, i obratno. Izuzeci su slučajevi kada se program izvršava na procesorima koji interno ne koriste potpuni komplement što je u današnje vreme redak slučaj, implementacije koje su odvojene od hardvera, implementacije koje koriste bignume i implementacije koje akcenat stavljaju na prenosivosti.
+U većini slučajeva, prekoračenje ne predstavlja veliki problem za brainfuck programere. Međutim, pošto nema operatora poređenja, program ne može napraviti razliku između označenih i neoznačenih potpunih komplementata fiksne veličine ćelije, niti na bilo koji način detektovati prekoračenje. Takođe, negativnost broja može zavisiti od interpretacije bajta, što je često definisano implementacijom.
+
+Veličina niza
+U klasičnoj distribuciji, niz se sastoji od 30000 ćelija i pokazivač počinje na prvoj ćeliji na levoj strani niza. Više ćelija je potrebno za upisivanje stvari poput milionitog broja Fibonačijevog niza, a najlakši način da se ovo postigne i da jezik ostane Tjuring-potpun je da se napravi niz koji je neograničen sa desne strane.
+Nekoliko implementacija proširuju niz i sa leve strane, ali je ovo ređa situacija, stoga prenosivi brainfuck programi ne zavise od toga.
+Kada se pokazivač pomeri izvan granica niza, neke implementacije prikazuju poruku greške, neke pokušavaju da dinamički prošire niz, neke ne primećuju prekoračenje i proizvode nedefinisano ponašanje, dok neke pomeraju pokazivač na suprotnu stranu niza. Kompromis može biti proširenje niza dinamički u desnu stranu, kao najlakši način proširenja niza i dobro je za programe kojima je potrebna velika količina memorije, ali ova opcija vuče sa sobom kaznu u vidu smanjene brzine. Ako je korišćen niz fiksne veličine, poželjno je izabrati vrlo veliku veličinu niza.
+
+Kraj linije
+Različiti operativni sistemi (a ponekad i programska okruženja) drugačije tumače ASCII kodove. Najvažnija razlika je u kodu koji se koristi za kraj reda i početak nove linije teksta. MS-DOS i Microsoft Windows koriste CRLF, tj. 13 praćeno sa 10, u većini slučajeva. Unix i njegovi naslednici (uključujući GNU/Linux i Mac OS X) i Amiga koriste samo 10, a stariji Mac-ovi koriste samo 13. Bilo bi komplikovano ako bi brainfuck programi morali biti ponovo ispisani na svakom od ovih operativnih sistema. Međutim, lako je napraviti zajednički standard za brainfuck programe. Urban Milerov kompajler i njegovi primeri programa koriste 10 za ulaz, kao i za izlaz. To prati i velika većina brainfuck programa, jer je 10 pogodnije za korišćenje od CRLF-a. Dakle, brainfuck implementacije treba da se uvere da brainfuck programi podrazumevaju da nova linija ima vrednost 10 i da to ispravno radi, što mnoge i čine.
+Ova pretpostavka je prisutna u većini uzoraka C koda kao i drugih jezika, gde se koristi "\n" ili 10 za novi red. Na sistemima koji koriste CRLF kraj linije, standard je da se zameni "\n" sa "\r\n" na izlazu i "\r\n" sa "\n" na ulazu za tokove koji nisu otvoreni u binarnom modu.
+
+Kraj datoteke
+Ponašanje komande , na kraju datoteke varira. Neke implementacije postavljaju vrednost ćelije i pokazivač na 0, neke postavljaju na vrednost EOF konstante u C-u (u praksi je to uglavnom -1), neke ostave vrednost nepromenjenu. Nema saglasnosti oko korišćenja datih opcija, pa postoje argumenti za svaku od njih:
+Stavljanje vrednosti na 0 izbegava korišćenje negativnih brojeva i sažetije je napraviti petlja koja se izvršava dok ne dođe do kraja datoteke. Ovo proširenje u jeziku je osmislio Panu Kaliokoski (eng. Panu Kalliokoski).
+Stavljanje vrednosti na -1 dozvoljava kraju datoteke da bude različit od bilo koje vrednosti bajta (ako su ćelije veće od bajtova), što je neophodno za čitanje ne-tekstualnih podataka. Takođe, to je ponašanje C prevoda , komande, date u Milerovoj readme datoteci. Ipak, nije očigledno da se ovi C prevodi uzmu kao norma.
+Nemenjanje vrednosti ćelije je ponašanje Milerovog kompajlera. Ovo ponašanje može postojati uz bilo koje drugo ponašanje. Na primer, program koji podrazumeva da je kraj datoteke jednak nuli može da stavi vrednost ćelije na 0 pre svake , komande i to će ispravno raditi na implementacijama koje podrazumevaju da je kraj datoteke jednak nuli ili da je kraj datoteke nepromenjen. Lako je prilagoditi se nepromenjenom kraju datoteke i svaki brainfuck programer zainteresovan za prenosivost programa bi trebalo to da radi.
+
+Implementacije
+Jednostavnost brainfuck-a ga čini popularnom metom za mnoge različite implementacije. Sem originalne implementacije za Amigu koju je napisao Urban Miler, postoji preko sto različitih kompajlera i interpretera. Implementacije se kreću od izuzetno malih kao što su BF6502A2, interpreter dugačak 135 bajtova za Apple ][ //e, i bf core, koji se sastoji od 69 bajtova x86 asemblerskog koda, pa do optimizujućih kompajlera kao što su bfc, koji se oslanja na LLVM i podržava optimizacije kao što su spajanje naredbi, pojednostavljivanje petlji, eliminisanje mrtvog koda, spekulativno izvršavanje i dr, i awib, koji podržava prevođenje do više različitih jezika, i sam je pisan u brainfuck-u.
+Postoje i implementacije pisane za platforme koje nisu u široj upotrebi. Tako je iHeadAche brainfuck interpreter za Palm OS, zxBrainfuck pisan u Z80 asembleru sa ZX Spectrum ili BrainfuckCE koji je namenjen TI 84+ CE kalkulatorima. Hardverske implementacije ovog jezika uključuju The Brainf*ck CPU Project, VHDL implementacija brainfuck CPU-a, TinyDumbCPU, SystemVerilog brainfuck jezgro i The Brainfuck Computer, koji predstavlja mali brainfuck interpreter narezan na ROM PIC16F84A mikrokontrolera.
+
+Derivati i proširenja
+Stvaranje jezika sličnih ili u velikoj meri inspirisanih brainfuck-om se pokazalo kao interesantan izazov programerima. I dok je nekima cilj isključivo zabava, drugi ovaj jezik nadograđuju brojnim mehanizmima pozajmljenim od klasičnijih programskih jezika.
+
+Ekvivalenti
+Postoji širok spektar brainfuck ekvivalenata, koji imaju identične komande kao brainfuck, ali se različito kodiraju, sa ili bez ulazno-izlaznih komandi koje ovaj jezik poseduje. Ova familija broji preko 50 različitih programskih jezika. Neki od popularnijih su:
+
+Ook!, koji mapira osam komandi brainfuck-a u permutacije dužine dva reči "Ook.", "Ook?" i "Ook!". Po rečima autora, dizajniran je tako da mogu da ga "pišu i čitaju orangutani". Jedan je od najstarijih u nizu sličnih brainfuck ekvivalenata.
+Ternary i Triplet koji brainfuck komande kodiraju, redom, u parove ternarnih i triplete binarnih cifara.
+VerboseFuck koji izgleda kao tradicionalan programski jezik, ali se u stvari sastoji od osam dugačkih komandi koje liče na pozive metodama i ne mogu se menjati, i zahteva nepromenljiv blok koda na početku i na kraju programa. 
+BodyFuck, brainfuck implementacija bazirana na sistemu kontrolisanom pokretima, tako da kamera snima pokrete programera i snimak se kodira u osam mogućih karaktera.
+
+Proširenja
+Sa svojih skromnih osam instrukcija, iako je Tjuring-potpun, brainfuck ne implementira mnoge mogućnosti koje programeri mogu poželeti. Stoga, postoje varijacije ovog jezika koje koriste izvornih osam instrukcija, i dodaju još neke.
+
+pbrain dodaje mogućnost pisanja procedura koje se mogu pozivati iz brainfuck koda.
+cbrain je ekstenzija pbrain-a koja dodaje numeričke literale i brojne operatore.
+Brainfork podržava kreiranje novih niti i konkurentno programiranje.
+Hq9eFuck kombinuje instrukcije brainfuck-a i HQ9+-a u jedan jezik, i dodaje komandu Duboka misao koja računa i ispisuje odgovor na Pitanje o životu, vaseljeni i svemu ostalom, što je referenca na Autostoperski vodič kroz galaksiju.
+
+Derivati
+Brainfuck je takođe inspirisao mnoge da naprave svoje jezike koji ga na neki način unapređuju ili ga menjaju po uzoru na mogućnosti drugih jezika. Za razliku od jednostavnih proširenja koje na osam postojećih dodaju nove komande, programski jezici iz ove grupe pozajmljuju ideje i koncepte, ali ne nužno i sintaksu i leksiku od brainfuck-a. Postoji preko 200 različitih derivata ovog jezika. Neki od njih su:
+
+PATH, SNUSP i Wierd kombinuju komande brainfuck-a sa dvodimenzionom prirodom Befunge-a.
+Mice in a maze kombinuje instrukcije brainfuck-a sa teorijom ćelijskih automata, i u njemu program se sastoji od lavirinta kroz koji prolaze (hipotetički) miševi, izvršavajući komande koje im se nađu na putu.
+Smallfuck, Boolfuck i Bitter su varijacije brainfuck-a koje kao ćelije umesto bajtova koriste bitove. Bitter takođe definiše i dve opcione komande za interpreter, koje pomažu pri debagovanju programa.
+Izuzetna nepraktičnost implementacije ili neistražena priroda fizičke realnosti nisu sprečile programere da napišu specifikacije najrazličitijih derivata ovog jezika. Tako postoji i Quantum brainfuck koji umesto bajtova koristi kubite, i Wigner's Fuckbuddy Is A (|Top⟩ + |Bottom⟩)/√2 koji pretpostavlja da je interpretacija kvantne mehanike Hjua Evereta (tzv. interpretacija više svetova ili teorija multiverzuma) tačna i da se univerzumi mogu manipulisati. Kako je i sam brainfuck nastao kao oblik zabave među programerima, tako ove praktično nemoguće specifikacije odlaze korak dalje i kroz humor uvode nove, fiktivne, programske jezike kroz naizgled ozbiljne i komplikovane fizičke koncepte.

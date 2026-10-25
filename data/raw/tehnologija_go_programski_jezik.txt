@@ -1,0 +1,135 @@
+Gou (engl. Go) je programski jezik otvorenog koda nastao u Guglu 2007. godine. Jezik su osmislili Robert Grisemer, Rob Pajk i Ken Tompson, a namenjen je prvenstveno sistemskom programiranju. Oslanjajući se na tradiciju jezika C i Paskal, jezik je kompiliran, sa statičkim tipovima podataka, ograničenim strukturnim tipovima, sadrži automatsko upravljanje memorijom i funkcionalnosti za konkurentno programiranje inspirisane komunicirajućim sekvencijalnim procesima.
+Početak rada na jeziku je septembar 2007. godine. Zvanično je promovisan novembra 2009. godine pod modifikovanom BSD licencom. Danas se koristi za mrežne programe, najpre u okviru Guglovih sistema, ali i u drugim kompanijama. Postoje dve glavne implementacije jezika: gc, koji je glavna implementacija koju je razvio Gugl i gccgo iz GNU kolekcije kompajlera. Do verzije 1.5, gc implementacija je bila napisana u mešavini C, asembler i Gou koda, a od verzije 1.5, C kod je preveden u Gou.
+
+Istorija
+Jezik je nastao kao eksperiment trojice Guglovih zaposlenih—Robert Grisemer, Rob Pajk i Ken Tompson. Ideja je bila da se osmisli novi jezik za sistemsko programiranje koji bi rešio glavne probleme postojećih jezika takve vrste a pritom zadržao njihove pozitivne osobine. Novi jezik bi imao sledeće osobine:
+
+bio bi statički kompiliran i mogao bi da se se koristi za velike sisteme (kao Java i C++),
+brz razvoj čitljivih programa, bez previše obaveznih ključnih reči (kao kod dinamičkih jezika),
+ne bi zahtevao komplikovane alate, već bi podržao širi skup jednostavnih alata
+podržavao bi mrežno i konkurentno programiranje
+U intervjuima, trojica dizajnera su izrazila da nisu ljubitelji složenosti C++-a, i da je to bila glavna motivacija za dizajniranje novog jezika.
+
+Dizajn jezika
+Najveći uticaj na dizajn jezika su jezici iz porodice C i Paskal. Oni se od ovih jezika razlikuju po dodacima koji poboljšavaju konciznost, jednostavnost i bezbednost programa.
+Kratak pregled osobina koje karakterišu Gou:
+
+Sintaksa i okruženje koje prihvata ideje koje se češće sreću u dinamičkim jezicima.
+Opciona skraćena deklaracija i inicijalizacija promenljivih kroz lokalno zaključivanje tipova podataka (engl. local type inference; i := 0 umesto int i = 0;).
+Brza kompilacija programa u izvršnu datoteku.
+Jednostavno upravljanje paketima (go get)., kao i jednostavna i čitljiva dokumentacija paketa na internetu
+Jedinstveni pristupi problemima:
+Ugrađene funkcionalnosti za konkurentno programiranje: laki procesi (korutine - goroutines), kanali za tok podataka između procesa, i select ključna reč za upravljanje kanalima.
+Sistem interfejsa i ugrađivanja tipova umesto umesto virtualnog i nevirtualnog nasleđivanja.
+Skup alata koji proizvodi statičke izvršne datoteke koje ne zavise od dinamičkih biblioteka.
+Težnja ka jednostavnosti jezika - specifikacija je dovoljno kratka da programeri mogu celu da je zapamte.
+Izvorne datoteke sa kodom su uvek kodirane kao UTF-8, što omogućuje lokalizovanje komentara i dokumentacije, ali i imena tipova, funkcija, promenljivih i konstanti.
+Gou je često meta sledećih kritika:
+
+Nedostatak generičkih tipova dovodi do duplikacije koda. Može se simulirati uz pomoć metaprogramiranja i refleksije, ali se tada gubi na performansama i proveri tačnosti tipova. Standardna biblioteka iz tog razloga ne nudi generičke algoritme.
+Nema mogućnosti proširivanja jezika (na primer, kroz dodavanje operatora za korisničke tipove), pa određeni zadaci zahtevaju više koda.
+Jednostavan sistem tipova koji nije baziran na Hindli-Milner sistemu smanjuje bezbednost i jednostavnost programa.
+Automatsko upravljanje memorijom uzrokuje pauze u radu programa, pa to umanjuje mogućnost primene u sistemskim programima, u poređenju sa jezicima u kojima se ručno upravlja memorijom.
+Dizajneri jezika tvrde da su ovi nedostaci važni za uspeh jezika, i detaljno objašnjavaju zašto su određene odluke donesene. Uprkos tome, otvoreni su za dodavanje mogućnosti za generičko programiranje u budućnosti, kao i po pitanju poboljšanja u oblastima generacije koda i smanjenja trajanja pauze prilikom automatskog oslobađanja memorije.
+
+Sintaksa
+Sintaksa je najsličnija jezicima iz C porodice jezika, ali je znatno izmenjena kako bi programi bili koncizniji i čitljiviji, kao i da bi podržala nove dodatke jeziku.
+Gou uvodi kombinovani operator := za deklaraciju i inicijalizaciju promenljivih. Uz pomoć ovog operatora moguće je napisati skraćen oblik deklaracije i inicijalizacije koji ne zahteva preciziranje tipa podataka, već to radi sam kompilator. Ovo je suprotno od deklaracije i inicijalizacije u C-u, gde je obavezno uvek navesti tip promenljive. Postoji i proširena sintaksa za deklaraciju i inicijalizaciju promenljivih, ali se ona ređe jer je skraćeni oblik lakši za čitanje; često se koristi samo proširena deklaracija, kada je potrebno samo rezervisati ime, a kompajler će sam dodeliti nultu vrednost (npr. var broj int ima vrednost 0). Operator = se koristi za dodeljivanje nove vrednosti promenljivoj koja je već deklarisana.
+
+Iskazi se završavaju sa simbolom tačka-zarez, ali se on ne mora naći u izvornom kodu na mestima gde se završava red. Alat go fmt iz osnovne distribucije izbacuje ovaj simbol sa mesta na kojima je suvišan.
+Funkcije mogu vraćati više vrednosti, pa je šablon vraćanja para result, error glavni metod indikacije postojanja greške nastale tokom poziva date funkcije. Sličan šablon se primenjuje za pristup mapama i za lokalno proveravanje tipa podatka, sa tim što je tada par koji se vraća result, bool, gde drugi parametar ukazuje na tačnost operacije.
+Gou takođe dodaje sintaksu za inicijalizaciju parametara u struct tipu po imenu, kao i za inicijalizaciju mapa i nizova.
+Kao zamenu za C-ove for, while i do/while petlje, Gou uvodi kombinovanu for petlju koja zajedno sa range izrazom omogućuje jednostavnu iteraciju nizova, odsečaka, mapa, kanala, i niski.
+
+Tipovi podataka
+Osnovni tipovi podataka, koji su ugrađeni u jezik, su u prvom redu numerički tipovi. Tu spada i Bulov tip podataka kao i celi brojevi int, int8 (byte), int16, int32 (rune), int64, neoznačeni celi brojevi: uint, uint8, uint16, uint32, uint64, uintptr, brojevi u obliku sa pokretnim zarezom float32, float64 i kompleksni brojevi complex64, complex128. Takođe i niske (string) spadaju u ugrađene tipove. Niske su nepromenljive, a pomoću ugrađenih operatora i ključnih reči moguće je spajanje, poređenje i kodiranje iz i u UTF-8.
+Slogovi (engl. record type) se mogu definisati uz pomoć ključne reči struct.
+Tipom podatka T i brojem elemenata n se definiše niz označen sa [n]T; pošto je broj elemenata deo tipa podatka, nizovi kojima su tipovi elemenata isti ali im je broj elemenata različit, su različitog tipa.
+Dinamički nizovi se zovu odsečci (engl. slice); za tip podatka T, odsečak koji sadrži vrednosti tog tipa se označava sa []T. Ovi nizovi imaju dužinu i kapacitet kojim se označava kada treba zauzeti novi deo memorije za proširenje odsečka. Nekoliko odsečaka može da deli određeni memorijski prostor.
+Za par tipova podataka K, V, tip map[K]V označava tip mape (heš tabela) koja mapira ključeve tipa K na vrednosti tipa V. Heš tabele su ugrađene u jezik, imaju posebnu sintaksu, i nad njima se operacije vrše ugrađenim funkcijama.
+Kanali (engl. channel) služe za komunikaciju između konkurentskih procesa i takođe imaju svoju sintaksu. Za tip podatka T, tip kanala se označava sa chan T. Jezik poseduje i skup ugrađenih operacija kojima se vrednosti mogu primati i slati preko kanala.
+Pokazivači postoje za sve tipove podataka; za tip podatka T, pokazivač se označava sa *T. Za razliku od C-a, nema pokazivačke aritmetike, osim kroz tip Pointer iz paketa unsafe u standardnoj biblioteci.
+Pored podrške za interfejse, sistem tipova je nominalan, odnosno zasniva se na eksplicitnom imenovanju tipova podataka. Ključna reč type stvara novi tip podatka, koji predstavlja novi tip (a ne alijas kao u C-u) i koji se razlikuje od ostalih tipova podataka koji mogu imati isti raspored u memoriji (a u slučaju struct tipa, i isti redosled polja). Neke konverzije između tipova su ugrađene, a dodavanjem novog tipa se mogu definisati dodatne konverzije. Konverzije između tipova su uvek eksplicitne; primera radi, sabiranje dva broja od kojih je jedan int32 a drugi float64 zahteva da jedan od dva broja bude preveden u tip drugog broja.
+Na primer, pomoću ključne reči type se može definisati tip za IPv4 adrese, koje su 32-bitni celi brojevi bez predznaka:
+
+Sa ovom definicijom tipa ipv4addr(x) interpretira uint32 vrednost u IP adresu. Prosto dodeljivanje vrednosti x promenljivoj čiji je tip ipv4addr nije moguće jer, iako imaju istu strukturu u memoriji, nisu isti tipovi.
+Konstantni izrazi mogu imati ili nemati tipove; ako nemaju tip podatka, on im se dodeljuje kada se njihova vrednost dodeli nekoj promenljivoj, pod uslovom da je konverzija moguća tokom kompilacije.
+Funkcije takođe imaju tipove. Mogu da prihvataju nijedan ili više argumenata i da vrate nijednu ili više vrednosti; sve ove vrednosti imaju svoje tipove, a zajedno oni određuju potpis, odnosno tip funkcije. Na primer, func(string, int32) (bool, error) je tip funkcije koja kao argumente prima tekst i 32-bitni broj sa predznakom (redom, string i int32), a vraća bul i grešku (redom, bool i error).
+Svaki imenovani tip može imati set metoda koji je sa njim povezan. Prethodni primer se može proširiti tako da ima metode kojim se vrši štampanje u čitljivom formatu, proverava da li se nalazi u određenom opsegu i slično, zavisno od funkcionalnosti koju tip treba da ima. Tipu se metoda dodaje tako što se između ključne reči func i imena funkcije doda primalac (engl. receiver), koji se sastoji od imena koje predstavlja referencu (slično rečima this i self u jezicima kao što su Java i Pajton) i tipa na koji se metoda odnosi.
+
+Zbog nominalnog sistema tipova, ova metoda je dodata tipu ipv4addr, ali ne i tipu uint32.
+Iako za njihovo definisanje i pozivanje postoji posebna sintaksa, metode nemaju zaseban tip. Sama sintaksa je zapravo "sintaksni šećer" (engl. syntactic sugar), pa ako je x promenljiva kojoj je dodeljena vrednost čiji je tip gorepomenuti ipv4addr, sledeće dve linije imaju isto značenje:
+
+Interfejsi
+Gou poseduje dve osobine kojima zamenjuje sistem nasleđivanja iz klasičnog objektno-orijentisanog programiranja. Prvo je ugrađivanje, koje predstavlja formu kompozicije ili delegacije. Drugi deo su interfejsi, koji omogućuju polimorfizam u toku izvršavanja programa.
+Interfejsi omogućuju ograničen oblik strukturnih tipova podataka u okviru nominalnog sistema tipova podataka. Svaki tip podataka nad kojim su definisane sve metode iz interfejsa implicitno zadovoljava taj interfejs. Sam sistem interfejsa zasnovan je na sistemu protokola iz jezika Smalltalk. Interfejs grupiše tipove podataka u skup, tako što sam predstavlja listu metoda koje ti tipovi moraju sadrže. Tipovi koji zadovoljavaju određeni interfejs ne moraju eksplicitno to da naglase, već se ta provera vrši tokom kompilacije programa.
+Tipovi Kvadrat i Krug se mogu grupisati pomoću interfejsa Oblik koji od svojih tipova zahteva da sadrže metode Obim i Povrsina.
+
+Sada se može definisati funkcija SaberiPovrsine koja traži dva argumenta koji zadovoljavaju interfejs Oblik i sabira njihove površine:
+
+Pošto je zadovoljenje interfejsa implicitno, dodavanje novih tipova (npr. Trougao ili Trapez) se svodi na definisanje strukture tipa i implementacije određenih metoda, a to se može izvršiti i u okviru drugog paketa.
+Standardna biblioteka jezika koristi interfejse u okviru nekoliko biblioteka. Jedan od primera je Stringer interfejs iz paketa fmt, koji zahteva metodu String() string; zadovoljenjem ovog interfejsa, svaki tip može da odredi kako će njegova vrednost izgledati prilikom štampe. Drugi primer su interfejsi Reader i Writer, kojima se definiše protokol za ulaz i izlaz podataka pomoću metoda Read i Write, a koristi kod paketa za rad sa datotekama, mrežnim soketima, standardnim ulazom i izlazom, baferima bajtova, tokovima, , i slično.
+Prazan interfejs (interface{}) predstavlja važan slučaj u okviru sistema tipova, jer se odnosi na bilo koji tip podatka. Sličan je tipu Object u jezicima Java i C#; razlikuje se od njih po tome što je to interfejs koji zadovoljavaju svi tipovi uključujući i ugrađene kao što je int, dok Object može držati samo instance objekata jer predstavlja nadtip (engl. supertype). Podatak koji je sačuvan pod tipom interface{} se ne može koristiti kao argument pri pozivu funkcija ili sa ugrađenim operatorima bez konverzije u konkretan tip pomoću nagoveštavanja tipa (engl. type assertion), grananja po tipu (engl. type switch), ili ispitivanjem refleksijom uz pomoć reflect paketa. Zato što može da drži bilo koji tip podatka, interface{} predstavlja jedan od načina za implementaciju generičkih algoritama.
+
+Sistem paketa
+Svaki paket je definisan sa dva podatka: svojom putanjom (npr. "compress/bzip2" ili "golang.org/x/net/html") i svojim imenom (npr. bzip2 ili html). Putanja paketa je obična niska, pa može imati bilo kakav sadržaj; paketi koje korisnici objavljuju na internetu sadrže adresu sa koje paket može biti preuzet pomoću komande go get, čime je olakšano upravljanje paketima. Poziv na drugi paket uvek sadrži i ime tog paketa, a da bi neka vrednost iz paketa bila vidljiva, njeno mora počinjati velikim slovom (npr. funkcija Printf iz paketa fmt je vidljiva u svim drugim paketima koji pozivaju taj paket, dok je funkcija printf vidljiva samo u okviru fmt paketa).
+
+Konkurentno programiranje
+Jezik poseduje ugrađene funkcionalnosti, kao i skup biblioteka, koji pomažu pisanje konkurentnih programa. Ovde se konkurentnost ne odnosi samo na paralelno izvršavanje programa, već i na asinhroniju: puštanje sporih operacija kao što je čitanje podataka sa mreže ili iz baze podataka dok program izvršava druge poslove.
+Glavna struktura za formiranje konkurentnih procesa je gorutina (engl. goroutine, igra reči sa korutina), koja predstavlja lagan proces. Kada se prilikom poziva funkcije ispred imena funkcije nađe ključna reč go, ta funkcija se poziva u okviru nove gorutine. Specifikacija jezika ne sadrži način implementacije gorutina, a trentutne implementacije koriste niti, slično kao kod jezika Erlang.
+Iako standardna biblioteka sadrži pakete sa klasičnim strukturama za kontrolu konkurentnih procesa, idiomatski način kontrole uključuje kanale (engl. channels), koji omogućavaju razmenu vrednosti između gorutina. Kanali imaju svoje tipove podataka, pa se kanal tipa chan T može koristiti samo za slanje vrednosti tipa T. Operacije nad kanalima koriste posebnu sintaksu; <-ch je izraz koji blokira trenutnu gorutinu dok ne stigne vrednost sa kanala ch, dok ch <- x šalje vrednost x preko kanala ch (pri čemu može doći do blokiranja dok druga gorutina ne primi tu vrednost). Ugrađena struktura za grananje select (slična strukturi switch) omogućuje implementiranje komunikacije bez blokiranja preko više kanala. Gou ima model memorije koji opisuje način upotrebe kanala i gorutina za bezbedno deljenje memorije.
+Time što poseduje kanale, Gou se razlikuje od jezika koji koriste model učesnika (engl. actor model) kao što je Erlang, gde se poruke šalju direktno učesnicima (koji odgovaraju gorutinama). Model učesnika se može simulirati pri čemu se uvodi korespondencija između gorutina i kanala, iako jezik dozvoljava da više gorutina deli jedan kanal, ili da jedna gorutina prihvata i šalje vrednosti na više kanala.
+Strukturna pravila za konkurentnost su izvedene iz Toni Horovog modela komunicirajućih sekvencijalnih procesa. Za razliku od prethodnih jezika koji koriste ovaj model, kao što su occam i Limbo, Gou ne poseduje mehanizme za bezbednu i proverivu konkurentnost. Sve gorutine dele adresni prostor, pa se promenljivi objekti i pokazivači mogu deliti između gorutina.
+
+Izostavljene osobine
+Gou namerno izostavlja određene osobine prisutne u drugim jezicima, uključujući nasleđivanje, generičko programiranje, asertivnost, aritmetiku sa pokazivačima, i implicitne konverzije između tipova. Od ovih osobina, autori jezika su izrazili otvorenost ka dodavanju mogućnosti za generičko programiranje, a branili su odluke protiv dodavanja ostalih osobina. Umesto nasleđivanja, preporučuju korišćenje interfejsa za dinamičko pozivanje i kompoziciju tipova za ponovno korišćenje koda.
+Što se tiče generičkog programiranja, neke od ugrađenih funkcija jesu generičke (npr. make/new, append), ali se tretiraju kao posebni slučajevi; Rob Pajk smatra da je ovo slabost jezika i da postoji mogućnost promene. Tim koji u okviru Gugla razvija jezik je u jednom trenutku napravio kompilator za eksperimentalni dijalekat jezika koji ima generičke tipove, ali ga nisu pustili u javnost.
+Pošto su prvobitno izuzeci izostavljeni iz jezika, dodat je panic/recover mehanizam, koji se koristi za greške od kojih sistem ne može da se oporavi i koje zaustavljaju ceo program, ili kao prečicu za propagiranje grešaka u okviru paketa (ne i između paketa; tada se koristi par result, error koji je standardan način signaliziranja greške).
+
+Pravila i stil
+Formatiranje programa, uključujući indentaciju, razmake, položaje zagrada i drugi detalji vizuelnog dela koda su standardizovani uz pomoć alatke gofmt; program golint vrši dodatne stilske provere koda.
+Alati i paketi iz standardne biblioteke sugerišu standardan način pristupa različitim problemima kao što su dokumentacija (godoc), testiranje (go test), kompilacija programa (go build),upravljanje paketima (go get) itd.
+Kompilator uvodi striktno poštovanje pravila koja u drugim jezicima postoje samo u obliku preporuka. Neki od primera uključuju zabranu kružnih zavisnosti (dva paketa ne mogu zavisiti jedan od drugog), zabranu neiskorištenih paketa i promenljivih, i nedostatak implicitnih konverzija tipova.
+Izostavljanje nekih od osobina, kao što je map funkcija iz funkcionalnih jezika i try/catch/finally struktura iz objektnih jezika zahteva stil programiranja koji je eksplcitan, konkretan i imperativan.
+
+Alati
+Standardna Gou distribucija sadrži sledeće alate:
+
+go build, koji kompilira izvorni kod u izvršne datoteke
+go run, koji pokreće program bez kompilacije, kao skriptu
+go test, koji pokreće sistem za testiranje i merenje performansi programa
+go fmt, koji formatira datoteke sa izvornim kodom shodno dogovorenim pravilima
+go get, koji služi za upravljanje spoljašnjim paketima pomoću različitih sistema kontrole verzija
+go vet, koji pronalazi greške pomoću statičke analize programa
+godoc, koji prikazuje dokumentaciju paketa u komandnoj liniji ili veb čitaču
+gorename, koji služi za bezbedno preimenovanje tipova, funkcija i promenljivih
+go generate, koji služi za pokretanje generišućih programa kao što je Yacc
+Pored ovih alata, korisnici su doprineli pišući svoje programe koji dopunjuju ovaj skup alata. Neki od primera su goimports koji proverava koje pakete program koristi ili ne koristi, pa ih dodaje ili briše sa spiska, gocode, koji u okviru različitih uređivača teksta nudi informacije o dostupnim tipovima podataka i funkcijama, i golint, koji ukazuje na česte greške u programima i na nedostatak dokumentacije.
+Pisanje paketa je znatno olakšano postojanjem go paketa u standardnoj biblioteci, koji nudi različite mehanizme za upravljanje i analizu datoteka sa izvornim kodom.
+
+Primeri
+Zdravo svete
+Sledeći Gou program ispisuje „Zdravo svete!":
+
+Deklaracija promenljivih
+Funkcije
+Jednostavna funkcija koja ne radi ništa:
+
+Funkcija sa dva parametra:
+
+Kraći zapis funkcije sa više parametara istog tipa:
+
+Deklaracija tipa povratne vrednosti:
+
+Funkcija može da vrati više vrednosti (odjednom):
+
+Vraćanje više imenovanih rezultata upotrebom jedino return:
+
+Funkcija kao vrednost
+Funkcija može da bude dodeljena promenljivoj kao vrednost:
+
+Konkurentno programiranje
+Sledeći program pokazuje upotrebu konkurentnih osobina za pisanje asinhronih programa. Program pokreće dve gorutne: jedna čeka da korisnik upiše neki tekst, a druga šalje signal nakon pet sekundi. select grananje čeka da bilo koja od gorutina dostavi poruku funkciji main, i izvršava se zavisno od prve vrednosti koja je stigla (primer adaptiran iz knjige Davida Čiznala).
+
+HTTP server
+Kod jednostavnog programa koji lokalno pokreće HTTP server na adresi: localhost:8080/bilo šta...

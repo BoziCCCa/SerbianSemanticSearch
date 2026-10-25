@@ -1,0 +1,417 @@
+== 0-9 ==
+2.PAK
+20-GATE
+473L Query
+51forth
+
+A
+A+
+A++
+A-0
+ABAP
+ABC
+ABC ALGOL
+ABLE
+ABSET
+ABSYS
+ACC (programski jezik)
+Accent
+Acceptance, Test Or Launch Language
+Action!
+ACS
+ActionScript
+Ada
+Aleph
+ALGO
+Algol
+AmigaE
+AMOS BASIC
+AMPL
+APL
+AppleScript
+ARS++
+ASN.1
+AspectJ
+Asembler
+Atlas Autocode
+Aubit-4GL
+
+B
+B
+BASIC
+Visual Basic
+Za razne dijalekte BASIC-a vidite glavni clanak.
+bc
+BCPL
+BETA
+Bigwig
+Bistro
+BLISS
+Blue
+boo
+Bourne shell (sh)
+Bourne-Again shell (bash)
+Business Process Execution Language (BPEL)
+Brainfuck
+BUGSYS
+BuildProfessional
+
+C
+C
+C--
+C++
+C#
+Caché Basic
+Caché ObjectScript
+Caml
+Catrobat
+CeeBot
+Cecil
+Cg
+CHAIN
+Charity
+CHILL
+ChucK
+Cilk
+Clarion
+Clipper
+CLIPS
+CLOS
+CLU
+CMS-2
+ColdFusion
+COBOL
+CobolScript
+COMAL
+Component Pascal
+Concurrent Clean
+CORAL66
+Common Intermediate Language (CIL)
+Common Lisp
+COWSEL
+CPL
+C shell (csh)
+Cue
+Curl
+Cyclone
+
+D
+D
+DASL
+Databus
+Dataflex
+dBASE
+dc
+Delphi
+Dialog Manager
+DIBOL
+Doublefuck
+Dylan
+
+E
+E
+Edinburgh IMP
+Eiffel
+ElastiC
+Elan
+Emacs Lisp
+Elf
+Enterprise Generation Language (EGL)
+Erlang
+Escapade (server-side programming)
+Esterel
+Euphoria
+Euclid
+Euler
+EXEC
+EXEC2
+
+F
+F
+F#
+Factor
+FALSE
+Felix
+Ferite
+FL
+FLOW-MATIC
+FOCAL
+Focus
+FOIL
+Forth
+Fortran
+FP
+Frink
+Frontier
+Froth
+
+G
+GML
+Gclisp
+Gema
+GEMBASE
+GENIE
+GJ
+Go
+Godiva
+Gödel
+GPSS
+Groovy
+
+H
+HAL/S (real-time aerospace (programski jezik))
+HAScript
+Haskell
+Heron
+HLA - "High Level Assembler"
+High Level Assembly
+Hugo
+HyperTalk
+
+I
+ICI (programski jezik)
+Icon
+IDL (programski jezik)
+IMP
+Informix-4GL
+Interface description language (IDL)
+Inform
+Information Processing Language (IPL)
+Intercal
+Io
+
+J
+J
+JADE
+Java
+JavaScript
+JCL
+JOSS
+Joule
+JOVIAL
+Joy
+Jython
+
+K
+K
+Kid
+Kielix
+Kiev
+Kogut
+KRYPTON
+
+L
+LabVIEW
+Lagoona
+Lava
+Leda
+Leopard
+Lexico
+Lightweight Matrix Engine
+Limbo
+LINC
+Lingo
+Lisp
+Logo
+LotusScript
+LPC
+LSE
+Lua
+Lucid
+Lustre
+LYaPAS
+
+M
+M4
+MAD
+MADCAP
+MATLAB
+Mathematica
+METAL
+Miranda
+Miva
+Mercury
+Mesa
+Microcode
+ML
+MODCAP
+Modula
+Modula-2
+Modula-3
+Moto
+Mouse
+MSIL (deprecated name for Common Intermediate Language)
+MUMPS
+Mary
+
+N
+Natural
+Nemerle
+NESL
+NGL
+Nial
+Nil
+Nice
+Nosica
+
+O
+o:XML
+Oberon
+Objective-C
+Objective Caml
+Object Pascal
+Obliq
+Occam
+OPS5
+Organiser (programski jezik) (OPL) - cf. Psion Organiser
+Oz
+
+P
+Pascal
+Free Pascal
+Object Pascal (Delphi)
+Turbo Pascal
+PEARL
+Perl
+PHP
+Pico
+Pike
+PILOT
+Pizza
+PL-11
+PL/SQL
+PL/B
+PL/C
+Plankalkül
+PL/I
+PL/0
+PL/M
+Pliant
+Poplog
+POP-11
+PORTRAN
+PostScript
+Povray
+Powerbuilder
+Processing
+Progress 4GL
+Prothon
+Prolog
+Turbo Prolog
+Proteus
+Python
+
+Q
+Q
+QuakeC
+
+R
+R
+Rascal
+Ratfor
+Ratfiv
+REALbasic
+REBOL
+REFAL
+Report Program Generator (RPG)
+Revolution
+REXX
+Rigal
+Rlab
+Robot Scripting Language (RSL)
+RPG
+Ruby
+Rust (programski jezik)
+
+S
+S
+S2
+S-Lang
+SAIL
+SAKO
+SAS
+Sather
+Scala
+Scheme
+Scratch
+ScratchJr
+Sed
+Seed7
+Self (or "SELF")
+SETL
+Shakespeare Programming Language (SPL)
+SIGNAL
+SIMSCRIPT
+Simula
+SISAL
+Small
+Smalltalk
+SML
+Snobol
+Snowball
+SPARK
+SPITBOL
+SP/k
+SQL
+Squeak
+SR
+SSL
+STOS BASIC
+SuperCollider
+Swift
+
+T
+T
+TADS
+Tcl
+teco
+TELCOMP
+Tempo
+Today
+Tom
+tpu
+Trac
+Turing
+Tutorial D
+TXL
+
+U
+Ultra 32
+Unicon
+UnrealScript
+
+V
+VBA
+VBScript
+Verilog
+VHDL
+Visual Basic
+Visual DataFlex
+Visual DialogScript
+Visual FoxPro
+Visual Objects
+VRML
+
+W
+Water
+
+X
+XOTcl
+XPL
+XSLT
+X3D
+
+Y
+YAFL
+Yorick
+
+Z
+Z
+ZPL
+ZZT-oop
+ZOPL
+ZUG
+
+A-Š
+Rapira
+Ć++

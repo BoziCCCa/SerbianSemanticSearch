@@ -1,0 +1,128 @@
+Starfiš je reflektivan, dvodimenzionalni ezoterični programski jezik zasnovan na jeziku Fiš. Nastao je 2016. godine.
+
+Koncept
+Starfiš je dvodimenzionalni jezik, što znači da kod nije nužno izvršen na linearan način. Korišćenjem različitih uputstava, smer koda se može čitati i menjati nagore, dole, levo ili desno. Takođe može se memorisati i preuzeti vrednost na kodnom prostoru, tako da je pravljenje kompajlera vrlo teško, ako ne i nemoguće.
+Cilj Starfiša je da učini Fiš korisnijim, iako je zasnovan na njemu. Trenutno Starfiš dodaje datoteku i/o,pruža mogućnost praćenja vremena i novog koncepta uron/podizanje. Ako je to izvodljivo, neka vrsta grafičkog izlaza može biti u okviru prostora.
+
+Izvođenje koda
+Starfiš kod je postavljen u dvodimenzionalnom kodnom prostoru. Kodni prostor je beskonačan u svim pravcima, pozitivan i negativan.
+
+Napomena: sve koordinate za kodni prostor su date kao (znak, linija), tj. (kolona, red).
+Pokazivač naredbe počinje sa (0,0), tj. gornje levo od skripte. U početku se pomera desno, ali njegov pravac može se promeniti pomoću različitih naredbi. Kada IP dostigne kraj koda u bilo kom pravcu, on će se okrenuti ili "skakati" na suprotnu stranu. IP neće nikada doći do negativne strane koda. Ovo čini prostor korisnim za čuvanje vrednosti.
+
+Ogledala
+Ogledala su posebna uputstva koja će promeniti smer IP-a u zavisnosti od smera koji već ima. Na primer, ako se IP kreće desno i ispunjava naredbu, ona će biti "reflektovan". Ako se IP kreće nadole, to će se reflektovati nadesno i tako dalje.
+
+Funkcije
+Funkcije u Starfišu rade slično ret u asm. Da bi ih koristili, stavite kordinate kodnog polja na mesto gde želite da skočite u stek. Ovo će dovesti do toga da IP pređe na željenu lokaciju, čuvajući prethodnu lokaciju u steku ispod trenutne. Dakle, mogli biste da skočite koristeći ., ali biste izgubili trenutni registar:
+
+ <;o&C10&a
+.{{] 
+
+Rezultati:
+
+< ; o *&* C 1 0 & a 
+. { { ]
+
+Stek: []
+nešto miriše na ribu ... 
+R ili "ret", rešava ovaj problem jednostavnim skokom do koordinata na steku ispod trenutnog, a zatim pomeranje trenutnog steka dole.
+
+ <;o&C10&a
+ R 
+
+I ovaj kod rezultira izlaznom linijom (a == 10 == \ n), umesto greške.
+
+Uron i podizanje
+Uron i podizanje su posebna uputstva koja manipulišu sposobnošću IP-a da izvrši većinu naredbi, oni su u i o, redom. Uzrok zaronjenja dovodi do toga da IP ignoriše sva uputstva osim naredbi pomeranja i ogledala (> < ^ v / \ | _ # ` x). Podizanje uzrokuje da se IP ponovo ponaša normalno.
+
+Ribar
+Naredba za ribare je dvostruki operator `. Prvi put kada se bilo koja naredba ribara izvrši dok se IP kreće horizontalno, IP dobija naredbu da se pomeri, sledeći put, IP dobija naredbu da se pomeri gore. Kada IP izvršava naredbu koja se kreće vertikalno, naredba je da se pomeri u poslednjem horizontalnom pravcu u kome se kreće. To omogućava razmenu u protoku logike, omogućavajući lakši rad na donjoj liniji, a IP se vraća na prvobitnu liniju. Evo osnovnog programa koji pokazuje taj koncept da ispisuje "Zdravo" bez upotrebe naredbe ribara:
+
+ "Zdravo"rv>;
+ lo<^!?
+
+Stek
+Fiš je zasnovan na steku, i stoga svaka naredba osim pokreta i naredba za krajnje izvršenje ; promeni nešto u steku. Mogu se dodavati brojeve i ulazni sadržaj, izvršavati promene i izbacivati izlazni sadržaj pomoću različitih naredbi. Takođe mogu se kreirati novi stekovi, koristeći [ naredbu. Kreiranje novog steka povlači određeni broj stavki iz tekućeg steka na novi. Novi stek je potpuno izolovan od prethodnog. Kada je naredba ] izvršena, tekući stek je uklonjen i njegove vrednosti se vraćaju nazad u osnovni stek. Ako je trenutni stek poslednji, ] jednostavno prazni stek i registar. 
+
+ 12345 3[ r ] rnnnnn;
+ ^ ^ ^ ^ ^
+ | | | | | Izlaz: 12543. Tri glavne vrednosti su obrnute!
+ | | | |
+ | | | | Drugi stek je uklonjen, stavljajući svoju vrednost u prvi stek.
+ | | |
+ | | | Drugi stek je obrnut.
+ | |
+ | | Kreira se drugi stek, izvlačenje 3 vrednosti iz prvog steka.
+ |
+ | Brojevi 1-5 su dodati na prvi stek.
+
+Ulaz/izlaz
+Starfiš ima tri naredbe za ulaz/izlaz: i za ulaz i o / n za izlaz. i naredba jednostavno čita karaktere iz datoteke otvorene sa F. Treba imati na umu da ne postoji naredba za unos broja, potrebno je razdvojanje karaktera.
+Dok razdvajanje brojeva nije teško, to čini programe sporijim i podložnijim greškama. Većina programa koji zahtevaju unos broja, čitaju ih sa steka na početku programa. Ovo se radi sa prevodiocem koji podržava pred popunjavanje steka vrednostima. To sa takvim prevodiocem izgleda ovako:
+
+ $ starfish -i 10 -code "2*n;"
+ 20
+
+Izlaz je malo lakši, pošto imaju dve naredbe: o i n. Oni će izbaciti vrednost i ispisati je kao karakter i broj, redom.
+
+Greške
+Sledeći događaji će dovesti do greške u Starfišu:
+
+Deljenje nulom
+Kada dođe do pogrešne naredbe
+Pokušaji izbacivanja ili izmene steka kad je prazan ili ima premalo vrednosti
+Ako prevodilac ne podržava proizvoljne brojeve, prekoračenje dovodi do greške
+Iako postoji više razloga zbog kojih može doći do greške, postoji samo jedna poruka o grešci: nešto miriše na ribu ...
+
+Instrukcije
+Dat je samo nacrt uputstava u Starfišu i podložan je promenama. Uputstva su osetljiva na velika i mala slova.
+
+Pokret i izvršenje
+Literali i operateri
+Manipulacija stekom
+Ulaz/izlaz
+Refleksija/razno
+Primeri
+Svi primeri se izvode pomoću go-starfish prevodioca.
+
+Zdravo svete!
+"Zdravo svete!";
+
+$ starfish zdravosvete.sf 
+Zdravo svete!
+
+Fajl i/o
+Otvara "zdravo.txt", prikazuje svoj sadržaj i briše.
+
+ "zdravo.txt"lF\
+ v!?+1:i<
+ ~
+ r
+ ov!?l<
+ F0<;
+
+ $ starfish fileio.sf 
+ Zdravo starfish!
+
+Funkcija
+Poziva funkciju na 0, 1 i izlazi.
+
+ <;C10
+ v"Radi!"
+ <oR!?l
+
+ $ starfish function.sf
+ Radi!
+
+Izbor stekova
+"Zdravo "r0["svete"rDv
+ ov!?l <
+ I
+ o>l?!;
+
+$ starfish stackselect.sf 
+Zdravo svete
+
+Prevodilac
+Prevodilac pogledajte ovde.

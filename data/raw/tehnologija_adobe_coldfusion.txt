@@ -1,0 +1,157 @@
+Ovaj članak je o programskom jeziku. Za nuklearnu fuziju pogledajte, hladna fuzija.
+
+ColdFusion je komercijalno okruženje za brz razvoj web aplikacija razvijeno 1995. godine. ColdFusion koristi CFML programski jezik (često mešan sa imenom okruženja). ColdFusion je originalno dizajniran da omogući jednostavno povezivanje HTML stranica sa bazom podataka. Od verzije 2 (1996), postalo je kompletna platforma koja dolazi sa integrisanim razvojnim okruženjem i kompletnim skriptnim jezikom.
+
+Pregled
+Jedna od opcija koje izdvajaju ColdFusion jeste njegov skriptni jezik, ColdFusion Markup Language (CFML). CFML se po skriptnim komponentama može uporediti sa ASP, JSP i PHP po nameni i dostupnim opcijama, ali njegova sintaksa tagova znatno više podseća na HTML dok skriptna podseća na JavaScript. ColdFusion je često korišćen sinonim za CFML, ali postoje dodatni CFML aplikacioni serveri pored ColdFusion-a, a ColdFusion podržava i ostale jezike pored CFML, poput serverske verzije ActionScript-a i ugradivih skripti koje mogu biti pisane u CFScript, jeziku sličnom JavaScript-u.
+Prvobitno kao proizvod Allaire korporacije realizovan 2. jula 1995. godine, ColdFusion je razvijen od strane dva brata, Džozefa Dž. Alera i Džeremija Alera. 2001. korporaciju je otkupila Macromedia, koja je zauzvrat otkupljena od Adobe Systems 2005. godine.
+ColdFusion se najčešće koristi u razvoju sajtova pokrenutih podacima i u intranet mrežama, ali se može koristiti i u razvoju daljinskih servisa poput SOAP web servisa ili za udaljeno korišćenje Flash sadržaja. Posebno je pogodan kao serverska tehnologija za klijentski Flex.
+ColdFusion takođe može rukovati asinhronim akcijama poput SMS-a i razmenom trenutnih poruka.
+
+Glavne mogućnosti
+ColdFusion podrazumevano nudi mnoštvo dodatnih mogućnosti. Među glavnim mogućnostima su i:
+
+Pojednostavljen pristup bazi podataka
+Klijentsko i serversko upravljanje kešom
+Klijentsko generisanje koda, posebno za vidžete formi i validacije
+Pretvaranje iz HTML-a u PDF
+Povraćaj podataka iz opštih sistema korišćenih u preduzetništvu poput Active Directory, LDAP, SMTP, POP, HTTP, FTP, Microsoft Exchange Server i opštih formata poput RSS i Atom
+Indeksiranje fajlova i servis za pretragu baziran na Apache Solr
+GUI upravljanje
+Serverska, aplikacija, klijentska, sesijska i zahtevna oblast vidljivosti
+XML raščlanjivanje, pisanje upita (XPath), validacija i transformacija (XSLT)
+Serversko grupisanje
+Zakazivanje zadataka
+Grafiranje i izveštavanje
+Pojednostavljenu manipulaciju fajlovima uključujući rastersku grafiku (i CAPTCHA) i zip arhive (uvod u video manipulaciju je planiran u narednim izdanjima)
+Pojednostavljena implementacija web servisa (sa automatskim generisanjem WSDL / transparentnog SOAP upravljanja za pravljenje i korišćenje servisa - na primer, ASP.NET nema ugrađen ekvivalent za <CFINVOKE WEBSERVICE="http://host/tempconf.cfc?wsdl" METHOD="Celsius2Fahrenheit" TEMP="#tempc#" RETURNVARIABLE="tempf">
+Ostale implementacije CFML-a nude slične ili poboljšane funkcionalnosti, poput pokretanja u .NET okruženju ili manipulacije slikama.
+Endžin je napisan u C i poseduje, pored ostalih stvari, ugrađeni skriptni jezik (CFScript), priključak modula pisanih u Javi i sintaksu koja je veoma slična onoj iz HTML-a. Kao i kod HTML tagova, ColdFusion tag počinje slovima "CF" i nastavlja se imenom koje predstavlja u šta bi tag trebalo da bude pretvoren u HTML. Na primer, <cfoutput> se koristi za prikaz vrednosti promenljivih i ostalog sadržaja.
+Pored CFScript-a i priključaka, CFStudio je nudio dizajnersku platformu sa WYSIWYG prikazom. Pored ColdFusion-a, CFStudio podržava sintaksu i ostalih popularnih jezika za razvoj na serverskoj strani, na primer, Perl. Pored lakog postizanja serverske funkcionalnosti za ne-programere (verzija 4.0 i novije), omogućena je laka integracija sa Apache i Internet Information Services.
+
+Ostale mogućnosti
+Sve do verzije 6.0 ColdFusion je pisan u Microsoft Visual C++-u. Ovo je dovelo do toga da ColdFusion bude većim delom ograničen na Windows, mada je Allaire uspešno razvila verziju i za Sun Solaris od verzije 3.1.
+Ranije verzije u vlasništvu Allaire i Macromedia kompanija (pre 4.0 i novijih) nisu bile toliko robustne.
+Sa razvojem ColdFusion MX 6.0, endžin je prepisan u Javi podržavajući svoje sopstveno okruženje za pokretanje koje je jednostavno zamenjeno preko opcija podešavanja sa okruženjem za pokretanje iz Sun korporacije.
+
+Istorija razvoja
+2. jul 1995: Allaire Cold Fusion verzija 1.0
+1996: Allaire Cold Fusion verzija 1.5
+Novembar 1996: Allaire Cold Fusion verzija 2.0
+Jun 1997: Allaire Cold Fusion verzija 3.0
+Januar 1998: Allaire Cold Fusion verzija 3.1
+Novembar 1998: Allaire ColdFusion verzija 4.0 (uklonjen razmak između Cold i Fusion)
+Novembar 1999: Allaire ColdFusion verzija 4.5
+Jun 2001: Macromedia ColdFusion verzija 5.0
+Maj 2002: Macromedia ColdFusion MX verzija 6.0 (build 6,0,0,48097), Updater 1 (build 6,0,0,52311), Updater 2 (build 6,0,0,55693), Updater 3 (build 6,0,0,58500)
+Jul 2003: Macromedia ColdFusion MX verzija 6.1 (build 6,1,0,63958), hot fix (6,1,0,xxxxx), Updater 1 (build 6,1,0,83762)
+7. februar 2005: Macromedia ColdFusion MX 7 (build 7,0,0,91690)
+27. septembar 2005: Macromedia ColdFusion MX 7.0.1 (build 7,0,1,116466)
+28. jun 2006: Macromedia ColdFusion MX 7.0.2 (build 7,0,2,142559)
+30. jul 2007: Adobe ColdFusion 8 (build 8,0,0,176276)
+3. april 2008: Adobe ColdFusion 8.0.1 (build 8,0,1,195765)
+5. oktobar 2009: Adobe ColdFusion 9 (build 9,0,0,251028)
+13. jul 2010: Adobe ColdFusion 9.0.1 (build 9,0,1,274733)
+15. maj 2012: Adobe ColdFusion 10 (build 10,0,0,282462)
+31. maj 2012: Adobe ColdFusion 9.0.2 (build 9,0,2,282541)
+31. avgust 2012: Adobe ColdFusion 10 Update 1 (build 10,0,0,282462)
+11. septembar 2012: Adobe ColdFusion 10 Update 2 (build 10,0,0,283111)
+16. oktobar 2012: Adobe ColdFusion 10 Update 3 (build 10,0,3,283145)
+2. novembar 2012: Adobe ColdFusion 10 Update 4 (build 10,0,4,283281)
+19. novembar 2012: Adobe ColdFusion 10 Update 5 (build 10,0,5,283319)
+11. decembar 2012: Adobe ColdFusion 10 Update 6 (build 10,0,6,283435)
+15. januar 2013: Adobe ColdFusion 10 Update 7 (build 10,0,7,283649)
+27. februar 2013: Adobe ColdFusion 10 Update 8 (build 10,0,8,284032)
+10. april 2013: Adobe ColdFusion 10 Update 9 (build 10,0,9,284568)
+14. maj 2013: Adobe ColdFusion 10 Update 10 (build 10,0,10,284825)
+9. jul 2013: Adobe ColdFusion 10 Update 11 (build 10,0,11,285437)
+12. novembar 2013: Adobe ColdFusion 10 Update 12 (build 10,0,12,286680)
+21. novembar 2013: Adobe ColdFusion 10 Mandatory Update (build 10,283922) - nije neophodno za one koji imaju instaliran Update 8 ili novije
+10. januar 2014: Adobe ColdFusion 10 Update 13 (build 10,0,13,287689)
+14. oktobar 2014: Adobe ColdFusion 10 Update 14
+9. decembar 2014: Adobe ColdFusion 10 Update 15 (build 10,0,15,292620)
+29. april 2014: Adobe ColdFusion 11 (build 11,0,0,289822)
+22. septembar 2014: Adobe ColdFusion 11 Update 1
+14. oktobar 2014: Adobe ColdFusion 11 Update 2
+9. decembar 2014: Adobe ColdFusion 11 Update 3
+16. februar 2016: Adobe ColdFusion (izdanje 2016) (build 2016,0,0,297996)
+
+Verzije
+Cold Fusion 3.1
+Ova verzija je donela port na Sun Solaris. Cold Fusion je dobio živi pregled stranice i podršku za proveru HTML sintakse.
+
+ColdFusion 4
+"Cold Fusion" nadimak je promenjen u "ColdFusion" - verovatno kako bi se napravila razlika između teorije hladne fuzije.
+
+ColdFusion 4.5
+Verzija 4.5 donela je ugrađeno pozivanje Java objekata, izvršavanje sistemskih komandi i direktnu komunikaciju sa Java EE serverom.
+
+ColdFusion 5
+Prvo izdanje iz Macromedia-e nakon sticanja Allaire korporacije.
+Dana 16. januara 2001. godine Allaire je objavio da je pripajanje sa Macromedia-om u toku. Macromedia je nastavila razvoj i realizovala proizvod pod imenom ColdFusion 5.0.
+
+ColdFusion MX 6
+Sve do 2000. godine, Edvin Smit, Allaire arhitekta na JRun-u i kasnije Flash Player-u, započeo je projekat pod kodnim nazivom "Neo". Ovaj projekat je kasnije otkriven kao ColdFusion Server potpuno prepisan u Javi. To je omogućilo bolju prenosivost i bezbednost na serveru jer je pokretan u okviru Java okruženja.
+U junu 2002. godine Macromedia je realizovala verziju 6.0 pod malo izmenjenim naizvom, ColdFusion MX, dozvoljavajući proizvodu da bude povezan sa Macromedia brendom kao i sa svojim originalnim brendiranjem. ColdFusion MX je potpuno reizgrađen iz temelja i bio je baziran na Java EE platformi. ColdFusion MX je takođe dizajniran za integraciju sa Macromedia Flash i Flash Remoting.
+Sa razvojem ColdFusion MX, API je realizovan sa objektno orijentisanim interfejsom.
+
+ColdFusion MX 7
+Sa realizacijom ColdFusion 7.0 7. februara 2005. izmenjena je konvencija imenovanja, prelaskom na ime "Macromedia ColdFusion MX 7" (kodno ime za CFMX7 je bilo "Blackstone"). CFMX 7 doneo je Flash-bazirane i XForms-bazirane web forme kao i izgrađivač izveštaja sa izlaznom podrškom za Adobe PDF kao i FlashPaper, RTF i Excel. Adobe PDF kao izlazni format je dostupan i kao omotač za bilo koju HTML stranicu, prebacivanjem stranice u kvalitetan format za štampanje. Preduzetnička verzija je takođe donela i podršku gateway-ove. Ovo je donelo interakciju sa ne-HTTP servisnim zahtevima poput IM servisa, SMS, pregledača direktorijuma kao i asinhronog izvršavanja. XML podrška je pojačana u ovoj verziji kako bi se omogućila ugrađena provera šema.
+ColdFusion MX 7.1 (kodnog imena "Merrimack") doneo je podršku za Mac OS X, poboljšanja za Flash forme, RTF podršku za CFReport, novu CFCPRoxy mogućnost za Java/CFC integraciju i ostalo. ColdFusion MX 7.2 (kodnog imena "Mystic") sadržao je napredne mogućnosti za rad sa Adobe Flex 2 kao i poboljšanja za CF Report Builder.
+
+Adobe ColdFusion 8
+Dana 30. jula 2007. godine, Adobe Systems je realizovao ColdFusion 8, izbacivajući "MX" iz naziva. Tokom beta testiranje korišćeno je kodno ime "Scorpio" (osmi znak u horoskopu i osma iteracija ColdFusion komercijalnog proizvoda). Preko 14 000 programera širom sveta je bilo aktivno tokom beta procesa - mnogo više testera od očekivanih 5000 u Adobe Systems. ColdFusion razvojni tim se sastojao od programera iz Bostona, Masačuseca i u instrovanom Bangaloru u Indiji.
+Neke od novih mogućnosti bile su CFPDFPERFORM tag koji je omogućio integraciju sa Adobe Acrobat formama, neke funkcije za upravljanje slikama, integraciju sa .NET okruženjem, kao i CFPRESENTATION tag koji je omogućavao kreiranje dinamičkih prezentacija koristeći Adobe Acrobat Connect, Web-bazirano kolaboracijsko rešenje nekada poznato kao Macromedia Breeze. Uz to, ColdFusion Administrator i Enterprise verzija dolazile su sa ugrađenim monitoringom servera. ColdFusion 8 je dostupan za nekoliko operativnih sistema uključujući Linux, Mac OS X i Windows Server 2003.
+Ostali dodaci u ColdFusion 8 su ugrađeni Ajax vidžeti, upravljanje arhivama fajlova (CFZIP), integracija sa Microsoft Exchange serverom (CFEXCHANGE), manipulacija slikama uključujući automatsko generisanje CAPTCHA (CFIMAGE), višenitnost, podešavanja aplikacija, Atom i RSS fidove, poboljšano izveštavanje, poboljšane biblioteke za enkripciju, poboljšanja za nizove i strukture, poboljšanu interakciju sa bazom podataka, poboljšane proširive performanse, upravljanje i spajanje PDF sadržaja (CFPDF), interaktivno debagovanje, podršku za ugradive baze podataka sa Apache Derby, i ECMAScript kompatibilan CFSCRIPT.
+Za razvoj ColdFusion aplikacija, dostupno je nekoliko alata: Adobe Dreamweaver CS4, Macromedia HomeSite 5.x, CFEclipse, Eclipse i drugi. Ažuriranje tagova je dostupno za aplikacije kako bi ažurirale podršku za nove ColdFusion 8.0 mogućnosti.
+
+Adobe ColdFusion 9
+ColdFusion 9 (kodnog imena "Centaur") je realizovan 5. oktobra 2009. godine. Nove mogućnosti za CF9 uključivale su:
+
+Mogućnost za pisanje ColdFusion komponenti (CFC) u potpunosti u CFScript
+Eksplicitna "lokalna" vidljivost kod koje nije neophodno da lokalne promenljive budu definisane na vrhu funkcije
+Implicitne get/set komande za CFC
+Implicitni konstruktori preko metode "init" sa istim imenom kao i CFC
+Novi CFFinally tag za sintaksu za upravljanje izuzecima i CFContinue tag za upravljanje tokom
+Objektno-relaciono mapiranje (ORM) kroz Hibernate (Java)
+Server.cfc fajl sa onServerStart i onServerEnd metodama
+Uža integracija sa Adobe Flex i Adobe AIR
+Integracija sa ključnim Microsoft proizvodima uključujući Word, Excel, SharePoint, Exchange i PowerPoint
+Upravljanje memorijom - ili Virtuelni fajlsistem; mogućnost tretiranja sadržaja umesto korišćenja hard diska
+Izloženost u vidu servisa - mogućnost za siguran pristup funkcijama servera eksterno
+
+Adobe ColdFusion 10
+CodeFusion 10 (kodnog imena "Zeus") realizovan je 15. maja 2012. godine. Nove ili poboljšane mogućnosti bile su dostupne u svim verzijama (Standard, Enterprise i Developer) uključujući (između ostalog):
+
+Bezbednosna poboljšanja
+Hotfix instaler i obaveštavanje
+Poboljšano zakazivanje (bazirano na verziji quartz-a)
+Poboljšana podrška za web servise (WSDL 2.0, SOAP 1.2)
+Podrška za HTML5 web sokete
+Tomcat integracija
+Podrška za RESTful web servise
+Jezička poboljšanja
+Integracija pretrage sa Apache Solr
+HTML5 video plejer i Adobe Flash plejer
+Flex i Adobe AIR lenjo učitavanje
+XPath integraciju
+HTML5 poboljšanja
+Dodatne nove ili poboljšane mogućnosti u ColdFusion Enterprise ili Developer izdanjima su uključivale (između ostalog):
+
+Dinamičko i interaktivno prikazivanje HTML5 grafikona
+Poboljšano i prepravljeno zakazivanje (dodatne mogućnosti pored onih dodatih u CF10 Standard)
+Poboljšanja objektno-relacionog mapiranja
+CF10 je originalno nazivan po kodnom imenu Zeus, pre nego što je potvrđeno njegovo objavljivanje na Adobe MAX 2010, i dugo tokom perioda pre njegovog realizovanja. Takođe je bio nazivan "ColdFusion next" i "ColdFusion X" u blogovima, na Tviteru itd. pre nego što je Adobe konačno potvrdio da će biti "ColdFusion 10". Tokom većeg dela 2010. godine, ColdFusion proizvodni menadžer Adam Lehman obišao je SAD organizujući mnoštvo sastanaka sa klijentima, programerima kao i korisničkim grupama kako bi formirao šemu za sledeći set novih mogućnosti. U septembru 2010. godine predstavio je planove Adobe-u gde je naišao na punu podršku.
+Prva javna beta verzija ColdFusion 10 je realizovana u Adobe Labs 17. februara 2012.
+
+Adobe ColdFusion 11
+ColdFusion 11 (kodnog imena "Splendor") realizovan je 29. aprila 2014.
+
+Zastarele opcije
+ColdFusion 11 je zapravo uklonio sve opcije koje su pre toga identifikovane kao zastarele ili koje nisu više bile podržane. Obično bi se moglo nastaviti sa korišćenjem takvih tagova ili funkcija, ali ovoga puta to nije bio slučaj. Na primer, korišćenje CFLOG taga koji je zastareo bi izazvalo grešku u CF11, ali ne i u CF10.
+
+Adobe ColdFusion (izdanje 2016)
+Adobe ColdFusion (izdanje 2016), kodnog imena "Raijin" realizovan je 16. februara 2016.
+
+Adobe ColdFusion 13
+ColdFusion 13 (kodnog imena "Aether"). Sledeća verzija ColdFusion servera biće kodnog imena Aether (eter). Eter je grčki bog više atmosfere.

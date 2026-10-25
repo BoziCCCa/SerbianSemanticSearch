@@ -1,0 +1,4 @@
+﻿method,mean,median,max
+bm25,0.43,0.43,0.63
+semantic,54.19,42.34,345.07
+tfidf,2.22,2.07,3.64

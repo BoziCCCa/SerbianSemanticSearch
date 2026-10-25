@@ -1,0 +1,18 @@
+Kompilovani programski jezik je programski jezik čije su implementacije tipično kompilatori (prevodioci koji generišu mašinski jezik od izvornog koda), a nisu interpretatori (korak-po-korak izvršioci izvornog koda, koji ne vrše prevođenje pre pokretanja).
+Termin je donekle nejasan; u principu bilo koji jezik može biti realizovan sa kompilatorom ili sa interpretatorom. Kombinacija oba rešenja je takođe uobičajena: kompilator može da prevede izvorni kod u neki srednji oblik (često nazivan bajtkod), koji se zatim prenosi na interpretator koji ga izvršava.
+
+Prednosti i mane
+Programi kompilirani u urođeni kod za kompilirano vreme imaju tendenciju da budu brži od onih prevedenih u vreme izvršavanja, zbog uopštavanja procesa prevođenja. Nove tehnologije, kao što su „Just-in-time kompilacija i opšti napredak u procesu prevođenja počinju da smanjuju ovau razliku. Pomešano rešenje korišćenja bajtkoda teži da ima efikasnost negde između.
+Programski jezici niskog nivoa se obično kompiliraju, posebno kada je efikasnost primarna briga, u odnosu na podržavanje razlićitih platformi. Za jezike niskog nivoa, postoji više jedan-na-jedan preslikavanja između programiranog koda i hardverskih operacija obavljenih od strane mašinskog jezika, što olakšava programerima da kontrolišu procesorsko i memorijsko korišćenje mnogo detaljnije.
+Uz malo truda uvek je moguće napisati prevodioce čak i za tradicionalni interpretirani jezik. Na primer, Common Lisp se može prevesti na Java bajtkod, koji se tumači Java virtuelnom mašinom; C kod, koji je kompiliran na urođen mašinski kod; ili kompiliran direktno na urođen kod. Programski jezici koji podržavaju više kompilacionih destinacija daju veću kontrolu programeru da izabere ili brzinu izvršenja ili kompatibilnost sa različitim platformama.
+
+Programski jezici
+Neki jezici koji se najčešće smatraju da su kompilirani:
+
+Alatke
+ANTLR
+KodeVorker
+Leks
+Fleks
+GNU bizon
+Yacc

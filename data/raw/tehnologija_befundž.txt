@@ -1,0 +1,59 @@
+Befundž je dvodimenzionalni ezoteričan programski jezik napravljen 1993 od strane Kris Presej sa ciljem da se što je moguće teže kompajlira.
+
+Istorija
+Jezik je napravljen za familiju računara Amiga, kao pokušaj da napravi jezik koji je kompilatoru što teže prevesti.
+Napisano je nekoliko kompajlera. Originalni Befundž (znani kao "Befunge-93") ima mnogo naslednika. Najbliži rođak mu je Befunge-98 iz Funge-98 familije jezika. Svaki Fundž proširuje koncept Befundž na više dimenzija (na primer, Unefunge je jedno-dimenzijalan jezik, Trifunge je trodimenzionalan, Nfunge n-dimenzijalan, itd.)
+Originalna specifikacija jezika je ograničavala veličinu mreže na kojoj se jezik može pisati, što znači da Befundž nije
+Tjuring kompletan jezik (za razliku od drugih ezoteričnih jezika). Kao i svi drugi ezoterični jezici on nema upotrebnu vrednost.
+Kao što je naglašeno originalani program nije bio Tjuring-potpun ali verzija Befunge-98 je Tjrung-potpuna tako što su skinute restrikcije veličine programa, umesto da se umotava na fiksnoj vrednosti, pomeranje instrukcija Befunge-98 prati model nazvan "Lahey-space" (nazvanom po njegovom tvorcu), u ovom modelu, mreža se ponaša kao torus.
+
+Kompilacija
+Kao što je navedeno, dizajn cilj za Befundža bio je stvoriti jezik koji je bio teško kompilirati. Ovo je realizovano dve glavne karakteristike:
+
+ samo-modifikovanje - p instrukcija može napisati nove instrukcije u program;
+ multidimenzionalno - isto uputstvo se može izvršiti u četiri različita konteksta (u levo-desnom nizu instrukcija, ili desno-na-levo ili gore ili nadole.)
+
+Ipak, ove prepreke su do neke mere prevaziđene, a Befundž kompilatori su napisani, koristeći odgovarajuće tehnike.
+Kompilator Bf2c koji je uključen u standardnu Befunge-93 distribuciju koristi navojnu šifru: svaka instrukcija je sakupljena na odlomak C koda, a kontrola protiče kroz odrezke baš kao što to radi u Befundž tumaču (to je uslovno na vrednost nekih registar 'smera'.) Ovo ne rezultira značajnim prednostima nad dobrim prevodiocem. Imajte na umu da bf2c kompajler nije tačan, jer se ne rukuje n ispravno, ali to ne bi bilo nemoguće učiniti (iako jezik C možda nije pogodan za ovo).
+Kompilator Betti, na primer, tretira svaku moguću pravu liniju instrukcija kao podprogram, i ako p instrukcija menja taj podprogram, taj podprogram se ponovo kompajlira. Ovo je interesantna varijacija u kompilaciji upravo u vremenu i rezultira mnogo bolje prednostima nad prevodiocem, pošto se mnoga uputstva mogu izvršiti u izvornom kodu, bez internih odluka u registru 'smer'.
+Kompilatori Befunit i Bait, slično kompajleru Betti, podelili su izvorni kod u podprograme koji su ranije sakupljeni i izvršeni. One, međutim, dele izvornu tablu na "statičke staze" - kodne staze koje ne sadrže uputstva koja uslovno menjaju pravac (tj. |, _ Ili?). "Statičke staze" mogu proći na više ćelija od "pravih puteva" Betti-a, što dovodi do manjeg i dužeg potprograma. Stoga, postoji manje kontekstnih skokova između kompajlera i kompajliranog koda i omogućava više optimizacija.
+
+Povezani jezici
+Befundž je prethodio 1991. godine sličnom, ali manje karakterističanom, jeziku Biota, koji je dizajniran za eksperimente u samoreprodukciji. Sledio je ubrzo nakon 1994. godine još jedan sličan jezik Ortagonal, čiji dizajn je podstaknut diskusijom o alt.folklor.kompjuters. Svaki od ova tri jezika nastao je potpuno nezavisno od ostala dva.
+Befundž je takođe pružio inspiraciju za dizajn sledećih jezika, a najsličniji od njih su poznati kao fungeoidi. Većina jezika nije dovoljno slična da se naziva direktnim potomcima, ali često autor spominje uticaj Befungdža u pratećem komentaru. Takvi jezici uključuju Vird, dvodimenzionalni Turing tarpi; Befrjk, reverzibilni jezik; i PATH, koji kombinuje elemente Brainfuck-a.
+
+Pregled jezika
+Befundž program se sastoji od dvodimenzionalne mreže odrećene veličine. Mreža se inicijalno napuni instrukcijama programa. Takoće ona može služiti i kao skladište koje se može dopunjivati.1
+Pokretanje počinje uz pomoć pokazivača na instrukciju. Pokazivač počinje na odrećenoj lokaciji (gornji levi ugao mreže) i inicijalno putuje u odrećenom smeru (desno). Kada dođe do instrukcije, on je izvršava.
+Primer beskonačne petlje:
+
+>v
+^<
+
+Instrukcije("Befunge 93")
+Većina jedno-dimenzijalnih programa imaju sintaksičku razliku izmeću teksta komentara i koda programa, u Befundž-u nema sintakse za komentar. Programer navede tok programa oko komentara tako da tekst komentara nikada neće biti izvršavan.
+
+Primeri nekih jednostavnih programa
+"Befunge 93,Befunge 98"
+Zdravo, svete!
+64+"! etevs, ovardZ">:#,_@
+
+Faktorijel
+&>:1-:v v *_$.@ 
+ ^ _$>\:^
+
+Dna-kod
+>78*vD
+v$_#>vN
+7>!@ A
+3 :v??v
+9,-""""
+4+1ACGT
++,,""""
+>^^<<<<
+
+Eratostenovo sito
+2>:3g" "-!v\ g30 <
+ |!`"O":+1_:.:03p>03g+:"O"`|
+ @ ^ p3\" ":<
+2 234567890123456789012345678901234567890123456789012345678901234567890123456789

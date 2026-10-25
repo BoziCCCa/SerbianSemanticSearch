@@ -1,0 +1,91 @@
+Vajtspejs (engl. Whitespace) je ezoteričan programski jezik, razvijen od strane Edvin Brejdi (engl. Edwin Brady) i Kris Moris (engl. Chris Morris) na Univerzitetu u Durhamu. Predstavljen je 1. aprila 2003. godine. On je nazvan po karakterima beline (eng. whitespace) (npr. razmak, tabulator). Za razliku od većine programskih jezika, koji ignorišu belinu ili joj daju malo značaja, Vajtspejs interpreter zanemaruje sve karaktere osim belina. Samo razmak, tabulator, i novi red imaju značenje. 
+Zanimljiva posledica ove osobine je da se Whitespace program lako može naći unutar znakova beline programa koji je napisan na drugom jeziku, osim možda u jezicima koji zavise od razmaka za validnost sintakse (npr. Piton), čineći tekst poliglotskim.
+Sam jezik je imperativan, realizovan kao stek-mašina. Virtuelna mašina u kojoj se programi pokreću ima stek i hrpu, i može da obrađuje cele brojeve bilo koje veličine. Brojevi sa pokretnim zarezom nisu implementirani. Stek se koristi za izvršavanje komandi, a hrpa igra ulogu skladišta promenljivih i struktura podataka.
+
+Istorija
+Vajtspejs su stvorili 2003. godine Edvin Brejdi i Kris Moris. Način rada prilično jednostavan, a sam jezik nema praktične vrednosti, tako da nisu nastali novi dijalekti i opis koji su dali autori je jedini postojeći standard.
+Ideju za upotrebu razmaka u tekstu, odnosno beline, kao operatora u jeziku C++ predložio je Bjarne Stroustrup pet godina pre nastanka jezika Vajtspejs.
+
+Sintaksa
+Program se sastoji od niza razmaka (Space, ASCII 32), tabulatora (Tab, ASCII 9) i simbola za novi red (LF, ASCII 10). Ovi simboli predstavljaju niz različitih komandi. Ostali simboli se zanemaruju i mogu se koristiti za komentare.
+Podaci su predstavljeni u binarnom sistemu, koristeći razmake (0) i tabulatore (1), a zatim novi red. Na taj način, “razmak-razmak-razmak-tabulator-razmak-tabulator-tabulator-novi red” je binarni broj 0001011, odnosno 11 u dekadnom zapisu.
+Komande se sastoje od tokena, počev od prefiksa, koji opredeljuje tip komande i kod komande. U sledećoj tabeli su navedeni svi prefiksi.
+
+Svaki prefiks je praćen jednom od definisanih operacija za taj prefiks. Na primer, "tabulator-razmak-razmak-razmak" izvršava aritmetičko sabiranje prva dva elemenata steka.
+
+Primer koda
+Sledeće je Vajtspejs program sa komentarima, koji ispisuje "Hello, world!", gde se ispred svakog razmaka, tabulatora, ili novog reda nalazi indentifikacioni komentar "R", "T", ili "L" respektivno:
+
+R R R T R R T R R R L
+T L
+R R R R R T T R R T R T L
+T L
+R R R R R T T R T T R R L
+T L
+R R R R R T T R T T R R L
+T L
+R R R R R T T R T T T T L
+T L
+R R R R R T R T T R R L
+T L
+R R R R R T R R R R R L
+T L
+R R R R R T T T R T T T L
+T L
+R R R R R T T R T T T T L
+T L
+R R R R R T T T R R T R L
+T L
+R R R R R T T R T T R R L
+T L
+R R R R R T T R R T R R L
+T L
+R R R R R T R R R R T L
+T L
+R R L
+L
+L
+
+Imajte na umu da kada je Vajtspejs kod prikazan u nekim veb-pregledačima, horizontalni razmak proizveden tabulatorom nije konstantan, već zavisi od njegovog položaja u tekstu u odnosu na sljedeć. U zavisnosti od softvera, može se desiti da se tabulatori zamene i odgovarajućim promenljivim brojem razmaka.
+Ispod se nalazi još jedan primer Vajtspejs programa. On izračunava brojeve fibonačijevog niza.
+
+R R R T L
+R R T T R R R R L
+T T R R R R T R L
+R R R T R T T R R L
+T T R R R R T T L
+R R R T R R R R R L
+T T R R R R T R R L
+R R T R L
+T T R R R R T R T L
+R R R T L
+T T R L
+R R R L
+R R R T R T L
+R R R T R R L
+T T T R R R T R R L
+R L
+R R R R T R T L
+T T T R L
+R T L
+R T R R R T R L
+T T T T L
+R R R R R T T L
+T T T T L
+R R T T R T T T T R R R T T R R R R T L
+R L
+R R L
+R R L
+R T T T T R R R T T R T T T L
+T T R L
+R R R T R T R L
+R R R T R T T T R L
+R L
+R R L
+R T L
+R R T L
+R R T L
+R R T L
+R R L
+L
+L

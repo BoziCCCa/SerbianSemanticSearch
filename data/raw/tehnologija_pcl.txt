@@ -1,0 +1,46 @@
+PCL (engl. Printer Command Language) je programski jezik za opisivanje stranica za štampanje (engl. page description language - PDL), koji je 80-ih godina prošlog veka razvila kompanija Hjulet-Pakard (HP) za svoje štampače. S obzirom da je ova kompanija imala prevlast na tržištu, PCL je postao standardni jezik, jer su ga prihvatili i mnogi nezavisni proizvođači štampača, mada ga najčešće koriste u njegovoj ”ogoljenoj” formi, te nemaju na raspolaganju sve funkcije tog jezika.
+Laserski i mlazni štampač poznati su kao štampači stranica, pošto čitavu stranicu, kada je poslata na štampanje, prvo sklapaju u memoriji, pretvore je u tačkice pa tek onda prenesu na papir. Komunikacija između ličnog računara i štampača strane, vrši se uz pomoć posebnog jezika za opis strane. Za razliku od njih, rad matričnog štampača se zasniva na štampanju redova ili samo pojedinačnih znakova uz iskočne komande (engl. escape commands). Upravljački program (drajver) za štampač, koji se nalazi na ličnom računaru, odgovoran je za stvaranje izlaznih podataka za štampanje, koji se zatim šalju štampaču. Nezavisno od toga da li se prilikom štampanja koriste iskočni kodovi ili poseban jezik za štampanje, čitav dokument se pretvara u niz podataka, PDL ili Aski znakova, da bi štampanje bilo moguće.
+
+Istorija
+PCL jezik se tokom vremena razvijao, prateći nastala tehnička poboljšavanja štampača. Prve dve verzije PCL, koje su nastale u ranim 80-im, ne smatraju se kompletnim jezikom za opis stranica (PDL). Koristile su se kod mlaznog i matričnog štampača, samo za štampanje teksta. Kod prvog laserskog štampača (1984), uveden je PCL 3, koji je bio pravi PDL jezik. Najnoviji modeli štampača koriste PCL 6 (1996). Poslednja verzija jezika je potpuno prerađena, fleksibilna i objektno-orijentisana, sadrži vrlo napredne grafičke naredbe i razne druge mogućnosti, kao što su štampanje više stranica na jednom listu papira, upotreba vodenog žiga, prilagođenost radu sa veb stranicama itd.
+
+Osnove jezika
+Osim sadržaja teksta za štampanje, PCL se sastoji od naredbi projektovanih za iskorišćavanje različitih mogućnosti određenog modela štampača. Osnovu PCL jezika čine 4 kategorije:
+
+Kontrolni kodovi
+Kontrolni kodovi - standardni Aski kodovi za specijalne znake, kao što su povratak na početak reda (engl. Carriage Return) - CR, znak za novu stranicu (engl. Form Feed) - FF, znak za novi red (engl. Line Feed) - LF, iskočni znak iskejp (engl. escape) - ESC, razmak ili prazan prostor (engl. space) - SP, horizontalni tab (engl. horizontal tab) - HT, praznog prostora engl. white space - WS, koji se sastoji od jednog ili više razmaka - SP ili horizontalnih tabova - HT
+
+PCL naredbe
+PCL naredbe čine glavni deo jezika, veoma su slične iskočnim kodovima kod matričnih štampača za formatiranje stranice i izbor fonta. Ovim naredbama se uspostavljaju glavne karakteristike štampanja, koje se ne menjaju sve dok se novom komandom ne postave neke druge ili dok se štampač ne resetuje, odnosno ne postavi na početno definisane vrednosti. Većina ovih naredbi ima sledeći oblik:
+
+ESC&a#C
+
+gde je ESC ključna reč, simbol „&“ parametar sa vrednostima od 33 do 47 iz Aski tabele, „a“ parametar sa vrednostima između 96 i 126 iz Aski tabele, „#“decimalni broj koji može da sadrži tačku, a ispred njega može da stoje znaci „+“ ili „-“, dok je „C“ završni simbol sa vrednostima od 64 do 94 iz Aski tabele. Primeri:
+
+ESC&l#X - služi za označavanje broja kopija gde „#“ može da ima vrednost od 1 do 32767
+ESC&l#A - definiše veličinu papira, konkretno ESC&l26A služi za papir A4 formata
+ESC&l#H - definiše izvor odakle dolazi papir
+ESC&l#O - definiše orijentaciju papiraa
+ESC&a#P - definiše smer štampanja
+ESC&a#M - postavlja desnu marginu stranice, kada se na mesto „#“ znaka upisuje broj kolone
+
+HP-GL/2
+HP-GL/2 naredbe (engl. Hewlett Packard Graphics Language) su namenjene za vektorsku grafiku kao deo složenog dokumenta za štampanje, gde se svaka naredba sastoji od dva slova, uz koja se dodaju jedan ili više parametara za određivanje načina na koji će štampač obraditi datu naredbu. Sintaksa za pisanje naredbi je veoma fleksibilna, omogućava pisanje instrukcija malim ili velikim slovima. Za razdvajanje naredbi jedne od druge, koristi se simbol „;“, dok se parametri međusobno razdvajaju zarezom. Između njih je moguće napraviti razmak, mada nije obavezno, što pruža mogućnost korisnicima da sami odaberu način pisanja i preglednost. Primeri:
+
+CI 100; - crta krug prečnika 1000 jedinica, gde je 1 jednica iznosi 0,025 mm
+RR 1500,1000; - ispunjava površinu oblika pravougaonika (uz prethodno odabranu vrsta punjenja), čije su pozicije (0,0) za donji levi i (1500,1000) za gornji desni ugao u odnosu na početnu poziciju
+Uz napredno vektorsko crtanje, ovaj programski jezik omogućava rad sa različitim vrstama slika, fotografija, kao i crtanje simbola, zasebno ili kao deo drugih grafičkih objekata.
+
+Naredbe za poslove štampanja
+PJL naredbe (engl. printer job language) omogućavaju dvosmernu vezu između štampača i ličnog računara (PC-ja), razmenu informacija o stanju poslova za štampanje i prepoznavanju štampača, određivanje najpodesnijeg štampača za određeni posao, kao i druge zadatke. Ove naredbe su ograničene na kontrolu samog posla štampanja, te ne utiču na štampanje pojedinačnih dokumenata. PJL komande mogu da se koriste i u drugim jezicima za opisivanje stranica u koliko ih štampač podržava. Njihov opšti oblik je:
+
+@PJL naziv_naredbe [objekat_obuhvaćen_naredbom : vrednost] [neobavezni_parametar [= vrednost]] [<CR>]<LF>
+
+gde uglaste zagrade „[]“ označavaju neobavezne parametre naredbe. One se ne pišu u samoj naredbi. @PJL je ključna reč koja označava početak naredbe i uvek se piše velikim slovima, ali nije obavezna u svim vrstama naredbi. Sledi naziv naredbe, sa mogućnošću navođenja objekta obuhvaćenog naredbom (može da bude ukupno samo jedan objekat) i upisuje se njegova vrednost. U nastavku, u koliko postoji potreba, se postavljaju jedan ili više neobaveznih parametara i njihove vrednosti. Primeri:
+
+@PJL RESET <CR><LF> - postavlja sve parametre okruženja na početne vrednosti
+@PJL COMMENT ** Beginning PCL Job ** <CR><LF> - upisuje komentar
+@PJL ENTER LANGUAGE = PCL <CR><LF> - definiše jezik
+Postoji mogućnost nekorišćenja ni jednog naziva naredbe:
+
+@PJL <CR><LF> - služi za ubacivanje praznog reda između linija naredbi.

@@ -1,0 +1,17 @@
+AWK je interpretirani programski jezik dizajniran za obradu teksta i najčešće korišćen kao alatka za izvoženje podataka i izveštaje. Jedan je od standardnih alata na Juniks-baziranim operativnim sistemima.
+Razvijen je u Bell Laboratories istraživačkom centru 1970, a ime je dobio po prezimenima njegovih autora. Akronim se izgovara identično imenu ptice auk (njorke, koja predstavlja amblem jezika i pojavljuje se u literaturi). Kada se piše malim slovima, misli se na program iz juniksa i Plan 9 operativnog sistema koji pokreće skripte pisane u AWK programskom jeziku.
+
+Primeri aplikacija
+Zdravo svete
+Evo uobičajenog 'Zdravo svete' programa napisanog u AWK:
+
+Imajte na unu da eksplicitna exit izjava nije potrebna; pošto je jedini obrazac BEGIN, argumenti komandne linije se ne obrađuju.
+
+Dodatna literatura
+Hamilton, Naomi (27. 5. 2008). „The A-Z of Programming Languages: AWK”. Computerworld. Pristupljeno 16. 4. 2009. – Interview with Alfred V. Aho on AWK
+Robbins, Daniel (1. 12. 2000). „Awk by example, Part 1: An intro to the great language with the strange name”. Common threads. IBM DeveloperWorks. Pristupljeno 16. 4. 2009. 
+Robbins, Daniel (1. 1. 2001). „Awk by example, Part 2: Records, loops, and arrays”. Common threads. IBM DeveloperWorks. Pristupljeno 16. 4. 2009. 
+Robbins, Daniel (1. 4. 2001). „Awk by example, Part 3: String functions and ... checkbooks?”. Common threads. IBM DeveloperWorks. Arhivirano iz originala 19. 5. 2009. g. Pristupljeno 16. 4. 2009. 
+AWK – Become an expert in 60 minutes
+awk: pattern scanning and processing language – Commands & Utilities Reference, The Single UNIX® Specification, Issue 7 from The Open Group
+Gawkinet Arhivirano na veb-sajtu Wayback Machine (23. jun 2018): TCP/IP Internetworking with Gawk

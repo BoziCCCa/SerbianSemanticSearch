@@ -1,0 +1,19 @@
+Jezik stilskih listova, ili stilski jezik, je programski jezik koji izražava prezentaciju strukturiranog dokumenta. Jedna privlačna osobina strukturiranog dokumenta je ta da se sadržaj može ponovo iskoristiti u mnogim kontekstima i biti prezentovan na različite načine. Različiti stilski listovi mogu biti pridruženi logičkoj strukturi kako bi se proizvele različite prezentacije.
+Jedan moderan jezik stilskih listova sa širokom upotrebom je CSS (engl. Cascading Style Sheets), koji se koristi da stilizuje dokumente napisane u HTML-u, XHTML-u, SVG-u, XUL-u, i drugim jezicima za obeležavanje.
+Za prikazivanje sadržaja strukturiranog dokumenta, skup stilističkih pravila (za opisivanje na primer: boja, fontova i rasporeda elemenata) mora biti primenjen. Jedna takva kolekcija stilističkih pravila se zove stilski list. Stilski listovi u formi pisanih dokumenata imaju dugu istoriju korišćenja među urednicima i tipografima kako bi osigurali konzistentnost prezentacije, pravopisa (spelovanja u stranim jezicima) i interpunkcije. U elektronskom izdavaštvu, jezici stilskih listova su češće korišćeni u kontekstu vizuelne prezentacije nego u pravopisu i interpunkciji.
+
+Komponente
+Svi jezici stilskih listova pružaju funkcionalnost u sledećim oblastima:
+
+Sintaksa
+Stilskom jeziku je potrebna sintaksa kako bi bio izražen na mašinski čitljiv način. Na primer ovo je jednostavan stilski list napisan u CSS sintaksi:
+Selektori
+Selektori određuju na koje elemente će uticati stilsko pravilo. Kao takvi selektori su spojnica između strukture dokumenta i stilističkih pravila u stilskom listu. U gorenavedenom primeru selektor "h1" bira sve h1 elemente. Kompleksniji selektori mogu izabrati elemente na osnovu n.p.r. njihovog konteksta, atributa ili sadržaja.
+Svojstva
+Svi jezici stilskih listova imaju neki koncept svojstava kojima mogu biti pridružene vrednosti kako bi se promenio jedan od aspekata prikazivanja elementa. Svojstvo "font-size" iz CSS-a je korišćeno u primeru iznad. Uobičajeno jezici stilskih listova imaju oko 50 svojstava za opis prezentacije dokumenta.
+Vrednosti i jedinice
+Svostva menjaju prikaz elementa tako što im se pridruži određena vrednost. Ta vrednost može biti niska, ključna reč, broj ili broj sa identifikatorom jedinice. Takođe vrednosti mogu biti liste ili izrazi koji uključuju više prethodno pomenutih vrednosti. Tipična vrednost u vizuelnim stilskim listovima je dužina. Na primer: "1.5em" koji se sastoji od broja (1.5) i jedinice (em). Vrednost "em" u CSS-u predstavlja veličinu fonta okolnog teksta. Uobičajeno jezici stilskih listova imaju oko deset različitih jedinica.
+Mehanizam raspoređivanja vrednosti
+Kako bi se izbeglo eksplicitno navođenje svih vrednosti za svako svojstvo svakog elementa, jezici stilskih listova imaju mehanizam da rasporede vrednosti automatski. Glavna prednost respoređivanja vrednosti je manje opširan stilski list. U primeru iznad samo veličina fonta je navedena. Ostale vrednosti će biti pronađene kroz mehanizme respoređivanja vrednosti. Nasleđivanje, početne vrednosti i kaskadiranje su primeri mehanizama raspoređivanja vrednosti.
+Model formatiranja
+Svi jezici podržavaju neku vrstu modela formatiranja. Većina jezika stilskih listova imaju vizuelni model formatiranja koji opisuje, do nekih detalja, kako će tekst i ostali sadržaj biti raspoređen u krajnjem prikazu. Na primer, CSS model formatiranja precizira da će se elementi nivoa blokova ("h1" je jedan od primera) proširiti da popune širinu roditeljskog elementa. Neki jezici stilskih listova takođe imaju i slušni model formatiranja.

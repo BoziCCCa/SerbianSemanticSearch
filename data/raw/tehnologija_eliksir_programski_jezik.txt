@@ -1,0 +1,99 @@
+Eliksir (engl. Elixir, izgovor : Eliksir) je funkcionalan jezik. Njegovim tvorcem smatra se Jose Valim, koji je ovaj jezik dizajnirao 2011. godine. Ovaj jezik je nedavno postao izuzetno interesantan, naročito Rubi i Erlang programerima. Joe Armstrong, jedan od pronalazača Erlanga, podržao je i pohvalio ovaj novonastali jezik.
+Pri kreiranja programskog jezika Eliksir veliki uticaj u smislu sintakse imao je jezik Rubi. U Eliksiru ne postoje objekti i klase, već se sve zasniva na funkcijama i rekurziji. Takođe, Eliksir preuzima mnoge koncepte iz programskih jezika kao što su Clojure, Haskell, i Python. Ovaj programski jezik dizajniran je za izgradnju skalabilnih i lako održivih aplikacija, jednostavne je i moderne sintakse. Mnogo zanimljivih projekata u vezi sa robotikom je rađeno u Elixiru zbog njegove funkcionalne prirode, izuzetnog rada u distrubiranim sistemima i tolerancije na greške, koja je na jako visokom nivou.
+Takođe se uspešno koristi u razvoju veba i u domenu ugradnog softvera. Jezik Eliksir radi uz podršku Erlang virtualne mašine koja je karakteristična po minimalnom kašnjenju i zavidnoj toleranciji na greške.
+
+Kompatibilnost sa Erlang-om
+Eliksir radi na Erlangovoj virtualnoj mašini. Erlang je jezik koji se koristi na Eriksonovim telekomunikaconim sistemima i jako je skalabilan i siguran.
+Jezik Erlang i Eliksir dele iste bajt kodove, što omogućava Eliksiru da pozove bilo koju Erlang funkciju.
+
+Poziv erlang.localtime je poziv Erlang funkcije. U Erlangu, funkcija će biti pokrenuta .
+Eliksir programer može takođe da koristi bilo koju Erlangovu biblioteku.
+
+IEX
+Eliksir interaktivna konzola iex (engl. Elixir's interactive shell) je glavni modul za interakciju sa programskim jezikom Eliksir.
+Ono što je komanda irb u programskom jeziku Rubi to je iex u Eliksiru. 
+Iex podržava komandu h() koja pruža pomoć programeru i daje pristup dokumentaciji. Da bismo pristupili Enum modulu ukucaćemo h(Enum) i dobiti potrebne informacije, a ukoliko želimo da pristupimo funkciji Enum modula potrebno je ukucati h(Enum.nazivfunkcije).
+
+Karakteristike jezika
+Skalabilnost
+Eliksir kod izvršava se u nitima koje su izolovane i međusobno razmenjuju informacije putem poruka.
+
+Nije neuobičajno da se stotine hiljada procesa obrađuju paralelno u istoj mašini. Dobra izolacija procesa omogućava da ih sakupljač otpadaka lako ukloni, što utiče na efikasnost izvršavanja i omogućava korišćenje svih resursa (vertikalno skaliranje).
+Procesi su takođe u stanju da komuniciraju sa drugim procesima koji rade na različitim mašinama u istoj mreži. Ovo omogućava programeru da sprovodi rad na više čvorova istovremeno (horizontalno skaliranje).
+
+Tipovi u programskom jeziku Eliksir
+Osnovni tipovi u programskom jeziku Eliksir su :
+
+celobrojni tip
+realni tip
+logički tip
+atomi
+niske
+liste
+torke
+
+Posmatrajmo sledeći kod : 
+
+Primetimo da 10/2 vraća realan broj 5,0 umesto celog broja 5. Ovo je očekivano jer u Eliksiru operator / uvek vraća float (realan broj). Ako želimo da dobijemo ceo broj ili ostatak pri deljenju, možemo pozvati funkcije div ili rem:
+
+Primetimo da zagrade nisu potrebne da bi se pozvala funkcija.
+
+Realan tip
+Realan (float) tip zahteva tačku iza koje se navodi najmanje jedna cifra, a takođe podržava i slovo e kao eksponent pomoću kojeg se predstavlja realan broj:
+
+Realni tip u Eliksiru zauzima 64-bita i dvostruke je tačnosti.
+Funkcija round() se koristi da bi se dobio najbliži ceo broj u datom floatu, a funkcija trunc() da se dobije celobrojni deo float podatka.
+
+Logički tipovi
+Logički tip podataka u Eliksiru moze imati vrednost tačno (True) ili netačno (False)
+
+Atomi
+Atomi su konstante čije je ime ujedno i njihova vrednost :
+
+U logičkom tipu podataka ključne reči true i false su u stvari atomi :
+
+Niske(Stringovi)
+Stringovi u Eliksiru se pišu između dvostrukih navodnika.
+
+Stringovi se mogu štampati pomoću funkcije IO.puts iz IO modula.
+
+Dužinu niske određujemo pomoću funkcije String.length().
+
+Povezane liste
+Liste se u programskom jeziku Eliksir predstavljaju uz pomoć zagrada [ ]. Članovi liste mogu biti bilo kog tipa.
+
+Dve liste mogu da se sabiraju i oduzimaju korišćenjem ++ i -- operatora:
+
+Torke
+Torke se definišu uz pomoć vitičastih zagrada { }.
+
+Osnovni operatori
+U prethodnom delu, videli smo da Eliksir podržava aritmetičke operatore +, -, *, /, kao i funkcije div i rem koje služe za količnik i ostatak pri deljenju kod celobrojnih tipova.
+Stringovi se nadovezuju uz pomoć operatora <>:
+
+Eliksir takođe obezbeđuje tri logička operatora : or, and i not.
+Ovi operatori očekuju logičku vrednost (true ili false) kao njihov prvi argument.
+
+Zadavanje vrednosti koje nisu logičkog tipa će izbaciti izuzetak.
+
+Pored ovih logičkih operatora, Eliksir koristi i ||, && i ! koji se mogu primeniti na bilo koje tipove. 
+Za ove operatore, sve vrednosti osim false i nil će biti true :
+
+Eliksir takođe koristi operatore poređenja ==, !=, ===, !==, <=, >=, <, i > koji vraćaju rezultat logičkog tipa (true i false).
+
+Razlika između == i === je u tome što je drugi strožiji pri poređenju celog i realnog tipa.
+
+U Eliksiru možemo da poredimo dva različita tipa podataka:
+
+Operator jednakosti
+U ovom poglavlju ćemo pokazati da je = operator jednakosti u Eliksiru i kako ga koristimo u strukturi podataka.
+
+Primetimo da je 1 = x validan izraz, a to važi jer su leva i desna strana jednake 1. Promenljiva se može dodeliti samo sa leve strane, a kada se promenljiva nađe sa desne strane, operator = proverava jednakost. Kada jednakost nije ispunjena ispisaće se 'MatchError' .
+
+Pošto promenljiva unknown nije prethodno definisana,
+Eliksir će pokušati da pozove funkciju pod nazivom unknown , ali takva funkcija ne postoji.
+Operator jednakosti se ne koristi samo za proveru jednakosti nad jednostavnim promenljivim, nego je koristan i za razlaganje složenijih struktura podataka. Na primer, možemo ga upotrebiti i nad torkama.
+
+Operator jednakosti će izbaciti grešku ako strane nisu uporedive, na primer, ako su torke različite veličine:
+
+I takođe ako poredimo različite tipove podataka:

@@ -1,0 +1,16 @@
+Elis (engl. Alice) je besplatan (za nekomercijalne svrhe) objektno-orijentisan obrazovni programski jezik sa integrisanim razvojnim okruženjem (IDE). Elis koristi okruženje klikni i prevuci (drag and drop) kako bi kreirao računarske animacije pomoću 3D modela. Softver je prvi razvijen na Univerzitetu u Virdžiniji 1994. godine, a zatim na Karnegi Melon univerzitetu (od 1997. godine) istraživanjem grupe koju je vodio Rendi Pauš.
+
+Svrha
+Elis je razvijen radi rešavanja pet ključnih problema u obrazovnom programiranju: 
+1. Elis je dizajniran isključivo da učenje programske teorije bez kompleksne semantike proizvodnih jezika kao što je C ++ . Korisnici mogu staviti predmete iz Elisove galerije u virtuelni svet koji su sami izmislili, a zatim ih mogu programirati prevlačenjem i puštanjem pločica koje predstavljaju logičke strukture. Pored toga, korisnik može da manipuliše Alisovom fotoaparatom i osvetljenjem radi daljeg poboljšanja. Alice se može koristiti za 3D korisničke interfejse.
+2. Elis je povezan sa IDE-om. Ne postoji sintaksa za pamćenje. Međutim, ona podržava kompletno objektno orijentisano programiranje, model koji se upravlja na događajima .
+3. Elis je osmišljen tako da privlači specifične subpopulacije koje se ne bave računarskim programiranjem, kao što su učenici srednjih školska, podstaknuti pričama. Alisa se takođe koristi na mnogim fakultetima i univerzitetima u okviru Uvoda u programiranje.
+Elis 3 se izdaje pod licencom otvorenog koda koji omogućava redistribuciju izvornog koda, sa modifikacijom, ili bez nje.
+
+Varijante
+Varijanta Elis 2.0 zvana Storitelling Alice kreirala je Kejtlin Keleher za doktorsku disertaciju. Uključuje tri glavne razlike:
+
+ Animacije na visokom nivou koje korisnicima omogućavaju programiranje društvenih interakcija između znakova.
+ Tutorijal zasnovan na pričama koji uvodi korisnike u programiranje kroz izgradnju priče.
+ Galerija 3D karaktera i scenografije sa prilagođenim animacijama dizajniranim da iskorišćavaju ideje priče.
+Sledeća verzija Naratorke Elis poznata je kao Lukinkg Glas i razvija se na [University in St. Louis|Vašington Univerzitetu u St. Louisu] .

@@ -1,0 +1,280 @@
+Programski jezik Dark ( engl. Dark ) je ezoterični programski jezik kreiran od strane Dejvida Kata (David Catt) koji ga je napravio da bude zao.
+
+Instrukcije
+Uvod
+Dark je jezik zasnovan na manipulaciji čitavim svetovima i dimenzijama kako bi se postigli ciljevi i izgradila najveća muka stvarnosti. Svaki program se čita kao serija komandi za predmete sa ciljem da se svaki svet što je više moguće izvrne. Zbog svoje loše dizajnirane dokumentacije, verovatno je da su čak i opisi jezika zli.
+
+Osnove jezika
+Napomena: U svim primerima kodova gde god se upotrebljavaju zagrade {} date su informacije o delu naredbe, na primer ({ime objekta}${funkcija} označava liniju koja sadrži ime objekta praćeno kolonom i imenom funkcije; primer takve linije može biti nešto$akcija).
+Jezik se isključivo zasniva na objektima. Na početku svakog programa, objekat tipa HELL mora biti deklarisan (sintaksa: +{ime objekta} hell). Ovaj objekat dozvoljava kreiranje i kontrolu drugih objekata i predstavlja osnov za program. Objekat se koristi navođenjem imena objekta i funkcije koja se pokreće na tom objektu (sintaksa: {ime objekta}${funkcija}{parametri}) Sve linije programa sa izuzetkom u prvoj liniji treba da budu u ovom formatu, osim ako je linija prazna linija ili komentar. Komentirane linije moraju se započeti sa simbolima cevi (|) i završiti sa drugim simbolom cevi. Sva imena objekata su osetljiva na veličinu slova.
+Kad god se pojavi sintaksna greška, programski razum se smanji za 1. Razuman program počinje sa 100, ako razumljivost programa dostigne 0 program nije razumljiv. Kada god se javi opšta greška, tumač odštampa liniju "Murphy's Law is working correctly." . 
+Kada se program završi, svi aktivni objekti će se rešavati i odgovarajuće poruke o grešci će se pojaviti na konzoli sa detaljima procesa čišćenja. Kao takav preporučuje se uništavanje svih objekata pre nego što se program završi. Promenljive se takođe tretiraju slično.
+
+Specifično
+Svi objekti se čuvaju u memorijskom prostoru poznatom kao CONTROL_SPACE, odvojeno od svih promenljivih. Promenljive su lokalne za svaki manipulator i nalaze se u memoriskoj lokaciji poznatoj po nazivu WORLD_BLOCK. Postoji globalni red stringova poznat kao VOICELIST, koji čuva vrednosti znakova.
+
+Referentni interpretator
+Referentni interpretator je u potpunosti usklađen sa Dark programskim jezikom. Prihvata više izvornih datoteka kao argumente komandne linije. Svaka ulazna datoteka se interpretira zasebno i sekvencijalno. Opcije se takođe mogu podesiti pomoću komandne linije. Argumenti komandne linije utiču samo na izvorne datoteke nakon argumenta. Mogući argumenti su:
+
+Referentni interpretator takođe odgovara nedokumentovanim delovima Dark standarda.
+
+Tipovi objekata
+Hell
+Hell je osnovni objekat programa, deklarisan u prvom redu koda. Može postojati samo jedan hell objekat po programu. Ovaj objekat prihvata sledeće naredbe:
+
+Manipulator
+Manipulator je objekat koji omogućava upravljanje promenljivama. On može sadržati najviše 1024 promenljive. Kada se promenljiva oslobodi, za sobom ostavlja raspad. Ovaj raspad se mora obrisati uz pomoć funkcije VOID, kako bi se oslobodilo mesto za nove promenljive. Postoji nekoliko mehanizama promenljivih. Moguće je definisati promenljive sa istim imenom kao neka druga promenljiva u drugom manipulatoru, iako kada ih koristimo mogu izazvati probleme. Manipulator može manipulisati samo svojim promenljivama, stoga operacije sa promenljivama u manipulatorima moraju da koriste objekat SIGN kao privremeno skladište. Sve promenljive su neoznačeni prirodni brojevi koji mogu biti dužine 8, 16 ,32 ili 64 bita. Kada se promenljive ne koriste u preko 65536 ciklusa, one počinju da akumuliraju(prikupljaju) korupciju. Korupcija obrće jedan bit u promenljivoj kada se pojavi u njoj. Svaka promenljiva mora imati dispoziciju. Ako se u funkciji koriste promenljive koje se razlikuju za više od jedne dispozicije, one se sukobljavaju i promenljive se ubijaju. Promenljive takođe moraju biti definisane kao ili SERVANT ili MASTER. Servant mora izabrati master promenljivu. Kada master umre, sve promenljive vezane za njega takođe umiru. Ovo je korisno za grupisanje i masovno ubijanje promenljivih. Objekat manipulator prihvata sledeće funkcije:
+
+Entropy
+Objekat entropy omogućava kontrolu toka programa. Labele mogu biti ugrađene, i neće se redefinisati unutar drugih labela osim ako nisu nedefinisane. Funkcija choice može biti ugrađena, ali svaka od njih mora biti iz drugog entropy objekta. Prihvatljive funkcije su:
+
+Stalker
+Stalker objekat kontroliše sve bazične izlazno/ulazne funkcije. Stalker ne počinje sam od sebe, već mora da se pokrene jednom
+stalk funkcijom. Ako stalker nije pokrenut onda će se svi pokušaji da se izvrše I/U funkcije rezultovati depresivnim porukama o grešci koje će biti napisane u konzoli. Stalker ima samo dva moda DISTANT (udaljen,uobičajen) i PERSONAL (lični). U udaljenom modu, svaki izlaz je napisan na jednom razdvajaču i mora da se izbaci na konzolu preko paracusia funkcije. Menjanje modova će naterati razdvajača da se isprazni, dok je stalker na ličnom modu, svaki izlaz se odmah piše na konzoli.
+
+Sign
+Sign objekti su kontejneri za stringove. Sign je reprezentacija reda karaktera kodova. Sign objekti prihvataju sledeće funkcije:
+
+Neki programi
+CAT program
+Cat program je program koji kopira svoj standardni ulaz na svoj standardni izlaz.
+
++deadcat hell
+deadcat$twist stalker killer
+deadcat$twist manipulator person
+deadcat$twist entropy fate
+killer$stalk
+killer$personal
+person$manufacture weapon 0 8 master
+fate$corpse violence
+killer$control weapon
+killer$action weapon
+fate$stumble violence
+fate$illusion violence
+person$kill weapon
+deadcat$consume person
+deadcat$consume killer
+deadcat$consume fate
+deadcat$apocalypse
+
+Hello world!
+Hello world! program je trivijalan program koji na standardni izlaz ispisuje nisku teksta.Ovaj program je često prvi napisan na novom ezoteričkom programskom jeziku, kako bi se prikazao izlaz.
+
++hello hell
+hello$twist sign hws
+hello$twist stalker io
+io$stalk
+io$personal
+hws$scrawl " Hello world!
+hws$read
+io$echo
+hello$empty
+hello$apocalypse
+
+Fibonačijev niz
+Fibonačijev niz je niz brojeva, gde je svaki broj zbir dva prethodna broja u nizu. Jedini izuzetak su prva dva broja koja su 0 i 1.
+
++fib hell
+fib$twist stalker creep
+fib$twist entropy cruelty
+fib$twist manipulator darkone
+creep$stalk
+creep$personal
+darkone$manufacture new 0 64 master
+darkone$manufacture this 0 64 servant new
+darkone$manufacture last 0 64 servant new
+darkone$manufacture ltr 0 8 master
+darkone$set this 1
+cruelty$corpse fate
+darkone$add new last this
+darkone$set last this
+darkone$set this new
+creep$action # this
+cruelty$choice this <= 9223372036854775807
+ darkone$set ltr 44
+ creep$action ltr
+ darkone$set ltr 32
+ creep$action ltr
+ cruelty$stumble fate
+cruelty$reprogram
+darkone$omnicide
+darkone$void
+fib$empty
+fib$apocalypse
+
+Glavni jezik/Test interpretatora
++test hell
+|Initialize objects|
+test$twist manipulator overseer
+test$twist manipulator leader
+test$twist entropy fate
+test$twist entropy path
+test$twist stalker spy
+test$twist sign bbs
+test$twist sign keep_out
+|Define a few variables|
+overseer$manufacture politician 0 64 master
+overseer$manufacture person1 0 32 servant politician
+overseer$manufacture person2 0 16 servant politician
+overseer$manufacture person3 0 8 servant none
+leader$manufacture person1 0 16 master
+leader$manufacture test1 0 32 servant politician
+leader$manufacture test2 0 32 servant test3
+leader$manufacture test3 0 32 servant test2
+leader$manufacture hater 5 8 master
+leader$manufacture hated 9 8 master
+|Check that stalker is not initialized|
+|Should give depressing errors|
+spy$action politician
+spy$control politician
+|Initialize stalker|
+spy$stalk
+|Test io modes with fibonacci series|
+|Should print Press any key to continue..., then will display the fibonacci series|
+spy$distant
+overseer$set person1 10
+leader$set test1 0
+leader$set test2 1
+bbs$scrawl " , 
+fate$corpse fibonacci_1
+leader$add test3 test1 test2
+leader$set test1 test2
+leader$set test2 test3
+spy$action # test1
+bbs$read ~
+spy$echo
+fate$choice test1 < 1000000
+ fate$stumble fibonacci_1
+fate$reprogram
+fate$illusion fibonacci_1
+bbs$tear *
+bbs$scrawl " Press any key to continue...
+bbs$read
+spy$personal
+spy$echo
+spy$action person1
+spy$distant
+spy$control test1
+spy$action person1
+spy$paracusia
+|Test that choices work and nested choices are allowed|
+|Should display True,True,False,True,True,True,False|
+spy$personal
+bbs$scrawl " True
+bbs$scrawl person1
+keep_out$scrawl " False
+keep_out$scrawl person1
+fate$choice 0 = 0
+ bbs$read ~
+ spy$echo
+fate$reprogram
+fate$choice 0 = 0
+ bbs$read ~
+ spy$echo
+fate$balance
+ keep_out$read ~
+ spy$echo
+fate$reprogram
+fate$choice 0 <> 0
+ bbs$read ~
+ spy$echo
+fate$balance
+ keep_out$read ~
+ spy$echo
+fate$reprogram
+fate$choice person2 = person3
+ path$choice person2 = 0
+ bbs$read ~
+ bbs$read ~
+ spy$echo
+ spy$echo
+ path$balance
+ bbs$read ~
+ keep_out$read ~
+ spy$echo
+ spy$echo
+ path$reprogram
+fate$balance
+ path$choice person2 = 0
+ keep_out$read ~
+ bbs$read ~
+ spy$echo
+ spy$echo
+ path$balance
+ keep_out$read ~
+ keep_out$read ~
+ spy$echo
+ spy$echo
+ path$reprogram
+fate$reprogram
+fate$choice person2 = person3
+ path$choice person2 = 1
+ bbs$read ~
+ bbs$read ~
+ spy$echo
+ spy$echo
+ path$balance
+ bbs$read ~
+ keep_out$read ~
+ spy$echo
+ spy$echo
+ path$reprogram
+fate$balance
+ path$choice person2 = 1
+ keep_out$read ~
+ bbs$read ~
+ spy$echo
+ spy$echo
+ path$balance
+ keep_out$read ~
+ keep_out$read ~
+ spy$echo
+ spy$echo
+ path$reprogram
+fate$reprogram
+bbs$tear *
+keep_out$tear *
+|Test Randomization|
+overseer$chaos person2
+spy$action # person2
+spy$action person1
+|Test getting rid of master variable|
+overseer$suicide politician
+|Test garbage collect|
+overseer$void
+|Test sign functionality|
+|Shoud output ello, world!,world!,w,orld!,orld!,|
+leader$set person1 10
+bbs$tear *
+bbs$scrawl " Hello, world!
+bbs$scrawl person1
+bbs$tear
+bbs$read ~
+spy$echo
+bbs$tear 6
+bbs$read ~
+spy$echo
+bbs$observe test1
+spy$action test1
+spy$action person1
+bbs$steal test1
+bbs$read ~
+spy$echo
+bbs$read
+spy$echo
+bbs$read
+spy$echo
+|Test disposition conflict|
+leader$set hater hated
+|Test murphy's law|
+spy$action /THIS/IS/NOT/A/VALID/VARIABLE/NAME
+|Cleanup|
+test$twist manipulator final
+final$manufacture temporary 0 8 master
+final$empty
+test$consume final
+test$consume spy
+test$consume fate
+test$consume keep_out
+leader$suicide test3
+|Should show overseer melting person3, overseer dying, leader melting person1 test1 test2, leader dying, path, bbs|

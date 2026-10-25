@@ -1,0 +1,78 @@
+Programski jezik niskog nivoa je programski jezik koji pruža malo ili nimalo apstrakcije u odnosu na skup instrukcija arhitekture računara. Generalno se ovo odnosi na mašinski ili asemblerski kod. Reč „niskog“ se odnosi na skoro nepostojeću apstrakciju između jezika i mašinskog jezika; i zbog toga, često se za jezike niskog nivoa kaže da su „blizu hardvera“.
+Jezici niskog nivoa se mogu konvertovati u mašinski kod bez korišćenja kompajlera ili prevodioca, i rezultujući kod se direktno izvršava na procesoru. Program napisan u jeziku
+niskog nivoa se može napraviti tako da se jako brzo izvršava, i sa veoma malim memorijskim zauzećem; ekvivalentan program napisan u jeziku visokog nivoa je zahtevniji. Jezici niskog nivoa su jednostavni, ali se smatra da su teški za korišćenje, zbog raznih tehničkih detalja koje treba pamtiti.
+Radi poređenja, programski jezik višeg nivoa odvaja semantiku izvršenja arhitekture računara od specifikacije programa, što pojednostavljuje razvoj softvera.
+Programski jezici niskog nivoa se mogu podeliti u dve kategorije : prva generacija, i druga generacija.
+
+Mašinski kod
+Mašinski kod je jedini jezik koji mikroprocesor može da direktno izvrši (procesira) bez prethodne transformacije. Trenutno, programeri gotovo nikada ne pišu programe direktno
+u mašinskom kodu, jer zahteva obraćanje pažnje na brojne detalje koje bi jezik visokog nivoa automatski obradio, i takođe zahteva da se napamet znaju ili često proveravaju
+numerički kodovi za svaku instrukciju koja se koristi. Iz ovog razloga, programski jezici druge generacije pružaju jedan nivo apstrakcije na mašinskom kodu.
+Primer: funkcija u 32-bitnom x86 mašinskom kodu za računanje n-tog Fibonačijevog broja:
+
+8B542408 83FA0077 06B80000 0000C383
+FA027706 B8010000 00C353BB 01000000
+B9010000 008D0419 83FA0376 078BD98B
+C84AEBF1 5BC3
+
+Asembler
+Za asemblerski jezik se kaže da je jezik niskog nivoa zato što, iako nije maternji jezik mikroprocesora, programer asemblerskog jezika i dalje mora da razume jedinstvenu
+arhitekturu mikroprocesora (npr. njegove registre i instrukcije). Ove jednostavne instrukcije se onda direktno ugrađuju u mašinski kod. Asemblerski kod može takođe da se 
+apstrahuje na još jedan sloj na sličan način kao što se mašinski kod apstrahuje u asemblerski kod.
+Primer: Isti Fibonačijev broj se računa kao u prethodnom primeru, ali u x86 asemblerskom jeziku koristeći sintaksu Majkrosoft makro asemblera:
+
+fib:
+ mov edx, [esp+8]
+ cmp edx, 0
+ ja @f
+ mov eax, 0
+ ret
+ 
+ @@:
+ cmp edx, 2
+ ja @f
+ mov eax, 1
+ ret
+ 
+ @@:
+ push ebx
+ mov ebx, 1
+ mov ecx, 1
+ 
+ @@:
+ lea eax, [ebx+ecx]
+ cmp edx, 3
+ jbe @f
+ mov ebx, ecx
+ mov ecx, eax
+ dec edx
+ jmp @b
+ 
+ @@:
+ pop ebx
+ ret
+
+Programiranje niskog nivoa u jezicima visokog nivoa
+Eksperimenti sa hardverskom podrškom u jezicima visokog nivoa u kasnim 1960-im godinama dovela su do toga da jezike poput PL/S, BLIS, BCPL, i proširen ALGOL za Burousove velike sisteme se koriste za programiranje niskog nivoa. Fort takođe ima upotrebu kao sistemski jezik. Međutim, jezik koji je postao dominantan u sistemskom programiranju je C.
+Za C se smatra da je programski jezik treće generacije, jer je strukturiran i apstrahuje mašinski kod. Međutim, veliki broj današnjih programera bi mogli reći da je C niskog nivoa, jer mu fali veliki broj funkcija koje su danas standard (nema sakupljača đubreta itd.), praktično podržava samo skalarne operacije, i pruža direktno memorijsko adresiranje. Stoga, ono se lepo uklapa sa asemblerskim jezikom i mašinskim nivoom procesora i mikrokontrolera. Sposobnost C-a da apstrahuje od mašinskog nivoa znači da isti kod može biti kompajliran za različite hardverske platforme; međutim, precizna kontrola na sistemskom nivou je i dalje moguća pod uslovom da željena platforma ima određene specifikacije, npr. linearni memorijski modul, i memorija podeljena na bajtove. Programi u C-u mogu zahtevati određenu količinu „doterivanja“, često implementirano uslovnim kompajliranjem, za različite željene platforme. Proces adaptacije sistemskog programa za različitu platformu je poznato kao portovanje.
+Primer: funkcija koja računa n-ti Fibonačijev broj u C-u:
+
+unsigned int fib(unsigned int n)
+{
+ if (n <= 0)
+ return 0;
+ else if (n <= 2)
+ return 1;
+ else {
+ int a,b,c;
+ a = 1;
+ b = 1;
+ while (1) {
+ c = a + b;
+ if (n <= 3) return c;
+ a = b;
+ b = c;
+ n--;
+ }
+ }
+}

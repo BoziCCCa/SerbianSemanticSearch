@@ -1,0 +1,21 @@
+﻿query,sem ∩ bm25,sem ∩ tfidf,bm25 ∩ tfidf,all three
+Beograd,1,0,1,0
+Rambo Amadeus,1,1,3,1
+Burek,1,1,2,1
+Programski jezik Lua,3,2,3,2
+glavni grad Srbije,3,1,3,1
+srpski kantautor i tekstopisac,0,0,5,0
+jelo od lisnatog testa,3,2,3,2
+jezik za skriptovanje,2,0,2,0
+ko je osvojio Balkan u srednjem veku,1,0,1,0
+najveći grad u Srbiji,1,1,2,0
+srpski naučnik koji je radio na elektrotehnici,1,2,3,1
+slatko jelo sa orasima,1,2,3,1
+Ђорђе Балашевић,1,1,4,1
+Đorđe Balašević,2,2,4,2
+Rambbo Amedus,0,0,0,0
+Beogradd,0,0,0,0
+kvantna mehanika,1,0,0,0
+veštačka inteligencija,0,0,4,0
+austrougarski ultimatum Srbiji 1913,1,1,4,1
+srpski fudbaler rođen u Beogradu,2,1,3,1

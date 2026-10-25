@@ -1,0 +1,19 @@
+﻿query,type,intent,semantic,bm25,tfidf
+Beograd,exact_title,geografija,0.8,0.2,0.0
+Rambo Amadeus,exact_title,muzika,0.4,0.6,0.6
+Burek,exact_title,hrana,0.2,0.4,0.4
+Programski jezik Lua,exact_title,tehnologija,1.0,1.0,1.0
+glavni grad Srbije,paraphrase,geografija,0.8,0.8,0.8
+srpski kantautor i tekstopisac,paraphrase,muzika,0.4,1.0,1.0
+jelo od lisnatog testa,paraphrase,hrana,1.0,1.0,1.0
+jezik za skriptovanje,paraphrase,tehnologija,1.0,0.8,1.0
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,0.6,0.4,0.0
+najveći grad u Srbiji,conceptual,geografija,0.6,1.0,0.8
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,1.0,0.8,0.8
+slatko jelo sa orasima,conceptual,hrana,1.0,1.0,1.0
+Ђорђе Балашевић,cyrillic,muzika,0.4,0.4,0.4
+Đorđe Balašević,latin,muzika,0.4,0.4,0.4
+Rambbo Amedus,misspelled,muzika,0.4,0.0,0.0
+Beogradd,misspelled,geografija,0.8,0.0,0.0
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,1.0,0.6,0.4
+srpski fudbaler rođen u Beogradu,multi_concept,sport,1.0,1.0,0.8

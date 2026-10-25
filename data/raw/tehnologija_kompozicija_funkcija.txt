@@ -1,0 +1,54 @@
+U programiranju, kompozicija funkcija predstavlja akt ili mehanizam za kombinovanje više jednostavnih funkcija radi stvaranja složenije funkcije. Uobičajeno je da se rezultat svake funckije prenosi kao argument sledeće, a rezultat poslednje je rezultat celine.
+Programeri često primenjuju funkcije na rezultate nekih drugih funkcija što dopuštaju gotovo svi programski jezici. U nekim slučajevima kompozicija funkcija je zanimljiva sama po sebi kao funkcija.Takva funkcija se uvek može definisati, ali jezici sa prvoklasnim funkcijama to olakšavaju.
+Mogućnost jednostavne kompozicije funkcija podstiče refaktorisanje funkcija za održavanje i ponovnu upotrebu koda. Generalno, veliki sistemi se mogu praviti kompozicijom čitavih programa.
+Jednostavno rečeno, kompozicija funkcija se odnosi na funkcije koje rade na ograničenoj količini podataka, svaki korak ih uzastopno obrađuje pre nego što pošalje sledećem. Funkcije koje obrađuju beskonačno podataka poznate su kao filtri i povezane su u cevovod (pipeline), što je analogno kompoziciji funkcija i može se istovremeno izvršiti.
+
+Pozivi kompozicije funkcije
+Na primer, pretpostavimo da imamo dve funkcije f i g, u obliku z=f(y) i y=g(x). Njihova kompozicija podrazmeva prvo izračunavanje y=g(x) , a zatim korišćenje tog y za izračunavanje z=f(y) . Sledi primer u programskom jeziku C :Koraci se mogu kombinovati ako ne zadamo ime srednjem rezultatu:Uprkos razlikama u dužini, ove dve implementacije daju isti rezultat. Druga implementacija sadrži samo jednu liniju koda i naziva se "highly composed" obrazac. Čitljivost, a samim tim održivost je jedna od prednosti visoko sređenih oblika, jer zahtevaju manje linija koda, minimizirajući ,,površinu programa". DeMarco i Lister empirijski potvrđuju obrnut odnos između površine i održanja. S druge strane, visoko komponovani oblici mogu biti preterani. Korišćenje previše funkcija može imati suprotan efekat, čineći kod manje održivim. 
+U jezicima koji koriste stek kompozicija funkcije je još prirodnnija : izvodi se spajanjem i obično je primarna metoda kod dizajniranja programa.Sledi primer u programskom jeziku Forth : Ovo će uzeti sve što je bilo na steku ranije, primeniti g, zatim f, i ostaviti rezultat na steku.
+
+Imenovanje kompozicije funkcije
+Sada pretpostavimo da je kombinacija pozivanja f() na rezultat g() je često korisna i želimo je nazvati foo() da bi se mogla koristiti kao funkcija sama po sebi .
+
+U većini programskih jezika, možemo definisati novu implementiranu preko kompozicije. Primer u C- u:Primer u Forth :U programskom jeziku C jedini način da se kreira nova funkcija je definisanje iste u izvornom kodu, što znači da ne mogu biti dodate dok je program pokrenut. Međutim, moguća je procena proizvoljne kompozicije unapred definisanih funkcija:
+
+Prvoklasna kompozicija
+U funkcionalnim programskim jezicima, kompozicija funkcija može se prirodno izraziti kao funkcija višeg reda ili operator. U drugim programskim jezicima može se napisati sopstveni mehanizam za izvođenje kompozicije funkcija.
+
+Haskell
+U programskom jeziku Haskell , gorenavedeni primer postaje :korišćenjem ugrađenog operatora kompozicije (.), koji se može čitati kao f nakon g ili g sastavljen sa f .
+Sam operator kompozicije se može definisati u Haskell pomođu lambda izraza (računa):Haskell ne zahteva specifikaciju konkretnih tipova ulaza i izlaza f i g, samo odnose između njih (f mora prihvatiti ono što g vraća). Ovim (.) postaje polimorfni operator.
+
+Lisp
+Varijante Lisp-a posebno Scheme , zamenjivost koda i podataka, zajedno sa tretmanom funkcija, daju se izuzetno dobro za rekurzivnu definiciju varijabilnog kompozicionog operatora.
+
+APL
+Mnogi dijalekti APL-a imaju ugrađenu funkcijsku kompoziciju, koja se koristi kao simbol ∘. Ova funkcija višeg reda proširuje sastav funkcije na dijadičnu primenu funkcije leve strane tako da A f∘g B je A f g B.Pored toga može se definisati kompozicija funkcije:U dijalektu koji ne podržava inline definiciju pomoću zagrade, dostupna je tradicionalna definicija:
+
+Raku
+Poput Haskell-a, Raku ima ugrađen operator kompozicije funkcija, glavna razlika je u tome što se predstavlja kao ∘ ili o.U nastavku je Raku kod koji se koristi da se definiše operator u Rakudo implementaciji.
+
+Python
+U Python-u se kompozicija funkcije definiše korišćenjem reduce funkcije (functools.reduce u Python 3) :
+
+JavaScript
+U ovom programskom jeziku može se definisati kao funkcija koja uzima dve funkcije f i g i tako pravi novu funkciju:
+
+C#
+U programskom jeziku C# se može definisati pomoću Func :
+
+Ruby
+Jezici poput jezika Ruby-a omogućavaju samostalno pravljenje binarnog operatera:Međutim, sopstveni operator kompozicije funkcije uveden je u Ruby 2.6 :
+
+Istraživačka anketa
+Pojmovi kompozicije, uključujući princip kompozicionosti i kompostibilnosti, su toliko sveprisutni da su se brojne teme istraživanja odvojeno razvijale.Slede uzorkovanja vrste istraživanja u kojima je pojam kompozicije centralni. 
+
+Steele (1994) je direktno primenio funkcionu kompoziciju na skup ,,građevinskih blokova" koji su u programskom jeziku Haskell poznati kao "monade".
+Meyer (1988) se bavio problemom ponovne upotrebe softvera u smislu kompostibilnost.
+Abadi & Lamport (1993) su formalno definisali pravilo kompozicije funkcije koja osigurava sigurnost i život programa.
+Kracht (2001) je identifikovao pojačani oblik kompozicionosti stavljajući ga u semiotički sistem i primenjujući ga na problem strukturalne nejasnoće koji se često sreće u računarskoj lingvistici.
+van Gelder & Port (1993) ispitala je ulogu kompozicionosti u analognim aspektima obrade prirodnog jezika.
+
+Kompozicija velikog obima
+Čitavi programi ili sistemi mogu se tretirati kao funkcije, koje se lako mogu sastaviti ako su njihovi ulazi i izlazi dobro definisani, cevovodi omogućavaju lako sastavljanje filtera, pa je sve to postalo dizajnerski obrazac operativnih sistema.
+Imperativni postupci sa spoljnim efektima krše referentnu transparentnost i zbog toga se ne mogu čisto sastaviti. Međutim, ako uzimate u obzir „stanje sveta“ pre i posle pokretanja koda kao njegove ulaze i izlaze, dobićete čistu funkciju. Sastav takvih funkcija odgovara pokretanju procedura jedne za drugom . Monadski formalizam koristi ovu ideju da uvrsti nuspojave i I / O u funkcionalne jezike.

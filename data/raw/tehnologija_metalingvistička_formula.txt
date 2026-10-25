@@ -1,0 +1,29 @@
+U Bekusovoj notaciji sintaksa programskog jezika opisuje se pomoću konačnog skupa metalingvističkih formula (MLF).
+Metalingvistička formula se sastoji iz leve i desne strane razdvojene specijalnim, tzv. „univerzalnim“ metasimbolom (simbolom metajezika koji se koristi u svim MLF)"::=" koji se čita „po definiciji je“, tj. MLF je oblika 
+
+gde je A-metalingvistička promenljiva, a a-metalingvistički izraz.
+MLF ima značenje:ML promenljiva A po definiciji je ML izraz a.
+
+Metalingvistička promenljiva
+Metalingvistička promenljiva (ML promenljiva) je fraza prirodnog jezika u uglastim zagradama (<,>), i ona predstavlja pojam, tzv. sintaksnu kategoriju objekt-jezika. Ona odgovara pomoćnom simbolu formalne gramatike. Npr. u programskom jeziku, sintaksne kategorije su <program>, <ceo broj>, <cifra>, <znak broja>, <ime promenljive>, itd. U prirodnom jeziku, sintaksne kategorije su <reč>, <rečenica>, <interpukcijski znak>, itd. Metalingvistička promenljiva ne pripada objekt jeziku.
+"Sitnije“ sintaksne kategorije nazivaju se leksičkim kategorijama ili rečima (imaju značenje ali ne stoje samostalno; npr. identifikator, konstanta u programskom jeziku). „Krupnije“ sintaksne kategorije nazivaju se rečenicama (osim što imaju određeno značenje, egzistiraju samostalno; npr. iskaz u programskom jeziku).
+
+Metalingvistički izraz
+Metalingvistički izraz (ML izraz) se gradi od metalingvističkih promenljivih i metalingvističkih konstanti, uz korišćenje drugih specijalnih, tj. univerzalnih metalingvističkih simbola.
+Metalingvističke konstante su simboli objekt jezika. To su, npr., 0, 1, 2, +, -, ali i rezervisane reči programskog jezika, npr. IF, THEN, BEGIN, FUNCTION, itd.
+Metalingvistički izraz može se sastojati od jedne metalinvističke promenljive ili jedne metalingvističke konstante, a može se izgraditi i na jedan od sledeća dva načina:
+
+Napomena
+Svaka ML promenljiva koja se pojavljuje u ML izrazu a mora se definisati posebnom MLF.
+
+Primer
+Jezik celih brojeva u dekadnom brojnom sistemu može se opisati sledećim skupom MLF:
+
+<ceo broj>::=<neoznačeni ceo broj> | <znak broja> <neoznačeni ceo broj>
+<neoznačeni ceo broj>::= <cifra> | <neoznačeni ceo broj> <cifra>
+<cifra>::=0|1|2|3|4|5|6|7|8|9 
+<znak broja>::= +|-
+
+Navedene MLF mogu se pročitati na sledeći način:
+Ceo broj je po definiciji neoznačen ceo broj za kojim sledi cifra. Neoznačen ceo broj je po definiciji cifra ili neoznačen ceo broj za kojim sledi cifra. Cifra je po definiciji 0 ili 1 ili 2 ili 3 ili 4 ili 5 ili 6 ili 7 ili 8 ili 9. Znak broja je po definiciji + ili -.
+Upotreba univerzalnog metasimbola '|' samo skraćuje zapis MLF a ne povećava izražajnu moć notacije.

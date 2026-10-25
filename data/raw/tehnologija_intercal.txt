@@ -1,0 +1,66 @@
+"Compiler Language With No Pronounceable Acronym", skraćeno INTERCAL, je ezoterični programski jezik koji je nastao 1972. kao šala od strane Dona Vudsa (engl. Don Woods) i Džejmsa M. Liona (engl. James M. Lyon), dva studenta na univerzitetu u Prinstonu. Na satiričan način prikazuje stanovišta mnogih programskih jezika u to doba, kao i širenje ustaljenih jezičkih konstrukcija i sistema zapisivanja šezdesetih godina 20. veka. 
+Postoje dve trenutno održavane verzije INTERCAL-a: C-INTERCAL, održavan od strane Erika S. Rejmonda (engl. Eric S. Raymond), i CLC-INTERCAL održavan od strane Klaudija Kalvelija (engl. Claudio Calvelli).
+
+Istorija
+Prema originalnom priručniku autora, INTERCAL Reference Manual, pun naziv jezika je "Compiler Language With No Pronounceable Acronym", skraćeno "INTERCAL". 
+Prva implementacija ovog jezika je koristila bušene kartice i EBCDIC set znakova. Da bi se omogućilo INTERCAL-u da radi na račuanrima koji koriste ASCII kod, morale su se napraviti dve izmene- operator ¢ je zamenjen sa operatorom $, koji je predstavljao "povećanje cene softvera u odnosu na hardver"
+i operator ⊻ je zamenjen sa operatorom ? kao unarni exclusive-or operator da bi "jasno opisao reakciju prosečnog čoveka kada se prvi put susretne sa ovom naredbom". u novijim verzijama INTERCAL-a, stariji operatori su podržani kao alternative, a INTERCAL programi se sada mogu kodirati u ASCII, Latin-1, ili UTF-8 kodu.
+
+Detalji
+INTERCAL je napravljen sa ciljem da bude potpuno drugačiji od svih ostalih programskih jezika. Često korišćene operacije u drugim jezicima imaju skrivenu ili preopširnu sintaksu u INTERCAL-u. Iz priručnika INTERCAL Reference Manual: 
+Prilično je poznata i često je praktikovana činjenica da je visoko cenjen čovek čiji je posao teško dokučiv. Na primer, kada bi neko izjavio da je najlakši način da se memoriše vrednost 65536 na 32-bitnoj promenljivoj u INTERCAL-u: 
+
+svaki razuman programer bi rekao da je ta izjava apsurdna. Pošto je to zaista najlakši način, programer bi izgeldao glupo pred svojim šefom, koji bi se zadesio tu, kao što šefovi inače rade. Posledica ne bi bila ništa manje poražavajuća da je programer bio u pravu. 
+INTERCAL ima mnogo karakteristika dizajniranih da učine estetski doživljaj programera još više nezadovoljavajućim- koristi naredbe kao što su "READ OUT", "IGNORE", "FORGET", i ključne reči kao što su "PLEASE". Postoje dva razloga zbog kojih poslednja ključna reč može da dovede do odbijanja programa od strane kompilatora: ako se "PLEASE" ne pojavljuje dovoljno često, program se smatra nedovoljno učtivim. Sa druge strane, ako se pomenuta ključna reč pojavljuje previše često, program se smatra preterano učtivim. Mada je ova karakteristika postojala u originalnom INTERCAL kompajleru, ona se u programskom standardu vodila kao "undocumented". Uprkos ograničenoj i razvučenoj sintaksi ovog jezika, INTERCAL je ipak računski univerzalan program- uz dovoljno memorije, INTERCAL može da reši svaki problem koji i Univerzalna Tjuringova mašina može da reši. Ipak, većina implementacija INTERCAL-a izvršavaju probleme prilično sporo. Benčmark Eratostenovo sito, računajući sve proste brojeve manje od 65536, bio je testiran na računaru serije Sun SPARCstation 1. U programskom jeziku C, za izvršavanje ovog programa bilo je potrebno manje od pola sekunde, dok je isti program u INTERCAL-u izvršavao preko sedamnaest sati.
+
+Dokumentacija
+Priručnik INTERCAL Reference Manual sadrži mnoga paradoksalna, besmislena i humoristička uputstva: 
+
+ Pažnja! Ni u kom slučaju nemojte pomešati značenje pojmova mreže i operatora preplitanja, osim u zbunjujućim okolnostima! 
+
+Priručnik sadrži i "krajnik", kako je objašnjeno u fusnoti:"4)Pošto svi drugi priručnici sa napomenama sadrže "slepo crevo", odlučeno je da priručnik za INTERCAL sadrži neki drugi tip odstranjivog organa." 
+INTERCAL priručnik daje neobična imena svim znakovima ASCII koda koji nisu alfanumeričkog tipa- znak ' i " su redom "iskre" i "zečije uši", (izuzetak je znak &, jer kako programski rečnik Jargon File navodi: "Šta bi moglo biti luckastije?"). Operator dodele, koji je u mnogim programskim jezicima predstavljen kao znak jednakosti, je u INTERCAL-u predstavljen skupom znakova koji predstavljaju strelicu koja pokazuje ulevo <-, a sastoji se od znaka "manje od" i crte, jasno označavajući da levi operand "dobija" vrednost.
+
+Sintaksa
+Unos(pomoću instrukcije WRITE IN) i izlaz (koristeći READ OUT instrukciju) ne koriste uobičajene formate zapisa- u INTERCAL-72, instrukcija WRITE IN upisuje broj čije se cifre zapisuju kao tekst na engleskom jeziku (kao SIX FIVE FIVE THREE FIVE), a READ OUT ga izbacuje kao "iseckane" rimske brojeve.
+Novije verzije imaju sopstveni ulazno-izlazni sistem. Komentari se mogu postići ako se koriste invertne komande koje uključuju NOT ili N'T.
+
+Strukture podataka
+INTERCAL-72 (originalna verzija INTERCAL-a) ima samo četiri tipa podataka- 16-bitni intedžer (predstavljen sa ., imenovan "tačka"), 32-bitni intedžer (:, imenovan "dvotačka"), niz od 16-bitnih intedžera (,, imenovan"rep"), i niz od 32-bitnih intedžera (;,imenovan "hibrid"). Postoji 65535 dostupnih promenljivih za svaki tip, označeni npr. brojevima od .1 do .65535 za 16-bitne intedžere. Međutim, svaka od tih promenljivih ima svoj stek, pa na njima mogu dalje da se izvršavaju push i pop operacije (u INTERCAL-u nazvani STASH i RETRIEVE), uvećavajući kompleksnost struktura podataka. Više današnjih verzija INTERCAL-a imaju ili su zadržali većinu originalnih struktura podataka, sa odgovarajućim izmenama:
+
+TriINTERCAL, koji modifikuje radiks sortiranje kojim su brojevi predstavljeni i može da koristi trinarni brojevni sistem kao osnovni(10-tritni umesto 16-bitnog).
+CLC-INTERCAL implementira značajan broj sopstvenih struktura podataka, kao što su "classes and lectures", postizajući da osnovni tipovi struktura podataka memorišu više informacija radije nego da uvode nove tipove podataka. Nizovi su proračunavani tako što im se dodaju vrednosti ako im je promenljiva skalarnog tipa. Konstante se mogu upotrebljavati, i predstavljane su sa # ("mreža" u INTERCAL-u) i praćene samom konstantom, zapisane kao decimalni broj. Konstante predstavljene u intedžerima su podržane samo u opsegu od 0 do 65535.
+
+Operatori
+Postoje samo 5 operatera u INTERCAL-72. Korišćenje ovih operatora je veoma fleksibilno i zavisi od njihovih kombinacija, tako da je dato više mogućnosti za većinu operatora.
+Operateri i njihove oznake su:
+
+unarni AND (oznaka:&)
+unarni OR (oznaka:V)
+unarni XOR (oznaka:V, backspace, -)
+binarni MINGLE (oznaka:c, backspace, /)
+binarni SELECT (oznaka:~)
+Međutim operateri XOR i MINGLE imaju još neke oznake, u zavisnosti od ekstenzije INTERCAL-a. 
+Za razliku od većine drugih jezika, AND,OR i XOR su unarni operatori. Operator se postavlja između oznake interpunkcije koja određuje ime promenljive ili konstantu i broja koji određuje koja je promenljiva, ili samo unutar grupisanih znakova (tj. Jedan karakter kasnije nego što bi bio u programskim jezicima kao što je C.) SELECT i INTERLEAVE (koji je poznatiji i kao MINGLE) su binarni operatori; SELECT uzima bita svog prvog operanda koji odgovaraju "1" bitovima svog drugog operanda i uklanja bitove koji odgovaraju "0" bitovima, pomerajući se prema bitu najmanje važnosti (tako 51 (110011 u binarnom) SELECT 21 (10101 u binarnom) je 5 (101 u binarnom)). MINGLE zamenjuje bitove od prvog i drugog operanda (na taj način da je bit najmanjeg značaja svog drugog operanda ujedno i bit najmanjeg značaja u rezultatu). U INTERCAL-u svi operatori su istog prioriteta, što znači da oznake za grupisanje moraju biti korišćene da bi se došlo do željenog rešenja. Oznake za grupisanja su iskra ("spark") koja se označava sa ', i zečije uši ("rabbit-ears") koje se označavaju sa ". Treba biti pažljiv prilikom unosa ova dva operatora, da ne se oni ne bi kombinovali ili mešali.
+
+Strukture naredbi
+Sve naredbe u INTERCAL-u kreću sa određenom naredbom u jeziku INTERCAL-72, to su DO,PLEASE,ili PLEASE DO, koje znače isto programu (ali preveliko korišćenje jedne od njih dovodi do neizvršivosti koda,što je karakteristika koja se vodi kao "Undocumented" u programskom jeziku INTERCAL-72, pomenuta u C-INTERCAL uputsvima za korišćenje), ili izvrnuta forma (sa NOT ili N'T koje su dodate kompajleru). Pre izvršenja programa može se dati procenat šanse za izvršavanje linije u formatu %50, koji podrazumeva 100%.
+U jeziku INTERCAL-72, glavne kontrolne strukture su NEXT, RESUME i FORGET. DO (line) NEXT se ograničava na određenu liniju, pamti sledeću liniju koja bi se izvršila ako nije bila na NEXT-u (identifikatori koji nisu DO mogu koristiti za bilo koju naredbu, DO je samo kao primer) ; DO FORGET izraz uklanja unose izraza sa vrha "naslaganih" poziva (ovo je korisno za izbegavanje greške koja se inače dešava kada ima više od 80 unosa), a izraz DO RESUME uklanja unose izraza iz "naslaganih" poziva i pravi "skok" do poslednje sačuvane linije. C-INTERCAL takođe pruža COME FROM instrukciju, napisanu DO COME FROM LINE); CLC-INTERCAL i najnovije verzije C-INTERCAL-a takođe pružaju obrađeni COME FROM (DO COME FROM izraz) i NEXT FROM, koji je kao COME FROM, ali takođe čuva povratnu adresu na NEXT STACK-u.
+Alternativni načini uticaja na tok programa, prvenstveno u jeziku INTERCAL-72, su za korišćenje IGNORE i REMEMBER instrukcija za promenljive (što uzrokuje upisivanje u promenljivu koja se zanemaruje a zatim ponovo koristi, tako da se uputstva mogu onemogućiti, uzrokujući da nemaju efekta), i ABSTAIN i REINSTATE su instrukcije koje uzrokuju da linije koda nemaju efekta ili da se ponovo koriste.
+
+Hello world
+Tradicionalni "Hello world" program pokazuje koliko je razlikuje INTERCAL od standardnih programskih jezika. U programskom jeziku C, to bi glasilo:
+
+Isti program u C-INTERCAL-u je duži i teži za čitanje
+
+Dijalektika
+Prva verzija INTERCAL-a Vudsa Lajona je bio veoma ograničen u svojim ulazno / izlaznim mogućnostima: jedini prihvatljivi unos su bili brojevi čiej su cifre bile ispisane rečima, a jedini izlaz je proširena verzija rimskih brojeva.
+Ponovna implementacija C-INTERCAL-a, koja je dostupna na internetu, učinila je jezik privlačnijim korisnicima ezoteričnih programskih jezika. Dijalekt C-INTERCAL ima nekoliko razlika u odnosu na prvu verziju INTERCAL-a i uvedeno je nekoliko novih funkcija, kao što je COME FROM- izjava i sredstvo za izvođenje tekstualnog I / O zasnovanog na Turing Tekst Modelu. 
+Autori C-INTERCAL-a takođe su kreirali TriINTERCAL varijantu, baziranu na generalizaciji skupa operatora INTERCAL-a.
+Novija varijanta je Threaded Intercal, koji proširuje funkcionalnost COME FROM da podržava više procesa u isto vreme.
+
+Zanimljivosti
+U poznatom kompjuterskom časopisu, "INTERCAL je opisan pod naslovom "Odbacite razum, vi koji dolazite ovde: INTERCAL". Kompilator i načini komentarisanja su u najmanju ruku čudni:
+Kompilator, sa pravom nazvan "ICK" ("štuc"), nastavlja parodiju. Sve što kompajler ne može da razume, koji na normalnom jeziku rezultira greškom kompajliranja, jednostavno preskoči. Ova "opraštajuća" osobina čini pronalazak greške vrlo teškim. Takođe se uvodi jedinstveni sistem za dodavanje komentara programa. Programer jednostavno ubacuje tekst koji kompilator ne može da prevede bilo gde u programu, pazeći da ne slučajno zapiše frakciju nekog važećeg koda, koji kompilator može da prepozna, usred svog komentara.
+U časopisu "Technomasochism" Lev Bratišenko karakterizuje programski jezik INTERCAL kao "dominatriks".
+Ako kompilator ne susreće PLEASE dovoljno često, program će biti odbijen; to jest, ignorisan je bez objašnjenja od strane kompajlera. Previše često unošenje i opet dovodi do odbijanja koda od strane kompilatora, ovoga puat jer je programer previše previše učtiv. U kombinaciji sa drugim rečima koji se retko koriste u drugim programskim jezicima, ali se pojavljuju kao naredbe u INTERCAL-u, kod izgleda kao neka molba da se izvrši program.

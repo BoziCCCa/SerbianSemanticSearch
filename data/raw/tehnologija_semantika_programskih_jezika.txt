@@ -1,0 +1,585 @@
+U teoriji programskih jezika, semantika je oblast koja se bavi strogim matematičkim proučavanjem značenja programskih jezika. Ona pridružuje značenje sintaksno ispravnim stringovima. Semantika opisuje proces izvršavanja programa na nekom određenom programskom jeziku. To može da se uradi bilo opisivanjem veze između ulaza i izlaza programa, bilo objašnjenjem toga kako će program biti izvršen na određenoj platformi, to jest kreiranjem modela izračunavanja.
+Uloga semantike:
+
+programer može da razume kako se program izvršava pre njegovog pokretanja kao i šta mora da obezbedi prilikom kreiranja kompilatora
+razumevanje karakteristika programskog jezika i njihove interakcije
+dokazivanje svojstava određenog programskog jezika
+Semantika može da se opiše formalno i neformalno. Na primer, formalna semantika olakšava pisanje kompilatora, bolje razumevanje toga šta program radi kao i dokazivanje na primer toga da sledeća naredba:
+
+ if 1 = 1 then S1 else S2
+
+ima isti efekat kao samo S1.
+
+Pregled
+Oblast formalne semantike obuhvata sledeće teme:
+
+definicija semantičkih modela
+veza između različitih semantičkih modela
+veza između različitih pristupa značenju
+veza imeđu izračunavanja i osnovnih matematičkih struktura koje stoje iza toga, na primer iz oblasti logike, teorije skupova, teorije modela, teorije kategorija itd.
+Usko je povezana i sa drugim oblastima računarstva i informatike poput dizajna programskih jezika, kompiliranja, interpretiranja, verifikacije programa.
+
+Statička semantika
+Statička semantika definiše ograničenja na strukture validnih tekstova koje je teško ili nemoguće izraziti koristeći standardne sintatičke formalizme. Za jezike koji se kompiliraju, statička semantika obuhvata ona semantička pravila koja se mogu proveriti u toku kompilacije. Na primer, provera da li je svaki identifikator deklarisan pre upotrebe (u onim programskim jezicima koji zahtevaju deklaraciju pre upotrebe) ili da su oznake u case naredbi različite. Mnoga važna ograničenja ovog tipa, poput provere toga da li su identifikatori upotrebljeni u ispravnom kontekstu (npr. ne dodajemo ceo broj imenu funkcije) ili da pozivi u podrutinama imaju odgovarajući broj i tip argumenata, se mogu ostvariti tako što ćemo ih definisati kao pravila u logici koja se zove sistem tipova.
+
+Semantički modeli
+Pojmovi poput semantičke mreže i semantičkog data modela se koriste za opisivanje posebnih tipova data modela koje karakteriše upotreba direktnih grafova u kojima temena označavaju koncepte ili entitete u svetu, a lukovi označavaju veze između njih.
+Semantički veb predstavlja ekstenziju svetske mreže koja nastaje ugrađivanjem semantičkih metapodataka korišćenjem tehnika semantičkog data modelovanja poput RDF-a i OWL-a.
+
+Podela
+Aksiomatska semantika
+Operaciona semantika
+Denotaciona semantika
+
+Aksiomatska semantika
+Aksiomatska semantika je jedna vrsta pristupa zasnovana na matematičkoj logici koja služi za dokazivanje korektnosti računarskog programa. Ona definiše značenje komandi u programu tako što opisuje njihov efekat na naredbe vezane za stanje računarskog programa. Značenje računarskog programa nije eksplicitnno dato, već su svojstva jezičkih kontrukata definisana preko aksioma i pravila inferencije simboličke logike. Svojstvo programa je izvedeno iz njih da bi se konstruisao formalan dokaz svojstva. Dakle, aksiomatska semantika nam ne daje direktno značenje programa, već ono što može biti dokazano o programu. Postoje dve vrste primene: verifikacija programa i specifikacija semantike programa.
+Ključna ideja je da se ne definiše ponašanje programa (kao operacionom ili denotacionom semantikom) i izvoćenje iz tih definicija, već se uzimaju sami zakoni tih definicija. Značenje termina je ono što može biti dokazano o njemu. Lepota aksiomatskih metoda jeste što se fokusiraju na proces zaključivanja, proces koji je u računarstvu doveo do velikih ideja poput invarijanti.
+Jednostavni sistemi mogu npr. podržati dokaze da je jedan program ekvivalentan drugom, koje god značenje imali. Složeniji sistemi mogu podržavati i dokaze o ulazno/izlaznim svojstvima programa. Aksiomatske definicije su apstraktnije od denotacionih i operacionih, tako da svojstva dokazana o programu možda ne budu dovoljna da u potpunosti odrede značenje programa. Ova vrsta formata je najbolja za preliminarne specifikacije jezika, kao i za dostavljanje dokumentacije o zanimljivim svojstvima jezika korisnicima.
+
+Tvrdnje
+Logičke izraze koji se javljaju u aksiomatskoj semantici zovemo predikati, odnosno tvrdnje. Oni opisuju ograničenja programskih promenljivih. Postoje dve vrste tvrdnji: preduslov i postuslov. Aksiomatska semantika ima za osnovu matematičku logiku, na primer Horovu logiku. Horova trojka {P} C {Q} opisuje kako izvršavanje dela koda menja stanje izračunavanja; ako je ispunjen preduslov {P}, izvršavanje komande C vodi do postuslova {Q}. Horova logika obezbeđuje aksiome i pravila izvođenja za sve konsrtukte jednostavnog imperativnog programskog jezika. Primer za postuslovnu tvrdnju:
+sum = 2 * x + 1 {sum > 1}.
+Jedna od mogućnosti za preduslovnu tvrdnju vezanu za ovaj izraz bila bi: {x > 10}.
+
+Najslabiji preduslov
+Najslabiji preduslov je najmanji restriktivni preduslov koji će garantovati validnost povezanog postuslova. U prethodnom primeru {x > 10}, {x > 50} i {x > 1000} su sve validni preduslovi, ali {x > 0} je najslabiji preduslov. Pravilo zaključivanja je metod da istinitost jedne tvrdnje nađemo na osnovu istinitosti drugih tvrdnji. Opšti oblik pravila izgleda ovako:
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ S
+ 
+ 1
+ 
+ 
+ ,
+ 
+ S
+ 
+ 2
+ 
+ 
+ ,
+ .
+ .
+ .
+ ,
+ 
+ S
+ 
+ n
+ 
+ 
+ 
+ S
+ 
+ 
+ 
+ 
+ {\displaystyle {\frac {S_{1},S_{2},...,S_{n}}{S}}}
+ 
+
+Ovo pravilo kaže da ako su S1, S2,..., Sn istiniti onda možemo zaključiti i o istinitosti tvrdnje S. Gornji deo pravila se zove prethodnik, a donji doslednik.
+Najslabiji preduslov za sekvencu izjava ne može se opisati aksiomom, jer preduslov zavisi od posebnih izjava u sekvenci. U tom slučaju, preduslov se može opisati samo pomoću pravila zaključivanja. Neka su S1 i S2 dve uporedne programske izjave. Ako S1 i S2 imaju sledeće preduslove i postuslove: {P1} S1 {P2}, {P2} S2 {P3}, onda pravilo zaključivanja ove sekcije glasi:
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ {
+ P
+ 1
+ }
+ S
+ 1
+ {
+ P
+ 2
+ }
+ ,
+ {
+ P
+ 2
+ }
+ S
+ 2
+ {
+ P
+ 3
+ }
+ 
+ 
+ {
+ P
+ 1
+ }
+ S
+ 1
+ ,
+ S
+ 2
+ {
+ P
+ 3
+ }
+ 
+ 
+ 
+ 
+ 
+ {\displaystyle {\frac {\{P1\}S1\{P2\},\{P2\}S2\{P3\}}{\{P1\}S1,S2\{P3\}}}}
+ 
+
+Dakle, za ovaj primer, {P1} S1; S2 {P3} opisuje aksiomatsku semantiku sekvence S1; S2.
+Pravilo izvođenja selekcije čiji je opšti oblik if B then S1 else S2 je:
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ {
+ B
+ 
+ 
+ and 
+ 
+ 
+ P
+ }
+ S
+ 1
+ {
+ Q
+ }
+ ,
+ {
+ (
+ 
+ 
+ not 
+ 
+ 
+ B
+ )
+ 
+ 
+ and 
+ 
+ 
+ P
+ }
+ S
+ 2
+ {
+ Q
+ }
+ 
+ 
+ {
+ P
+ }
+ 
+ 
+ if 
+ 
+ 
+ B
+ 
+ 
+ then 
+ 
+ 
+ S
+ 1
+ 
+ 
+ else 
+ 
+ 
+ S
+ 2
+ 
+ 
+ 
+ 
+ 
+ {
+ Q
+ }
+ 
+ 
+ 
+ 
+ 
+ {\displaystyle {\frac {\{B{\mbox{ and }}P\}S1\{Q\},\{({\mbox{not }}B){\mbox{ and }}P\}S2\{Q\}}{\{P\}{\mbox{ if }}B{\mbox{ then }}S1{\mbox{ else }}S2{\mbox{ }}\{Q\}}}}
+ 
+
+Ovo pravilo ukazuje na to da izjava mora biti dokazana i kada je logička vrednost izraza tačna i kada je netačna. Prema pravilu, treba nam preduslov P koji može biti upotrebljen kao preduslov i then i else klauzule. Ukoliko B ispunjava preduslov, onda će se izvršiti then grana, a ukoliko ne ispunjava izvršiće se else grana.
+Još jedna esencijalna konstrukcija imperativnih jezika jeste while petlja. Računanje najslabijeg preduslova za while petlju je znatno teže nego za sekvence, zato što broj iteracija ne može uvek biti određen. Problem računanja najslabijeg preduslova za petlje je sličan problemu dokazivanja teoreme o prirodnim brojevima. Prvi korak je pronaći invarijantu petlje, koja je ključna za pronalazak najslabijeg preduslova. Pravilo zaključivanja glasi:
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ {
+ I
+ 
+ 
+ and 
+ 
+ 
+ B
+ }
+ S
+ {
+ I
+ }
+ 
+ 
+ {
+ I
+ }
+ 
+ 
+ while 
+ 
+ 
+ B
+ 
+ 
+ do 
+ 
+ 
+ S
+ 
+ 
+ end 
+ 
+ 
+ {
+ I
+ 
+ 
+ (not 
+ 
+ 
+ B
+ 
+ 
+ )
+ 
+ 
+ }
+ 
+ 
+ 
+ 
+ 
+ {\displaystyle {\frac {\{I{\mbox{ and }}B\}S\{I\}}{\{I\}{\mbox{ while }}B{\mbox{ do }}S{\mbox{ end }}\{I{\mbox{ (not }}B{\mbox{)}}\}}}}
+ 
+
+I je invarijanta petlje. Iako deluje lako, nije ni malo tako. Kompleksnost leži u pronalasku odgovarajuće invarijante petlje. Aksiomatski opis while petlje glasi:
+
+ {P} while B do S end {Q}.
+
+Evaluacije
+Za definisanje semantike kompletnog programskog jezika koristeći aksiomatski metod mora postojati aksioma ili pravilo izvođenja za svaki tip izjave u jeziku. Dokazano je da je definisanje aksioma i pravila izvođenja za neke izjave težak zadatak. Aksiomatska semantika je moćan alat za istraživanje korektnosti programa i obezbeđuje odličan okvir za razumevanje programa, bilo tokom njihove konstrukcije ili kasnije. Njena korisnost u opisivanju značenja programskih jezika korisnicima jezika i piscima kompajlera je, međutim, vrlo ograničena.
+
+Operaciona semantika
+Operaciona semantika je kategorija formalne semantike programskih jezika u kojoj određena željena svojstva programa, kao što su tačnost, sigurnost i bezbednost, su verifikovana izgradnjom dokaza iz logičkih izjava o njihovom izvršenju i procedurama, a ne vezivanjem matematičkog značenja sa njenim uslovima (denotaciona semantika). Operaciona semantika je klasifikovana u dve kategorije: strukturna operaciona semantika formalno koja opisuje kako pojedini koraci u izračunavanju utiču na sistem kompjutera, dok prirodna semantika opisuju kako se dobijaju krajnji rezultati izvršenja. Ostali pristupi formalnoj semantici programskih jezika uključuju aksiomatsku semantiku i denotacionu semantiku.
+Operaciona semantika programskih jezika opisuje kako se ispravan program tumači kao niz računarskih koraka. Ovaj niz koraka predstavlja značenje programa. U funkcionalnom programiranju, završni korak u nizu vraća vrednost programa.(Generalno gledano, postoje mnoge vrednosti za pojedinačan program, zato što program može biti nedeterministički, čak i za deterministički program mogu postojati mnoge računarske sekvence s obzirom da značenja ne moraju odrediti koji tačno niz operacija dovodi do date vrednosti.)
+Koncept operacione semantike je korišćen prvi put u definisanju semantike Algol 68. Sledeća izjava je prerađeni citat iѕ ALGOL 68 iѕveštaja:
+
+Značenje programa u strogom jeziku je objašnjen preko hipotetičkog računara koji vrši niz akcija koje čine izradu tog programa. (Algol68, Odeljak 2)
+Prva upotreba termina operaciona semantika u svom sadašnjem smislu se pripisuje Dana Scott-a. Ono što sledi je citat iz Skotovih papira o formalnoj semantici, u kojoj se pominju "operacioni" aspekti semantike.
+
+To je sve veoma dobro da teži više 'apstraktno' i na 'čistiji' pristup semantici, ali ako je u planu da bude dobro u bilo kom smislu, operacioni aspekti ne mogu se u potpunosti ignorisati.
+Možda je prvo formalno oličenje operativne semantike upotreba lambda računa za definisanje semantike LISP-a od strane Džona Makartija..
+
+Pristupi
+Gordon Plotkin je uveo strukturnu operacionu semantiku, Robert Hieb i Matthias Felleisen kontekst smanjenja, i Gilles Kahn prirodnu semantiku.
+
+Strukturna operaciona semantika
+Strukturnu operacionu semantiku je uveo Gordon Plotkin kao logičan način da se definiše operaciona semantika. Osnovna ideja iza SOS je da definiše ponašanje programa u pogledu ponašanja njegovih delova, čime se obezbeđuje strukturni, to jest, sintaksno orijentisan i induktivni, pogled na operativnu semantiku. SOS specifikacija definiše ponašanje programa u smislu tranzicije odnosa. SOS specifikacije su u formi niza pravila koja definišu validne tranzicije od delova sintakse u smislu tranzicije njegovih komponenti.
+Takva definicija omogućava formalnu analizu ponašanja programa, dozvoljavajući proučavanje odnosa između programa. Važni odnosi uključuju simulacije unapred i bisimulaciju. Oni su naročito korisni u kontekstu teorije konkurencije.
+Zahvaljujući svojim intuitivnim izgledima i strukturi koja se lako prati, SOS je stekao veliku popularnost i postao standard u praksi u definisanju operativne semantike. Kao znak uspeha, originalni izveštaj (tzv Arhus izveštaj) na SOS (Plotkin81) je privukao više od 1000 citata u skladu sa CiteSeer., što ga čini jednim od najvećih navedenih tehničkih izveštaja u informatici.
+
+Redukciona semantika
+Redukciona semantika je alternativan vid operacione semantike pomoću takozvanih konteksta smanjenje. Metodu je uveo Robert Hieb i Matthias Felleisen 1992. godine kao tehnika za formalizovanje opšte teorije algebre za upravljanje tokom i stanjima. Na primer, gramatika poziva po vrednosti lambda računa i njeni konteksti mogu biti zadati kao:
+
+ 
+ 
+ 
+ e
+ =
+ v
+ 
+ 
+ |
+ 
+ 
+ (
+ e
+ 
+ e
+ )
+ 
+ 
+ |
+ 
+ 
+ x
+ 
+ 
+ v
+ =
+ λ
+ x
+ .
+ e
+ 
+ 
+ C
+ =
+ 
+ [
+ 
+ ]
+ 
+ 
+ 
+ |
+ 
+ 
+ (
+ C
+ 
+ e
+ )
+ 
+ 
+ |
+ 
+ 
+ (
+ v
+ 
+ C
+ )
+ 
+ 
+ {\displaystyle e=v\;|\;(e\;e)\;|\;x\quad \quad v=\lambda x.e\quad \quad C=\left[\,\right]\;|\;(C\;e)\;|\;(v\;C)}
+ 
+
+Kontekst 
+ 
+ 
+ 
+ C
+ 
+ 
+ {\displaystyle C}
+ 
+ uključuje prazninu 
+ 
+ 
+ 
+ 
+ [
+ 
+ ]
+ 
+ 
+ 
+ {\displaystyle \left[\,\right]}
+ 
+ gde se član može uključiti.
+Oblik konteksta ukazuje gde u redukcija može da se javi (t.j., gde se član može uključiti) član.
+Da opiše semantiku za dati jezik, aksiome ili pravila za smanjenje obezbeđuju:
+
+ 
+ 
+ 
+ (
+ λ
+ x
+ .
+ e
+ 
+ v
+ )
+ ⟶
+ e
+ 
+ 
+ [
+ 
+ x
+ 
+ /
+ 
+ v
+ 
+ ]
+ 
+ 
+ (
+ 
+ β
+ 
+ )
+ 
+ 
+ {\displaystyle (\lambda x.e\;v)\longrightarrow e\,\left[x/v\right]\quad (\mathrm {\beta } )}
+ 
+
+Ova jedna aksioma je beta pravilo za lambda račun. Konteksti za smanjenje pokazuju kako se ovo pravilo koristi
+sa više složenih uslova. Posebno, ovo pravilo može da izazove za argument
+aplikacije nešto kao 
+ 
+ 
+ 
+ (
+ (
+ λ
+ x
+ .
+ x
+ 
+ λ
+ x
+ .
+ x
+ )
+ λ
+ x
+ .
+ (
+ x
+ 
+ x
+ )
+ )
+ 
+ 
+ {\displaystyle ((\lambda x.x\;\lambda x.x)\lambda x.(x\;x))}
+ 
+ jer postoji kontekst 
+ 
+ 
+ 
+ (
+ [
+ 
+ ]
+ 
+ λ
+ x
+ .
+ (
+ x
+ 
+ x
+ )
+ )
+ 
+ 
+ {\displaystyle ([\,]\;\lambda x.(x\;x))}
+ 
+ koji odgovara datom članu. U tom slučaju, konteksti jedinstveno razlažu uslove tako da je samo jedna redukcija moguća
+u bilo kom datom koraku. Proširujući aksiomu da odgovara kontekstima smanjenja daje kompatibilno zatvaranje. Uzimajući refleksivno, tranzitivno zatvaranje ovog odnosa daje odnos smanjenja za taj jezik.
+Tehnika je korisna za lakoću u kojoj konteksti smanjenje modeliraju stanja ili kontrolne konstrukte . Pored toga, semantika smanjenja se koristi kao model objektno-orijentisanih jezika, ugovornih sistema i drugih funkcija jezika.
+
+Prirodna semantika
+Prirodna semantika takođe poznata i kao, relaciona smeantika i evaluciona semantika. Ova semantika je uvedena pod nazivom prirodni semantika od strane Gilles Kahn-a prilikom predstavljanja Mini-ML, čistog dijalekta ML jezika.
+Neki mogu smatrati prirodnu semantiku kao definiciju funkcije, ili uopšte odnosa, tumačenje svakog jezičkog konstruktora u odgovarajućoj oblasti. Njena intuitivnost je popularan izbor za semantiku specifikacije u programskim jezicima, ali ima neke nedostatke koji je čine nezgodnom ili je nemoguće njeno korišćenje u mnogim situacijama, kao što su jezici sa intenzivnim-kontrolnim karakteristika ili konkurentni.
+Prirodna semantika se opisuje kao 'zavadi pa vladaj' način kako konačni rezultati evaluacije konstrukcija jezika mogu biti dobijeni kombinovanjem rezultata evaluacije svojih sintaksnih odgovarajućih delova.
+
+Poređenje
+Postoji veliki broj razlika između strukturne operacione semantike i prirodne semantike koje utiču da li jedan ili drugi oblici pogodnija osnova za semantiku nekom programskom jeziku.
+Prirodna semantika ima prednost jer je često jednostavnija (potrebno manje pravila za zaključivanje) i često direktno odgovara efikasnoj implementaciji prevodioca jezika. Može da dovede do jednostavnijih dokaza, na primer, kada se dokazuje očuvanje ispravnosti neke programske transformacije.
+Strukturne operacione semantike daju veću kontrolu nad detaljima i naredbama evaluacije. U slučaju instrumentalnih operacionih semantika, to omogućava operativnim semantikama da prate i semantičarima da dokazuju preciznije teoreme o vremenskom izvršavanju jezika. Ove osobine čine date semantike zgodnije u slučaju utvrđivanja ispravnosti nekog tipa sistema protiv operacione semantike.
+
+Denotaciona semantika
+U računarstvu, denotaciona semantika je jedan od pristupa u formalizaciji semantike programskih jezika konstruisanjem matematičkih objekata (zvanih denotacije ili značenja) koji izražavaju semantiku tih jezika. Denotaciona semantika je izvorno razvijena za modelovanje objekta koji definiše kompjuterski program. Kasnije se polje delovanja proširilo i uključilo objekte sačinjene od više programa, poput onih u racunarsim mrežama i konkurentnim objektima.
+Denotacija je obično matematička vrednost, poput broja ili funkcije. Davanje denotacione semantike se sastoji od traženja kolekcije semantičkih domena i definisanja interpreterske funkcije koja preslikava terme programskog jezika u elemente tih domena. Traženje odgovarajućih semantičkih domena za modelovanje raznih osobina jezika je područje rada teorije domena.
+Denotaciona je apstraktnija semantika od operacione semantike jer ne definise eksplicitno korake izračunavanja. Korisna je za dizajnere i korisnike programskih jezika, pošto zbog modularne strukture viskog nivoa individualni delovi jezika mogu biti pručavani bez pregledavanja celokupne definicije. S druge strane, implementator jezika ima znatno više posla.
+Važno načeo denotacione semnatike je da semantika treba da bude kompozicijska: denotacija programske celine treba da bude izgrađena od denotacija njegovih podprograma.
+
+Istorijski razvoj
+Denotaciona semantika je razvijena 1960-ih na Oxfordu u istraživačkoj grupi pod vođstvom Christopher Strachey. Dana Scott je metodi dao matematičku strogoću, a u kombinaciji sa notacijskom elegancijom Strachey-a je s vremenom evoluirala iz sredstva analize u alat dizajna i implementacije programskih jezika.
+Denotaciona semantika je razvijena za moderne programske jezike koji koriste osobine kao što su konkurentnost i izuzeci, itd., Concurrent ML, CSP, and Haskell. Semantika ovih jezika je kompozicija u kojoj denotacija dela programa zavisi od denotacije nekog njegovog dela. Na primer, značenje aplikativnog izraza f(E1,E2) je definisana u terminima semantike svojih podprograma f, E1, E2. U modernom programskom jeziku , E1 i E2 mogu se paralelno izračunati i izvršanje jednog može imati uticaja na izračunavanje drugog tako što i E1 i E2 imaju zajedničke objekte dovodeći do toga da njihove denotacije moraju biti definisane sa međusobnom zavisnošću. Takođe, E1 i E2 mogu izbacivati izuzetak koji bi mogao da završi izvršavanje drugog. U nastavku će biti opisani specijalni slučajevi semantika ovih programskih jezika.
+
+Denotacija rekurzivnih programa
+Na primer, deo koda n*m čini denotaciju koja povezuje dve slobodne promenjive n i m. Ako promenjiva n ima vrednost 3 i m ima vrednost 5, onda denotacija ima vrednost 15.
+Funkcija može biti zadata kao skup uređenih parova, gde je svaki par sačinjen od dva dela (1) je argument funkcije i (2) vrednost funkcije pozvane za taj argument. Na primer, skup uređenih parova {[0 1] [4 3]} je denotacija funkcije sa vrednošću 1 kad je argument funkcije 0, i vrednost 3 za argument 4, inače nije defiisana.
+Problem koji treba rešiti je da se obezbedi denotacija za rekurzivne programe, kao što je na primer funkcija za izračunavanje faktorijela:
+
+ ::factorial ≡ λ(n) if (n==0) then 1 else n*factorial(n-1).
+
+Rešenje je da se izgradi dentacija aproksimacijom počevši od praznog skupa uređenih parova, i ovaj skup zapisujemo sa {}. Ako je {} uključeno u gorenavedenu definiciju faktorijela onda je denotacija {[0 1]}, što je bolja aproksimacija od faktorijela. Iteriramo: Ako je {[0 1]} uključeno u definiciju onda je denotacija {[0 1] [1 1]}. Sada na aproksimaciju factorial-a moѕemo da gledamo kad ulaz za F na sledeći način:
+
+ ::λ(F) λ(n) if (n==0) then 1 else n*F(n-1).
+
+U nastavku je predstavljen lanac iteracija gde Fi ukazuje na i-iteracija F
+
+F0({}) je funkcija koja nigde nije definisana {}
+F1({}) je funkcija {[0 1]} koja je definisana u 0 da bude 1, i nije definisana više nigde;
+F5({}) je funkcija {[0 1] [1 1] [2 2] [3 6] [4 24]}
+Najmanja gornja granica ovog lanca je cela factorial funkcija koja se može izraziti pomoću simbola "⊔" koji predstavlja "najmanje gornje ograničenje":
+
+ ::
+ 
+ 
+ 
+ 
+ ⨆
+ 
+ i
+ ∈
+ 
+ N
+ 
+ 
+ 
+ 
+ F
+ 
+ i
+ 
+ 
+ (
+ {
+ }
+ )
+ .
+ 
+ 
+ {\displaystyle \bigsqcup _{i\in \mathbb {N} }F^{i}(\{\}).}
+
+Denotaciona semantika nedeterminističkih programa
+Koncept moći domena je razvijen da omogući denotacionu semantiku nedeterminističkim sekvencijalnim programima.
+
+Princip kompozicije
+Bitan aspekt denotacione semantike programskog jezika je princip kompozicije, denotacija programa je izgrađena od denotacija njegovih delova. Na primer, posmatrajmo izraz "7 + 4". Princip kompozicije u ovom sluačaju obezbeđuje značenje za "7 + 4" u skladu sa značenjima od "7", "4" i "+".
+Osnova denotacione semantike u teorijskom domenu zadovoljava princip kompozicije jer je zadata na sledeći način. Počinjemo tako što posmatramo fragment programa, tj. program sa slobodnim promenjivima. Kontekst za kucanje dodeljuje tip slobodnim promenjivim. Na primer, u izrazu (x + y) može se posmatrati u kontekstu kucanja (x:nat,y:nat). Denotacionu semantiku dodeljujemo programskom fragmentu koristeći sledeću šemu.
+
+Počinjemo tako što opisujemo značenje tipova u našem jeziku: značenje svakog tipa mora da bude domen. Pišemo〚τ〛 za domen koji označava vrstu τ. Na primer, značenje tipa nat treba da bude domen prirodnih brojeva: 〚nat〛= ℕ⊥.
+Iz značenja tipova izvodimo značenje za kontekst kucanja. Postavimo 〚 x1:τ1,..., xn:τn〛 = 〚 τ1〛× ... ×〚τn〛. Na primer, 〚x:nat,y:nat〛= ℕ⊥×ℕ⊥. Kao specijalan slučaj, značenje praznog konteksta za kucanje, bez promenjivih, je domen sa jednim elementom, i označava 1.
+Konačno, moramo da damo značenje svakom programskom framentu. Pretpostavimo da je P programski fragment tipa σ, u kontekstu kucanja Γ, najčešće u oznaci Γ⊢P:σ. Onda značenje ovog programskog fragmenta mora biti neprekidna funkcija〚Γ⊢P:σ〛:〚Γ〛→〚σ〛. Na primer, 〚⊢7:nat〛:1→ℕ⊥ je konstantna funkcija, koja uvek ima vrednost "7" , dok 〚x:nat,y:nat⊢x+y:nat〛:ℕ⊥×ℕ⊥→ℕ⊥ je funkcija koja sabira dva broja.
+Sada, značenje izraza (7+4) je određeno sa tri izraza 〚⊢7:nat〛:1→ℕ⊥, 〚⊢4:nat〛:1→ℕ⊥, i〚x:nat,y:nat⊢x+y:nat〛:ℕ⊥×ℕ⊥→ℕ⊥.
+U stvari, ovo je uopštena šema za denotacionu semantiku koja se zasniva na kompoziciji. Nema ništa specifično u vezi sa domenima i neprekidnim funkcijama ovde.

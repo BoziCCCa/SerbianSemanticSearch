@@ -1,0 +1,261 @@
+﻿q,type,intent,method,rank,latency_ms,article_id,title,category,score
+Beograd,exact_title,geografija,semantic,1,345.07399998256005,68,Beograd,geografija,0.84968746
+Beograd,exact_title,geografija,semantic,2,345.07399998256005,79,Zrenjanin,geografija,0.8179845
+Beograd,exact_title,geografija,semantic,3,345.07399998256005,1,Istorija Srbije,istorija,0.8068651
+Beograd,exact_title,geografija,semantic,4,345.07399998256005,65,Spisak gradova u Srbiji,geografija,0.80326796
+Beograd,exact_title,geografija,semantic,5,345.07399998256005,69,Bor,geografija,0.80087376
+Beograd,exact_title,geografija,bm25,1,0.4744000034406781,107,Aleksandar Jerkov,nauka,1.4494702457524034
+Beograd,exact_title,geografija,bm25,2,0.4744000034406781,68,Beograd,geografija,1.44721255706191
+Beograd,exact_title,geografija,bm25,3,0.4744000034406781,108,Dragan Bošković,nauka,1.4468848016192257
+Beograd,exact_title,geografija,bm25,4,0.4744000034406781,104,Bogdan Todorov,nauka,1.4336365440972432
+Beograd,exact_title,geografija,bm25,5,0.4744000034406781,114,Petar Vlahović,nauka,1.4070581917879077
+Beograd,exact_title,geografija,tfidf,1,3.6418000236153603,118,Đorđije Vuković,nauka,0.10175709431865522
+Beograd,exact_title,geografija,tfidf,2,3.6418000236153603,130,Miša Aleksić,muzika,0.09095069186308095
+Beograd,exact_title,geografija,tfidf,3,3.6418000236153603,56,Dejan Bajić,sport,0.08785622963834612
+Beograd,exact_title,geografija,tfidf,4,3.6418000236153603,114,Petar Vlahović,nauka,0.08610784092515726
+Beograd,exact_title,geografija,tfidf,5,3.6418000236153603,155,Jugoslav Vlahović,muzika,0.08102325913009162
+Rambo Amadeus,exact_title,muzika,semantic,1,46.206099999835715,131,Rambo Amadeus,muzika,0.8069059
+Rambo Amadeus,exact_title,muzika,semantic,2,46.206099999835715,159,Nikola Vučičević,muzika,0.78646487
+Rambo Amadeus,exact_title,muzika,semantic,3,46.206099999835715,232,Atomski zdesna,film,0.7608026
+Rambo Amadeus,exact_title,muzika,semantic,4,46.206099999835715,167,Spisak programskih jezika,tehnologija,0.7604269
+Rambo Amadeus,exact_title,muzika,semantic,5,46.206099999835715,100,Marija Aleksandrović,nauka,0.75782573
+Rambo Amadeus,exact_title,muzika,bm25,1,0.3260999801568687,131,Rambo Amadeus,muzika,20.701562571934037
+Rambo Amadeus,exact_title,muzika,bm25,2,0.3260999801568687,157,Radoslava Vorgić,muzika,5.277677615297659
+Rambo Amadeus,exact_title,muzika,bm25,3,0.3260999801568687,133,Marina Arsenijević,muzika,5.026402616942023
+Rambo Amadeus,exact_title,muzika,tfidf,1,2.4563999904785305,131,Rambo Amadeus,muzika,0.19801946594473951
+Rambo Amadeus,exact_title,muzika,tfidf,2,2.4563999904785305,157,Radoslava Vorgić,muzika,0.053520498649129
+Rambo Amadeus,exact_title,muzika,tfidf,3,2.4563999904785305,133,Marina Arsenijević,muzika,0.05007181350840557
+Burek,exact_title,hrana,semantic,1,46.33990000002086,208,Burek,hrana,0.8210076
+Burek,exact_title,hrana,semantic,2,46.33990000002086,96,Peć,geografija,0.7603735
+Burek,exact_title,hrana,semantic,3,46.33990000002086,79,Zrenjanin,geografija,0.7568509
+Burek,exact_title,hrana,semantic,4,46.33990000002086,3,Istorija Srbije u Osmanskom carstvu,istorija,0.75100917
+Burek,exact_title,hrana,semantic,5,46.33990000002086,27,Osmansko osvajanje Balkana,istorija,0.75040686
+Burek,exact_title,hrana,bm25,1,0.24049999774433672,208,Burek,hrana,10.94841927085908
+Burek,exact_title,hrana,bm25,2,0.24049999774433672,196,Srpska kuhinja,hrana,3.604668322784317
+Burek,exact_title,hrana,tfidf,1,2.057700010482222,208,Burek,hrana,0.20202601641591747
+Burek,exact_title,hrana,tfidf,2,2.057700010482222,196,Srpska kuhinja,hrana,0.03158425024699312
+Programski jezik Lua,exact_title,tehnologija,semantic,1,44.47180000715889,175,Lua,tehnologija,0.8755533
+Programski jezik Lua,exact_title,tehnologija,semantic,2,44.47180000715889,167,Spisak programskih jezika,tehnologija,0.8480309
+Programski jezik Lua,exact_title,tehnologija,semantic,3,44.47180000715889,171,Ezoterični programski jezici,tehnologija,0.82874787
+Programski jezik Lua,exact_title,tehnologija,semantic,4,44.47180000715889,194,Go (programski jezik),tehnologija,0.8285886
+Programski jezik Lua,exact_title,tehnologija,semantic,5,44.47180000715889,191,Brainfuck,tehnologija,0.82592
+Programski jezik Lua,exact_title,tehnologija,bm25,1,0.5317000031936914,175,Lua,tehnologija,15.263630739469686
+Programski jezik Lua,exact_title,tehnologija,bm25,2,0.5317000031936914,167,Spisak programskih jezika,tehnologija,12.761106698813483
+Programski jezik Lua,exact_title,tehnologija,bm25,3,0.5317000031936914,166,Programski jezik,tehnologija,7.003960586176619
+Programski jezik Lua,exact_title,tehnologija,bm25,4,0.5317000031936914,171,Ezoterični programski jezici,tehnologija,6.924049968278409
+Programski jezik Lua,exact_title,tehnologija,bm25,5,0.5317000031936914,179,Programski jezik visokog nivoa,tehnologija,6.7983819641272225
+Programski jezik Lua,exact_title,tehnologija,tfidf,1,1.989299984415993,175,Lua,tehnologija,0.14631659008839715
+Programski jezik Lua,exact_title,tehnologija,tfidf,2,1.989299984415993,167,Spisak programskih jezika,tehnologija,0.1367760340613814
+Programski jezik Lua,exact_title,tehnologija,tfidf,3,1.989299984415993,173,Kompilovani programski jezik,tehnologija,0.10405496400622216
+Programski jezik Lua,exact_title,tehnologija,tfidf,4,1.989299984415993,181,Programski jezik niskog nivoa,tehnologija,0.07919498322793493
+Programski jezik Lua,exact_title,tehnologija,tfidf,5,1.989299984415993,179,Programski jezik visokog nivoa,tehnologija,0.07797455706814471
+glavni grad Srbije,paraphrase,geografija,semantic,1,44.59800000768155,65,Spisak gradova u Srbiji,geografija,0.8236894
+glavni grad Srbije,paraphrase,geografija,semantic,2,44.59800000768155,68,Beograd,geografija,0.82003313
+glavni grad Srbije,paraphrase,geografija,semantic,3,44.59800000768155,1,Istorija Srbije,istorija,0.8148197
+glavni grad Srbije,paraphrase,geografija,semantic,4,44.59800000768155,92,Novi Sad,geografija,0.8085415
+glavni grad Srbije,paraphrase,geografija,semantic,5,44.59800000768155,78,Zaječar,geografija,0.8057219
+glavni grad Srbije,paraphrase,geografija,bm25,1,0.5664000054821372,65,Spisak gradova u Srbiji,geografija,8.561507081487452
+glavni grad Srbije,paraphrase,geografija,bm25,2,0.5664000054821372,68,Beograd,geografija,7.456314599894423
+glavni grad Srbije,paraphrase,geografija,bm25,3,0.5664000054821372,4,Istorija Srbije u starom veku,istorija,7.191805497697969
+glavni grad Srbije,paraphrase,geografija,bm25,4,0.5664000054821372,85,Kosovska Mitrovica,geografija,6.708410476869016
+glavni grad Srbije,paraphrase,geografija,bm25,5,0.5664000054821372,92,Novi Sad,geografija,6.25579061356803
+glavni grad Srbije,paraphrase,geografija,tfidf,1,2.4723999958951026,65,Spisak gradova u Srbiji,geografija,0.13874356425798828
+glavni grad Srbije,paraphrase,geografija,tfidf,2,2.4723999958951026,76,Grad Pirot,geografija,0.07600809298687129
+glavni grad Srbije,paraphrase,geografija,tfidf,3,2.4723999958951026,4,Istorija Srbije u starom veku,istorija,0.07319034105223765
+glavni grad Srbije,paraphrase,geografija,tfidf,4,2.4723999958951026,66,Teritorijalna organizacija Srbije,geografija,0.07198486433693665
+glavni grad Srbije,paraphrase,geografija,tfidf,5,2.4723999958951026,85,Kosovska Mitrovica,geografija,0.06738133867478024
+srpski kantautor i tekstopisac,paraphrase,muzika,semantic,1,44.32120002456941,159,Nikola Vučičević,muzika,0.81233275
+srpski kantautor i tekstopisac,paraphrase,muzika,semantic,2,44.32120002456941,92,Novi Sad,geografija,0.8121978
+srpski kantautor i tekstopisac,paraphrase,muzika,semantic,3,44.32120002456941,108,Dragan Bošković,nauka,0.8114953
+srpski kantautor i tekstopisac,paraphrase,muzika,semantic,4,44.32120002456941,118,Đorđije Vuković,nauka,0.8108057
+srpski kantautor i tekstopisac,paraphrase,muzika,semantic,5,44.32120002456941,132,Tea Andrijić,muzika,0.8095586
+srpski kantautor i tekstopisac,paraphrase,muzika,bm25,1,0.5665000062435865,140,Boris Bizetić,muzika,12.477329206129697
+srpski kantautor i tekstopisac,paraphrase,muzika,bm25,2,0.5665000062435865,154,Veseli Plavanjci,muzika,4.949693765446511
+srpski kantautor i tekstopisac,paraphrase,muzika,bm25,3,0.5665000062435865,151,Mira Vasiljević,muzika,4.943631805144539
+srpski kantautor i tekstopisac,paraphrase,muzika,bm25,4,0.5665000062435865,137,Đorđe Balašević,muzika,4.8330680612375945
+srpski kantautor i tekstopisac,paraphrase,muzika,bm25,5,0.5665000062435865,131,Rambo Amadeus,muzika,4.8199212703720065
+srpski kantautor i tekstopisac,paraphrase,muzika,tfidf,1,2.066199987893924,140,Boris Bizetić,muzika,0.13619633059817568
+srpski kantautor i tekstopisac,paraphrase,muzika,tfidf,2,2.066199987893924,154,Veseli Plavanjci,muzika,0.05336435891464052
+srpski kantautor i tekstopisac,paraphrase,muzika,tfidf,3,2.066199987893924,137,Đorđe Balašević,muzika,0.04811526276677138
+srpski kantautor i tekstopisac,paraphrase,muzika,tfidf,4,2.066199987893924,131,Rambo Amadeus,muzika,0.046204197243993425
+srpski kantautor i tekstopisac,paraphrase,muzika,tfidf,5,2.066199987893924,151,Mira Vasiljević,muzika,0.04522378530655076
+jelo od lisnatog testa,paraphrase,hrana,semantic,1,43.53140000603162,215,Gastronomija pirotskog kraja,hrana,0.8049785
+jelo od lisnatog testa,paraphrase,hrana,semantic,2,43.53140000603162,213,Vojvođanska kuhinja,hrana,0.7954999
+jelo od lisnatog testa,paraphrase,hrana,semantic,3,43.53140000603162,198,Albanska salata,hrana,0.79438984
+jelo od lisnatog testa,paraphrase,hrana,semantic,4,43.53140000603162,216,Gomboce sa šljivama,hrana,0.79035944
+jelo od lisnatog testa,paraphrase,hrana,semantic,5,43.53140000603162,208,Burek,hrana,0.78612393
+jelo od lisnatog testa,paraphrase,hrana,bm25,1,0.4380999889690429,208,Burek,hrana,17.464599213745018
+jelo od lisnatog testa,paraphrase,hrana,bm25,2,0.4380999889690429,213,Vojvođanska kuhinja,hrana,11.415710013079575
+jelo od lisnatog testa,paraphrase,hrana,bm25,3,0.4380999889690429,210,Vasilica (hleb),hrana,11.313707125884392
+jelo od lisnatog testa,paraphrase,hrana,bm25,4,0.4380999889690429,216,Gomboce sa šljivama,hrana,11.162641920850884
+jelo od lisnatog testa,paraphrase,hrana,bm25,5,0.4380999889690429,196,Srpska kuhinja,hrana,9.86587183987384
+jelo od lisnatog testa,paraphrase,hrana,tfidf,1,2.6086999860126525,216,Gomboce sa šljivama,hrana,0.14971321552285954
+jelo od lisnatog testa,paraphrase,hrana,tfidf,2,2.6086999860126525,208,Burek,hrana,0.13766799940402474
+jelo od lisnatog testa,paraphrase,hrana,tfidf,3,2.6086999860126525,210,Vasilica (hleb),hrana,0.10473390847431703
+jelo od lisnatog testa,paraphrase,hrana,tfidf,4,2.6086999860126525,207,Bundevara,hrana,0.09349348983427834
+jelo od lisnatog testa,paraphrase,hrana,tfidf,5,2.6086999860126525,225,Žmare,hrana,0.0896313269728449
+jezik za skriptovanje,paraphrase,tehnologija,semantic,1,49.22169999917969,185,Skriptni jezik,tehnologija,0.86578417
+jezik za skriptovanje,paraphrase,tehnologija,semantic,2,49.22169999917969,167,Spisak programskih jezika,tehnologija,0.85196865
+jezik za skriptovanje,paraphrase,tehnologija,semantic,3,49.22169999917969,175,Lua,tehnologija,0.83074415
+jezik za skriptovanje,paraphrase,tehnologija,semantic,4,49.22169999917969,171,Ezoterični programski jezici,tehnologija,0.8305573
+jezik za skriptovanje,paraphrase,tehnologija,semantic,5,49.22169999917969,166,Programski jezik,tehnologija,0.8285732
+jezik za skriptovanje,paraphrase,tehnologija,bm25,1,0.3504000196699053,166,Programski jezik,tehnologija,2.4973912273333103
+jezik za skriptovanje,paraphrase,tehnologija,bm25,2,0.3504000196699053,179,Programski jezik visokog nivoa,tehnologija,2.47429753386339
+jezik za skriptovanje,paraphrase,tehnologija,bm25,3,0.3504000196699053,171,Ezoterični programski jezici,tehnologija,2.466300178520974
+jezik za skriptovanje,paraphrase,tehnologija,bm25,4,0.3504000196699053,181,Programski jezik niskog nivoa,tehnologija,2.4413625412256765
+jezik za skriptovanje,paraphrase,tehnologija,bm25,5,0.3504000196699053,79,Zrenjanin,geografija,2.4325346808837316
+jezik za skriptovanje,paraphrase,tehnologija,tfidf,1,2.30239998199977,173,Kompilovani programski jezik,tehnologija,0.11538861069241656
+jezik za skriptovanje,paraphrase,tehnologija,tfidf,2,2.30239998199977,168,Asembler,tehnologija,0.10314751899089888
+jezik za skriptovanje,paraphrase,tehnologija,tfidf,3,2.30239998199977,181,Programski jezik niskog nivoa,tehnologija,0.10195760217778568
+jezik za skriptovanje,paraphrase,tehnologija,tfidf,4,2.30239998199977,179,Programski jezik visokog nivoa,tehnologija,0.09742595577866091
+jezik za skriptovanje,paraphrase,tehnologija,tfidf,5,2.30239998199977,169,Befundž,tehnologija,0.09668349077822437
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,semantic,1,42.462100012926385,27,Osmansko osvajanje Balkana,istorija,0.8154734
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,semantic,2,42.462100012926385,1,Istorija Srbije,istorija,0.8137987
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,semantic,3,42.462100012926385,68,Beograd,geografija,0.8100182
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,semantic,4,42.462100012926385,3,Istorija Srbije u Osmanskom carstvu,istorija,0.8093002
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,semantic,5,42.462100012926385,94,Pančevo,geografija,0.7996587
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,bm25,1,0.4346999921835959,1,Istorija Srbije,istorija,8.754327314496972
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,bm25,2,0.4346999921835959,218,Gurabije,hrana,6.35161230458362
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,bm25,3,0.4346999921835959,21,Kosovo i Metohija u srpsko-arbanaškim odnosima,istorija,6.231037359477677
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,bm25,4,0.4346999921835959,234,Balkan ekspres,film,5.934347691712276
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,bm25,5,0.4346999921835959,221,Dolma,hrana,5.836962651091875
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,tfidf,1,2.4784999841358513,234,Balkan ekspres,film,0.11618223382511658
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,tfidf,2,2.4784999841358513,46,Nikola Antić (fudbaler),sport,0.07213627943140202
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,tfidf,3,2.4784999841358513,49,Nemanja Antonov,sport,0.06796861752182981
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,tfidf,4,2.4784999841358513,42,Dušan Anđelković,sport,0.06712488600436915
+ko je osvojio Balkan u srednjem veku,conceptual,istorija,tfidf,5,2.4784999841358513,48,Dejan Antonić,sport,0.05316744084124908
+najveći grad u Srbiji,conceptual,geografija,semantic,1,38.110499997856095,1,Istorija Srbije,istorija,0.8258348
+najveći grad u Srbiji,conceptual,geografija,semantic,2,38.110499997856095,92,Novi Sad,geografija,0.8249439
+najveći grad u Srbiji,conceptual,geografija,semantic,3,38.110499997856095,68,Beograd,geografija,0.82329965
+najveći grad u Srbiji,conceptual,geografija,semantic,4,38.110499997856095,65,Spisak gradova u Srbiji,geografija,0.8221606
+najveći grad u Srbiji,conceptual,geografija,semantic,5,38.110499997856095,31,Savezna Republika Jugoslavija,istorija,0.81541926
+najveći grad u Srbiji,conceptual,geografija,bm25,1,0.45429999590851367,88,Kruševac,geografija,5.923436734158154
+najveći grad u Srbiji,conceptual,geografija,bm25,2,0.45429999590851367,72,Vršac,geografija,5.730076356924693
+najveći grad u Srbiji,conceptual,geografija,bm25,3,0.45429999590851367,78,Zaječar,geografija,5.405144796321075
+najveći grad u Srbiji,conceptual,geografija,bm25,4,0.45429999590851367,92,Novi Sad,geografija,5.320514397796544
+najveći grad u Srbiji,conceptual,geografija,bm25,5,0.45429999590851367,90,Niš,geografija,5.234257097466864
+najveći grad u Srbiji,conceptual,geografija,tfidf,1,1.6915999876800925,88,Kruševac,geografija,0.10973964652003702
+najveći grad u Srbiji,conceptual,geografija,tfidf,2,1.6915999876800925,76,Grad Pirot,geografija,0.09951073090242454
+najveći grad u Srbiji,conceptual,geografija,tfidf,3,1.6915999876800925,65,Spisak gradova u Srbiji,geografija,0.0965510196815072
+najveći grad u Srbiji,conceptual,geografija,tfidf,4,1.6915999876800925,78,Zaječar,geografija,0.08694259658490026
+najveći grad u Srbiji,conceptual,geografija,tfidf,5,1.6915999876800925,102,Bogdan Beleslin,nauka,0.08415600956027736
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,semantic,1,42.21859999233857,104,Bogdan Todorov,nauka,0.83441305
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,semantic,2,42.21859999233857,119,Vladan Vučković,nauka,0.82992077
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,semantic,3,42.21859999233857,117,Božidar Vujanović,nauka,0.8178198
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,semantic,4,42.21859999233857,102,Bogdan Beleslin,nauka,0.81611013
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,semantic,5,42.21859999233857,98,Vladimir Ajdačić,nauka,0.8120169
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,bm25,1,0.5025000136811286,123,Dejan Glišović,nauka,7.005234349540396
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,bm25,2,0.5025000136811286,128,Tihomir Đorđević,nauka,6.52463833637664
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,bm25,3,0.5025000136811286,117,Božidar Vujanović,nauka,5.264688177777661
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,bm25,4,0.5025000136811286,101,Nebojša Arsenijević,nauka,4.41833822637856
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,bm25,5,0.5025000136811286,94,Pančevo,geografija,3.662431421424547
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,tfidf,1,1.6367999778594822,123,Dejan Glišović,nauka,0.11142873219272041
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,tfidf,2,1.6367999778594822,117,Božidar Vujanović,nauka,0.10083542072583945
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,tfidf,3,1.6367999778594822,128,Tihomir Đorđević,nauka,0.09775996893141985
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,tfidf,4,1.6367999778594822,136,Janika Balaž,muzika,0.08136223659290433
+srpski naučnik koji je radio na elektrotehnici,conceptual,nauka,tfidf,5,1.6367999778594822,102,Bogdan Beleslin,nauka,0.07529556250494046
+slatko jelo sa orasima,conceptual,hrana,semantic,1,45.69820000324398,215,Gastronomija pirotskog kraja,hrana,0.7965577
+slatko jelo sa orasima,conceptual,hrana,semantic,2,45.69820000324398,198,Albanska salata,hrana,0.7925166
+slatko jelo sa orasima,conceptual,hrana,semantic,3,45.69820000324398,213,Vojvođanska kuhinja,hrana,0.78999674
+slatko jelo sa orasima,conceptual,hrana,semantic,4,45.69820000324398,209,Vanilica,hrana,0.7873353
+slatko jelo sa orasima,conceptual,hrana,semantic,5,45.69820000324398,203,Belmuž,hrana,0.78463477
+slatko jelo sa orasima,conceptual,hrana,bm25,1,0.3353999927639961,213,Vojvođanska kuhinja,hrana,13.890880042575505
+slatko jelo sa orasima,conceptual,hrana,bm25,2,0.3353999927639961,207,Bundevara,hrana,12.625768425363113
+slatko jelo sa orasima,conceptual,hrana,bm25,3,0.3353999927639961,221,Dolma,hrana,10.782627421647266
+slatko jelo sa orasima,conceptual,hrana,bm25,4,0.3353999927639961,208,Burek,hrana,9.947241340668722
+slatko jelo sa orasima,conceptual,hrana,bm25,5,0.3353999927639961,223,Đul pita,hrana,8.712308294917266
+slatko jelo sa orasima,conceptual,hrana,tfidf,1,1.993100013351068,207,Bundevara,hrana,0.1361242813103487
+slatko jelo sa orasima,conceptual,hrana,tfidf,2,1.993100013351068,221,Dolma,hrana,0.0974335985072903
+slatko jelo sa orasima,conceptual,hrana,tfidf,3,1.993100013351068,213,Vojvođanska kuhinja,hrana,0.09521034828479127
+slatko jelo sa orasima,conceptual,hrana,tfidf,4,1.993100013351068,225,Žmare,hrana,0.08294910152307274
+slatko jelo sa orasima,conceptual,hrana,tfidf,5,1.993100013351068,203,Belmuž,hrana,0.07861478665810613
+Ђорђе Балашевић,cyrillic,muzika,semantic,1,31.72120000817813,137,Đorđe Balašević,muzika,0.8035603
+Ђорђе Балашевић,cyrillic,muzika,semantic,2,31.72120000817813,136,Janika Balaž,muzika,0.79934835
+Ђорђе Балашевић,cyrillic,muzika,semantic,3,31.72120000817813,108,Dragan Bošković,nauka,0.79800516
+Ђорђе Балашевић,cyrillic,muzika,semantic,4,31.72120000817813,97,Ljubiša S. Adamović,nauka,0.79263604
+Ђорђе Балашевић,cyrillic,muzika,semantic,5,31.72120000817813,114,Petar Vlahović,nauka,0.7904409
+Ђорђе Балашевић,cyrillic,muzika,bm25,1,0.357700017048046,137,Đorđe Balašević,muzika,12.344948186102554
+Ђорђе Балашевић,cyrillic,muzika,bm25,2,0.357700017048046,145,Josip Boček,muzika,9.628024633542369
+Ђорђе Балашевић,cyrillic,muzika,bm25,3,0.357700017048046,118,Đorđije Vuković,nauka,3.9844564736277333
+Ђорђе Балашевић,cyrillic,muzika,bm25,4,0.357700017048046,11,Grb Socijalističke Republike Srbije,istorija,3.57926386544638
+Ђорђе Балашевић,cyrillic,muzika,bm25,5,0.357700017048046,81,Inđija,geografija,3.532200496167036
+Ђорђе Балашевић,cyrillic,muzika,tfidf,1,2.3518999805673957,137,Đorđe Balašević,muzika,0.13038104991528446
+Ђорђе Балашевић,cyrillic,muzika,tfidf,2,2.3518999805673957,145,Josip Boček,muzika,0.08953687480436294
+Ђорђе Балашевић,cyrillic,muzika,tfidf,3,2.3518999805673957,118,Đorđije Vuković,nauka,0.05511246240574979
+Ђорђе Балашевић,cyrillic,muzika,tfidf,4,2.3518999805673957,42,Dušan Anđelković,sport,0.03418977852896402
+Ђорђе Балашевић,cyrillic,muzika,tfidf,5,2.3518999805673957,11,Grb Socijalističke Republike Srbije,istorija,0.03390093195139233
+Đorđe Balašević,latin,muzika,semantic,1,34.599099977640435,137,Đorđe Balašević,muzika,0.85879517
+Đorđe Balašević,latin,muzika,semantic,2,34.599099977640435,108,Dragan Bošković,nauka,0.81514126
+Đorđe Balašević,latin,muzika,semantic,3,34.599099977640435,136,Janika Balaž,muzika,0.8149421
+Đorđe Balašević,latin,muzika,semantic,4,34.599099977640435,101,Nebojša Arsenijević,nauka,0.81277823
+Đorđe Balašević,latin,muzika,semantic,5,34.599099977640435,118,Đorđije Vuković,nauka,0.8109538
+Đorđe Balašević,latin,muzika,bm25,1,0.4096000047866255,137,Đorđe Balašević,muzika,12.344948186102554
+Đorđe Balašević,latin,muzika,bm25,2,0.4096000047866255,145,Josip Boček,muzika,9.628024633542369
+Đorđe Balašević,latin,muzika,bm25,3,0.4096000047866255,118,Đorđije Vuković,nauka,3.9844564736277333
+Đorđe Balašević,latin,muzika,bm25,4,0.4096000047866255,11,Grb Socijalističke Republike Srbije,istorija,3.57926386544638
+Đorđe Balašević,latin,muzika,bm25,5,0.4096000047866255,81,Inđija,geografija,3.532200496167036
+Đorđe Balašević,latin,muzika,tfidf,1,2.052600000752136,137,Đorđe Balašević,muzika,0.13038104991528446
+Đorđe Balašević,latin,muzika,tfidf,2,2.052600000752136,145,Josip Boček,muzika,0.08953687480436294
+Đorđe Balašević,latin,muzika,tfidf,3,2.052600000752136,118,Đorđije Vuković,nauka,0.05511246240574979
+Đorđe Balašević,latin,muzika,tfidf,4,2.052600000752136,42,Dušan Anđelković,sport,0.03418977852896402
+Đorđe Balašević,latin,muzika,tfidf,5,2.052600000752136,11,Grb Socijalističke Republike Srbije,istorija,0.03390093195139233
+Rambbo Amedus,misspelled,muzika,semantic,1,33.12279999954626,131,Rambo Amadeus,muzika,0.7991021
+Rambbo Amedus,misspelled,muzika,semantic,2,33.12279999954626,159,Nikola Vučičević,muzika,0.7883564
+Rambbo Amedus,misspelled,muzika,semantic,3,33.12279999954626,101,Nebojša Arsenijević,nauka,0.767529
+Rambbo Amedus,misspelled,muzika,semantic,4,33.12279999954626,100,Marija Aleksandrović,nauka,0.7671553
+Rambbo Amedus,misspelled,muzika,semantic,5,33.12279999954626,97,Ljubiša S. Adamović,nauka,0.76611173
+Beogradd,misspelled,geografija,semantic,1,32.71210001548752,68,Beograd,geografija,0.8170793
+Beogradd,misspelled,geografija,semantic,2,32.71210001548752,79,Zrenjanin,geografija,0.8083676
+Beogradd,misspelled,geografija,semantic,3,32.71210001548752,108,Dragan Bošković,nauka,0.79603195
+Beogradd,misspelled,geografija,semantic,4,32.71210001548752,87,Kraljevo,geografija,0.7943723
+Beogradd,misspelled,geografija,semantic,5,32.71210001548752,92,Novi Sad,geografija,0.79372644
+kvantna mehanika,out_of_corpus,,semantic,1,30.320499994559214,117,Božidar Vujanović,nauka,0.8139781
+kvantna mehanika,out_of_corpus,,semantic,2,30.320499994559214,191,Brainfuck,tehnologija,0.81001616
+kvantna mehanika,out_of_corpus,,semantic,3,30.320499994559214,104,Bogdan Todorov,nauka,0.80786633
+kvantna mehanika,out_of_corpus,,semantic,4,30.320499994559214,180,Programski jezik Dark,tehnologija,0.8057568
+kvantna mehanika,out_of_corpus,,semantic,5,30.320499994559214,184,Semantika programskih jezika,tehnologija,0.8049965
+kvantna mehanika,out_of_corpus,,bm25,1,0.31869998201727867,117,Božidar Vujanović,nauka,8.087437265585233
+veštačka inteligencija,out_of_corpus,,semantic,1,29.333100013900548,167,Spisak programskih jezika,tehnologija,0.80567217
+veštačka inteligencija,out_of_corpus,,semantic,2,29.333100013900548,104,Bogdan Todorov,nauka,0.8050779
+veštačka inteligencija,out_of_corpus,,semantic,3,29.333100013900548,98,Vladimir Ajdačić,nauka,0.80009925
+veštačka inteligencija,out_of_corpus,,semantic,4,29.333100013900548,180,Programski jezik Dark,tehnologija,0.7994517
+veštačka inteligencija,out_of_corpus,,semantic,5,29.333100013900548,191,Brainfuck,tehnologija,0.79937065
+veštačka inteligencija,out_of_corpus,,bm25,1,0.31850000959821045,85,Kosovska Mitrovica,geografija,3.7423446380351777
+veštačka inteligencija,out_of_corpus,,bm25,2,0.31850000959821045,72,Vršac,geografija,3.391582945443576
+veštačka inteligencija,out_of_corpus,,bm25,3,0.31850000959821045,9,Velika Srbija,istorija,3.386744275857283
+veštačka inteligencija,out_of_corpus,,bm25,4,0.31850000959821045,79,Zrenjanin,geografija,2.4010541959472875
+veštačka inteligencija,out_of_corpus,,bm25,5,0.31850000959821045,94,Pančevo,geografija,2.2460372590554383
+veštačka inteligencija,out_of_corpus,,tfidf,1,2.213400002801791,85,Kosovska Mitrovica,geografija,0.03594374198792633
+veštačka inteligencija,out_of_corpus,,tfidf,2,2.213400002801791,72,Vršac,geografija,0.03226145540995248
+veštačka inteligencija,out_of_corpus,,tfidf,3,2.213400002801791,79,Zrenjanin,geografija,0.024304635796609003
+veštačka inteligencija,out_of_corpus,,tfidf,4,2.213400002801791,94,Pančevo,geografija,0.022780503238221318
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,semantic,1,31.05720001622103,5,Austrougarski ultimatum Srbiji 1913.,istorija,0.83101636
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,semantic,2,31.05720001622103,2,Istorija Srbije pod Habzburškom monarhijom,istorija,0.8300483
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,semantic,3,31.05720001622103,9,Velika Srbija,istorija,0.8201667
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,semantic,4,31.05720001622103,16,Istorija Vojvodine,istorija,0.8169308
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,semantic,5,31.05720001622103,8,Velika Mađarska (iredentizam),istorija,0.8162669
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,bm25,1,0.43230000301264226,5,Austrougarski ultimatum Srbiji 1913.,istorija,13.909659567159286
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,bm25,2,0.43230000301264226,26,Odeljenje za istoriju Narodnog muzeja Pančevo,istorija,6.356998605662701
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,bm25,3,0.43230000301264226,196,Srpska kuhinja,hrana,3.0435781421725836
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,bm25,4,0.43230000301264226,92,Novi Sad,geografija,2.4709279120546936
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,bm25,5,0.43230000301264226,20,Istorija Kosova i Metohije,istorija,1.776164142189463
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,tfidf,1,1.9394999835640192,5,Austrougarski ultimatum Srbiji 1913.,istorija,0.12603068674675444
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,tfidf,2,1.9394999835640192,26,Odeljenje za istoriju Narodnog muzeja Pančevo,istorija,0.07570850733256859
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,tfidf,3,1.9394999835640192,196,Srpska kuhinja,hrana,0.02520980890179926
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,tfidf,4,1.9394999835640192,92,Novi Sad,geografija,0.02514101322517371
+austrougarski ultimatum Srbiji 1913,exact_phrase,istorija,tfidf,5,1.9394999835640192,54,Stefan Babović,sport,0.017760394100566405
+srpski fudbaler rođen u Beogradu,multi_concept,sport,semantic,1,28.61119998851791,35,Danijel Aleksić,sport,0.8062298
+srpski fudbaler rođen u Beogradu,multi_concept,sport,semantic,2,28.61119998851791,49,Nemanja Antonov,sport,0.80616313
+srpski fudbaler rođen u Beogradu,multi_concept,sport,semantic,3,28.61119998851791,48,Dejan Antonić,sport,0.8033785
+srpski fudbaler rođen u Beogradu,multi_concept,sport,semantic,4,28.61119998851791,34,Nikola Aksentijević,sport,0.803375
+srpski fudbaler rođen u Beogradu,multi_concept,sport,semantic,5,28.61119998851791,59,Mihajlo Banjac,sport,0.80127746
+srpski fudbaler rođen u Beogradu,multi_concept,sport,bm25,1,0.6349000032059848,40,Bećo Alimanović,sport,5.547970266182607
+srpski fudbaler rođen u Beogradu,multi_concept,sport,bm25,2,0.6349000032059848,63,Kristijan Belić,sport,5.211478162830385
+srpski fudbaler rođen u Beogradu,multi_concept,sport,bm25,3,0.6349000032059848,35,Danijel Aleksić,sport,4.952762164183469
+srpski fudbaler rođen u Beogradu,multi_concept,sport,bm25,4,0.6349000032059848,49,Nemanja Antonov,sport,4.853919685875493
+srpski fudbaler rođen u Beogradu,multi_concept,sport,bm25,5,0.6349000032059848,64,Luka Bijelović (fudbaler),sport,4.660227925940555
+srpski fudbaler rođen u Beogradu,multi_concept,sport,tfidf,1,1.706400013063103,40,Bećo Alimanović,sport,0.11180157893787243
+srpski fudbaler rođen u Beogradu,multi_concept,sport,tfidf,2,1.706400013063103,49,Nemanja Antonov,sport,0.09192639857052103
+srpski fudbaler rođen u Beogradu,multi_concept,sport,tfidf,3,1.706400013063103,112,Vladan Božić,nauka,0.09131978538613722
+srpski fudbaler rođen u Beogradu,multi_concept,sport,tfidf,4,1.706400013063103,63,Kristijan Belić,sport,0.0855959589226852
+srpski fudbaler rođen u Beogradu,multi_concept,sport,tfidf,5,1.706400013063103,62,Andrej Bačanin,sport,0.08312766919651798

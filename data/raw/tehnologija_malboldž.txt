@@ -1,0 +1,108 @@
+Malboldž (engl. Malbolge) je javni domen ezoteričnog programskog jezika kog je izumeo Ben Olmsted 1998. godine. Nazvan je po osmom krugu pakla u Danteovoj Božanstvenoj komediji.
+Malboldž, je jezik koji je dizajniran da bude težak za programiranje (ili možda nemoguće - donedavno nije postojao ni neformalni argument koji pokazuje potpunost Tjuringa). Na primer, efekat bilo koje instrukcije zavisi od toga gde se ona nalazi u memoriji (mod 94), sva uputstva se samomodifikuju (prema tablici permutacije), a oba pokazivača koda i podataka se uvećavaju nakon svake instrukcije, što otežava ponovno korišćenje bilo kog koda ili podatka. Zasniva se na poteškoćama ranijih ezoteričnih jezika kao što su Brejnfak (Brainfuck) i Befung (Befunge), iako je veoma teško, moguće je pisati korisne programe u njemu.
+
+Programiranje u Malboldžu
+Programiranje u Malboldžu je bilo veoma teško za razumevanje. O tome svedoči i činjenica da je prvi program u Malboldžu napravljen tek 2 godine nakon njegovog osnivanja. Sam autor nikada nije napisao ni jedan program. Prvi program nije napisalo ljudsko biće, već je bio generisan algoritmom za pretraživanje snopa za čiji je dizajn zaslužan Endru Kuk (Andrew Cooke) koji je komplementiran u LISP-u.
+Kasnije je Lu Šifer postavio kriptoanalizu Malboldža i obezbedio program za kopiranje njegovog unosa u svoj proizvod. Takođe je spasio originalni tumač i specifikacije nakon što je originalna lokacija prestala da funkcioniše i ponudio generelnu strategiju pisanja programa u Malboldžu kao i neke ideje za Tjuringovu konačnost programa. 
+Olmsted je verovao da će Malboldž biti linearno ograničen robot. Postoji diskusija o tome da li se mogu primeniti razumne petlje u Malboldžu - trebalo je mnogo godina pre nego što je uveden prvi koji nije završen. Pravi program "99 Bottles of Beer" , koji se bavi ne-trivijalnim petljama i uslovima, nije objavljen sedam godina; prvi ispravan je bio Hisashi Iizava 2005.
+
+Primeri programa
+Hello, World!
+Endru Kuk je implementirao prvi program u Malboldžu. Program "Hello World!" je napisao 2000. godine, 2 godine nakon što je Ben Olmsted izmislio jezik. (=<`#9]~6ZY32Vx/4Rs+0No-&Jk)"Fh}|Bcy?`=*z]Kw%oG4UUS0/@-ejc(:'8dc
+
+Druga varijanta
+
+ ('&%:9]!~}|z2Vxwv-,POqponl$Hjig%eB@@>}=<M:9wv6WsU2T|nm-,jcL(I&%$#"`CB]V?Tx<uVtT`Rpo3NlF.Jh++FdbCBA@?]!~|4XzyTT43Qsqq(Lnmkj"Fhg${z@> 
+Ne brinite ako ne razumete ništa. To je samo namera tvorca jezika. Zapravo, izgleda jezivo samo zato što je šifrovano; zato Kuk predlaže "normalizovan Malboldž", što znači da ostane posle faze dešifrovanja. To ne znači da je jezik mnogo lakši nakon toga, međutim,moguće je napisati program u normalizovanom Malboldžu i kasnije primeniti završnu fazu šifriranja.Normalizovan Malboldž program je uklonio inicijalno mapiranje.
+Primer "Hello, World!" programa u normalizovanom Malboldž jeziku
+
+ jpp<jp<pop<<jo*<popp<o*p<pp<pop<pop<jijoj/o<vvjpopoopo<ojo/o
+vooooooooooooooooooooooooooooooooooooooooooooooooooo*p<v*<*
+Čak i ako izgleda lakše za čitanje nego ranije, i dalje je komplikovano razumeti bez opisa onoga šta svaki simbol znači, pa čak i sa njim. Distribucija Malboldža dolazi sa punim opisom jezika. Nadalje, u normalizovanom Malboldžu značenje podataka je izmenjeno tako da normalizacija nije ni potrebna.
+
+CAT
+Lu Šifer je koristio drugačiji pristup od Kuka. Njegova ideja je da osmisli Malboldž
+kao kriptosistem, to jest, kompleksan algoritam
+pretvarajući ulaz u izlaz. Ovaj program čita niz karaktera i štampa taj niz.
+
+(=BA#9"=<;:3y7x54-21q/p-,+*)"!h%B0/.
+~P<
+<:(8&
+66#"!~}|{zyxwvu
+gJ%
+
+Dizajn
+Malboldž je mašinski jezik napravljen za virtuelnu mašinu koja koristi ternarni brojčani sistem.
+Ne dolazi do savršenog preklapanja standardnog interpretatora i javne specifikacije. Jedna od razlika je u tome što kompajler završava egzekuciju sa podacima od 33-126. Iako se ovo smatralo bagom u kompajleru, Ben Olmsted je izjavio da je to s namerom tako i da je u stvari bag u specifikaciji. Kako bi se lakše koristile komande ovog programskog jezika, potrebno je razumeti njegovo radno okruženje.
+
+Registri
+Malboldž raspolaže sa tri registra a, c i d koja se koriste za manipulaciju podacima. Kada program počne s radom, početna vrednost sva tri registra je 0.
+a označava akumulator podešen na vrednost zadanu od strane svih zapisanih operacija u memoriji
+c pokazivač koda (code pointer) prikazuje trenutnu instrukciju. Registar se automatski povećava nakon svake od
+instrukcija i ukazuje na njeno izvršavanje.
+d pokazivač podataka (data pointer) Takođe se automatski povećava nakon svake od
+instrukcija, ali lokacija koju on upućuje se koristi za podatke
+komande manipulacije.
+
+Označavanje
+d može da sadrži adresu u memoriji; [d] je vrednost koja se čuva na toj adresi. Isto važi i za [c].
+
+Memorija
+Virtuelna mašina ima 59,049 memorijskih lokacija.
+Jezik koristi isti memorijski prostor za podatke i instrukcije. Na to je uticao način na koji funkcioniše hardver x86 arhitekture.
+Pre nego što započne program Malboldž, prvi deo memorije se popunjava programom. Kada interpreter očita program, svi prazni prostori u programu se ignorišu. Ako interpreter naiđe na bilo šta što nije instrukcija ili prostor, ispisuje grešku, u suprotnom, učitava datoteku. Kako bi se programiranje otežalo, sve ostalo u programu mora početi kao jedno od dole navedenih uputstava.
+Ostatak memorije se popunjava korišćenjem ludih operacija na prethodne dve adrese ([m] = crz [m - 2], [m - 1]). Memorija ispunjena na ovaj način će ponoviti svakih dvanaest naslova (pojedinačne ternarne cifre će ponoviti svaku treću ili četvrtu adresu, tako da zagarantovana grupa ternarnih cifara ponavlja svaku dvanaestu).
+U 2007. godini, Ørjan Johansen je stvorio Malboldž Anšakld (engl. Malbolge Unshackled), verziju Malboldža koja nema proizvoljno ograničenje memorije. Nada je bila stvaranje Tjuring- potpunog jezika, uz zadržavanje duha Malboldža. Nijedna druga pravila se ne menjaju, a svi Malboldž programi koji ne dosegnu granicu memorije su potpuno funkcionalni.
+
+Instrukcije
+U Malboldžu se koristi osam instrukcija. Kada prevodilac pokušava da izvrši program, prvo proverava da li je trenutna instrukcija ASCII znak, tačnije, ako [s] nije između 33 i 126, uključujući obe vrednosti, instrukcija nije validna i program se tu završava. Uzimanjem vrednosti [c], Malboldž odlučuje koju instrukciju će izvršiti dodajući mu vrednost c i uzimajući ostatak pri deljenju sa 94. Konačni rezultat govori tumaču šta treba da uradi. 
+
+Ako neki rezultat nije jedan
+od osam znakova, datoteka će biti odbijena.
+Nakon izvršenja instrukcije, 33 se oduzima od instrukcije
+u s, a rezultat se koristi kao indeks. Novi
+znak se zatim smešta u s, a zatim se s povećava.
+Još jedan način za predstavljanje instrukcija.
+
+Normalizacija programa
+Prednost, koju je donela normalizacija programa, je to što komande(karakteri) ne menjaju vrednost u zavisnosti od pozicije na kojoj se nalaze, što omogućava lakše generisanje. Sada, program sadrži samo komandne znakove (j, i, *, p, <, v, o).
+
+j d = [d] Podešava pokazivač podataka na vrednost u ćeliji na koju ukazuje trenutna vrednost.
+i c = [c] Podešava pokazivač instrukcije na vrednost u ćeliji na koju ukazuje njegova trenutna vrednost.
+[d] = ROTATE([d]) Rotira vrednost u ćeliji na koju ukazuje D za jednu ternarnu cifru udesno. Kao sporedni efekat, ova vrednost se čuva u A.
+p [d] = CRAZY(a, [d]) Primenjuje ludu operaciju vrednosti A na ćeliju na koju ukazuje D.
+/ a = INPUT Čita jedan karakter iz ulaza i čuva ASCII u A.
+< PRINT a Štampa karakter sa ASCII dobijen kao ostatak pri deljenju a sa 256.
+v STOP Zaustavlja izvršenje programa.
+o NOP Jedini važeći program koji ne radi ništa.
+
+"Luda" operacija
+Za svaku cifru ternarnog sistema, koristi sledeću tabelu.
+Primer: crz 0001112220, 0120120120 daje rezultat 1001022211
+
+Kodiranje
+Nakon izvršenja instrukcije, vrednost na [c] (bez ikakvog dodavanja) biće zamenjena sa ostatkom pri deljenju sa 94 (mod 94). Zatim, rezultat je šifrovan jednim od sledećih dva ekvivalentna metoda.
+
+Metod 1
+Nađite rezultat ispod. Čuvati ASCII kod karaktera ispod njega na [c].
+0000000000111111111122222222223333333333444444444455555555556666666666777777777788888888889999
+
+0123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890123
+----------------------------------------------------------------------------------------------
+9m<.TVac`uY*MK'X~xDl}REokN:#?G"i@5z]&gqtyfr$(we4{WP)H-Zn,[%\3dL+Q;>U!pJS72FhOA1CB6v^=I_0/8|jsb
+
+Metod 2
+Nađite rezultat ispod. Čuvati šifrovanu verziju na '[s]' .
+
+Šiferova kriptoanaliza Malboldža pominje šest različitih ciklusa u kodiranju. Ovde su navedeni:
+
+33 ⇒ 53 ⇒ 45 ⇒ 119 ⇒ 78 ⇒ 49 ⇒ 87 ⇒ 48 ⇒ 123 ⇒ 71 ⇒ 83 ⇒ 94 ⇒ 57 ⇒ 91 ⇒ 106 ⇒ 77 ⇒ 65 ⇒ 59 ⇒ 92 ⇒ 115 ⇒ 82 ⇒ 118 ⇒ 107 ⇒ 75 ⇒ 104 ⇒ 89 ⇒ 56 ⇒ 44 ⇒ 40 ⇒ 121 ⇒ 35 ⇒ 93 ⇒ 98 ⇒ 84 ⇒ 61 ⇒ 100 ⇒ 97 ⇒ 46 ⇒ 101 ⇒ 99 ⇒ 86 ⇒ 95 ⇒ 109 ⇒ 88 ⇒ 47 ⇒ 52 ⇒ 72 ⇒ 55 ⇒ 110 ⇒ 126 ⇒ 64 ⇒ 81 ⇒ 54 ⇒ 90 ⇒ 124 ⇒ 34 ⇒ 122 ⇒ 63 ⇒ 43 ⇒ 36 ⇒ 38 ⇒ 113 ⇒ 108 ⇒ 39 ⇒ 116 ⇒ 69 ⇒ 112 ⇒ 68 ⇒ 33 ...
+37 ⇒ 103 ⇒ 117 ⇒ 111 ⇒ 120 ⇒ 58 ⇒ 37 ...
+41 ⇒ 102 ⇒ 96 ⇒ 60 ⇒ 51 ⇒ 41 ...
+42 ⇒ 114 ⇒ 125 ⇒ 105 ⇒ 42 ...
+50 ⇒ 80 ⇒ 66 ⇒ 62 ⇒ 76 ⇒ 79 ⇒ 67 ⇒ 85 ⇒ 73 ⇒ 50 ...
+70 ⇒ 74 ⇒ 70 ...
+Ovi ciklusi se mogu koristiti za kreiranje petlji koje svaki put vrše različite stvari i koje se na kraju ponavljaju. Lu Šifer je ovu ideju iskoristio za kreiranje programa Malboldž koja ponavlja sve što korisnik unosi.
+
+Popularna kultura
+U desetoj epizodi prve sezone serije "Elementarno", ključni dokazi u rešavanju zločina bili su deo papira,na kojima je programski kod štampan na Malboldžu (što je neprecizna kopija programa Hello Vorld gore), a na drugoj je zabeležen red kafe.

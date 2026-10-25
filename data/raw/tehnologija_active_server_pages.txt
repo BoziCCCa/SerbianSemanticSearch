@@ -1,0 +1,8 @@
+Active Server Pages (srp. Stranice aktivne na serveru) predstavlja jedan od jezika za razvijanje Internet sajtova, razvijen od strane kompanije Majkrosoft. Njegov glavni takmac na Internet tržištu je PHP, koji ima tu osobinu da je besplatan i slobodan, dok su ASP i svi proizvodi potrebni za njegovo korišćenje komercijalni i u vlasništvu kompanije Majkrosoft. Sa druge strane, Majkrosoft konstantno održava i dodaje nove mogućnosti svom paketu, na taj način ga čineći modernim, čvrstim i pružajući svojim klijentima svu moguću tehničku podršku. Takođe, Majkrosoft finansira i ogroman broj knjiga za ASP, na taj način ga čineći još popularnijim.
+Nakon uvođenja .NET tehnologije, Majkrosoft je i ASP prilagodio istom, tako da je poslednja objavljena verzija ASP.NET 2.0, objavljena 2005. godine.
+ASP je skriptni jezik, kao i PHP, i potreban je interpreter na serverskoj strani da bi mogao da radi.
+Primer programa napisanog u ASP-u:
+
+Kao što se vidi, i ASP, kao i PHP, se piše tako što se njegov kod ugnijezdi u kod HTML-a, što znatno olakšava pisanje stranica u kojima se pojavljuje dosta komandi HTML-a.
+ASP kod se može pisati i u odvojene fajlove koji se, inače, zovu kod fajlovi u pozadini (engl. behing files). Imaju ekstenziju .cs (za C), vb(za Visual Basic) itd.
+ASP 2.0 je obezbjedio šest ugrađenih objekata: Application, ASPError, Request, Response, Server, and Session. Session na primjer predstavlja cookie-baziranu sesiju koja održava stanje promjenjivid od stranice do stranice. Ovaj endžin podržavajući COM omogućuje ASP web-sajtu da pristupi funkcionalnostima u kompajliranim bibliotekama kao što je DLL.

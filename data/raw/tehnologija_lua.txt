@@ -1,0 +1,155 @@
+Lua je jednostavan, reflektivan, imperativni i funkcionalni programski jezik, dizajniran kao skript jezik sa proširivom semantikom kao primarnim ciljem. Samo ime jezika potiče od portugalske reči lua što znači mesec. Jezik je kreiran 1993. godine, a licenciran je pod MIT licencom (do verzije 5.0 korišćena je BSD licenca).
+Lua poseduje relativno jednostavan C API u poređenju sa ostalim skript jezicima. Lua i JavaScript imaju vrlo sličnu semantiku uprkost velikim razlikama u sintaksi. Po dizajnu, Lua je vrlo slična i programskom jeziku Icon. Ima široku primenu u industriji video-igara, ali i u nekim komercijalnim kao i nekomercijalnim aplikacijama.
+Lua programi se ne interpretiraju direktno iz tekstualne Lua datoteke, već se kompajliraju na bajtkod koji se potom izvršava na Lua virtuelnoj mašini. Korišćenjem minimalnog skupa tipova podataka, Lua pokušava da balansira između veličine i moći.
+
+Tipovi podataka
+Kao i većina skript jezika, lua je dinamički tipiziran programski jezik. Postoji osam osnovnih tipova podataka: nil, boolean, number, string, userdata, function, thread i table. Funkcija type vraća tip promenljive čija vrednost joj je prosleđena.
+
+Kao rezultat ovog poziva, na ekranu će biti ispisano string.
+S obzirom na to da se promenljive ne deklarišu, jedna ista promenljiva može uzimati vrednosti različitog tipa.
+
+Ovako nešto je dozvoljeno pošto funkcija spada u osnovni tip podataka. Na ekranu će prilikom ovog poziva biti ispisano function.
+Nil je tip sa jednom mogućom vrednošću nil, koja služi da učini promenljivu različitom od ostalih. Tj. govori nam da ta promenljiva nema upotrebljivu vrednost.
+Bulovski tip ima dve vrednosti: true i false i one imaju uobičajeno značenje.
+Number služi za predstavljanje realnih brojeva. Lua nema tip za posebno skladištenje celih brojeva. U okviru tipa number mogu se predstaviti 32-bitni celi brojevi bez problema sa zaokruživanjem.
+Stringovi su imutabilni, što znači da u jednoj promenljivoj tipa string nije moguće menjati neki karakter pojedinačno, već jedino što može je da se kreira novi string sa odgovarajućim izmenama.
+
+Tabele
+Jedna od specifičnosti programskog jezika Lua su tabele. Ovaj tip podataka implementira pridružene nizove. Pridruženi niz je niz koji ne mora da bude indeksiran samo brojevima, već se mogu koristiti i stringovi, ili druge vrednosti u jeziku ne uključujući nil. Ono što je posebno dobro kod tabele jeste što nemaju fiksiranu, unapred određenu veličinu, već mogu da se menjaju dinamički. Tabele u Lua nisu ni vrednosti, ni promenljive, već objekti.
+
+Ne postoji fiksiran odnos između tabele i promenljive koja na nju referiše.
+
+Kada više nema promenljivih koje referišu na neku tabelu, Lua sakupljač otpada će da izbriše tabelu i da iskoristi njenu memoriju za nešto drugo.
+Lakši zapis za a["name"] gde je a tabela a name ključ je a.name.
+Tabele su značajne, između ostalog i zbog toga što se sve uobičajene strukture koje drugi programski jezici nude - nizovi, liste, slogovi, redovi, skupovi - mogu predstaviti pomoću tabela u Lua. Takođe, sve navedene strukture Lua implementira efikasno. U tradicionalnim programskim jezicima kao što su C i Pascal, većinu struktura podataka implementiramo preko nizova i listi. Iako nizove i liste možemo implementirati preko tabela u Lua, što se ponekad i radi, tabele su ipak moćnije od nizove i listi, toliko da problem svedu na trivijalan. Na primer, pretraga u Lua se lakše radi pomoću tabela, jer kod njih imamo direktan pristup elementima.
+
+Nizovi
+Implementiranje nizova u Lua vršimo tako što indeksiramo tabelu celim brojevima. Shodno tome, nizovi nemaju fiksnu dužinu, već se povećavaju koliko god da nam je potrebno. Obično kada inicijalizujemo niz, mi mu implicitno odredimo i veličinu. Npr. nakon sledećeg koda, bilo koji pokušaj da pristupimo nekom polju van opsega 1-1000 rezultiraće sa nil, umesto sa nulom:
+
+Operator # nam vraća dužinu niza.
+
+Niz možemo početi od 0,1 ili bilo kog drugog broja:
+
+Ipak, običaj je u Lua da se niz indeksira od jedinice. Biblioteke za Lua kao i operator #, saglasni su sa ovom konvencijom. Ako korisnik kreira niz čiji indeksi ne kreću od jedinice, ostaće uskraćen za korišćenje ovih olakšica. Možemo da koristimo konstruktor da kreiramo i inicijalizujemo niz u jednom izrazu:
+
+Ovi konstruktori mogu biti veliki koliko god nam je potrebno (čak i do nekoliko miliona elemenata).
+
+Matrice i višedimenzionalni nizovi
+U Lua matrice se mogu predstaviti na dva načina. Jedna je kao niz nizova, odnosno kao tabela, gde je svaki element tabela. Npr. sledećim kodom formira se matrica dimenzija N puta M, ispunjena nulama:
+
+Zato što su tabele objekti u Lua, svaki red mora eksplicitno da se kreira, da bi se kreirala matrica. Na prvi pogled može se učiniti da ovakav kod nije mnogo različit od deklarisanja matrica u C-u i Pascal-u, no ipak ako bismo želeli trougaonu matricu, menjanjem petlje for j=1,M do sa for j=1,i do iskoristili bismo upola manje memorije. Drugi način da predstavimo matricu u Lua je da umesto dva indeksa koristimo jedan, koji računamo na sledeći način:
+
+Ako su indeksi slučajno stringovi, zajednički indeks dobija se nadovezivanjem stringova ubacujući između neki karakter, za koji znamo da se neće naći u njima, da ih razdvoji. U tradicionalnim programskim jezicima, predstavljanje retkih grafova matricama povezanosti uzima dosta memorije bespotrebno. Načinom implementacije, ovaj problem je rešen u Lua.
+
+Povezane liste
+Pošto su tabele dinamički objekti, lako je implementirati povezane liste u Lua. Svaki čvor je predstavljen tabelom i linkovi su prosto polja tabele koja sadrže reference na druge tabele. Npr. za implementaciju bazične liste, gde svaki čvor ima dva polja next i value, kreiramo promenljivu da bude koren liste.
+
+Da bismo ubacili element na početak liste, sa vrednošču v radimo sledeće:
+
+Naredni kod ilustruje prolazak kroz listu:
+
+Druge vrste listi, npr. dvostruko povezane ili kružne, takođe se mogu lako implementirati u Lua. Međutim, retko se koriste jer postoje efikasniji načini za predstavljanje podataka.
+
+Izrazi
+Izrazi u Lua uključuju numeričke konstante i stringovne literale, promenjlive, unarne i binarne operacije i pozive funkcija.
+Takođe, u izraze spadaju i definicije funkcija i konstruktori tabela.
+
+Aritmetički operatori
+Lua podržava uobičajene aritmetičke operatore: sabiranje, oduzimanje, množenje, deljenje, eksponent, modul, negacija (+, -, *, /, %, ^, -).
+
+Relacioni operatori
+U Lua imamo sledeće relacione operatore: < > <= >= == ~=, gde je poslednji nabrojani negacija jednakosti.
+
+Logički operatori
+Logički operatori su and, or i not.
+
+Nadovezivanje
+Nadovezivanje se vrši upotrebom dve tačke (..). Ukoliko je neki od operanada tipa number, on se automatski konvertuje u string. Pošto su stringovi imutabilni, svako nadovezivanje kreira novi string bez ikakvih posledica po operande.
+
+Naredbe
+Naredbe dodele
+Pod naredbom dodele podrazumeva se promena vrednosti promenljive ili polja u tabeli. Lua podržava višestruko dodeljivanje, kada se listi promenljivih dodeljuje lista vrednosti. Dodeljivanje protiče navedenim redosledom.
+
+Kod višestrukog dodeljivanja, Lua najpre računa vrednosti, pa ih potom dodeljuje. Zbog toga se razmena vrednosti promenljivih lako kodira.
+
+Lua uvek prilagođava broj vrednosti broju promenljivih. Ukoliko u višestrukom dodeljivanju ima više promenljivih nego vrednosti, promenljive koje su ostale uskraćene za vrednost od strane programera, automatski će dobiti vrednost nil, dok u slučaju da ima više vrednosti nego promenljivih, višak će biti odbačen.
+
+Lokalne promenljive i blokovi
+Osim globalnih, Lua podržava i lokalne promenljive. Da je neka promenljiva lokalna, označava se stavljanjem ključne reči local ispred imena promenljive. Lokalne promenljive su vidljive isključivo unutar bloka u kome su deklarisane. Pod blokom podrazumevamo telo neke petlje, telo funkcije, fajl...
+
+Problem nastaje u interaktivnom modu, kada se izvršava linija po linija. Rešenje je međutim da se blok stavi između ključnih reči do i end.
+Korišćenje lokalnih promenljivih sprečava nagomilavanje raznih imena promenljivih.
+
+Kontrolne naredbe
+if then else
+Naredba if testira da li je uslov ispunjen i ako jeste izvršava then -granu, a u suprotnom izvršava else -granu, ukoliko ona postoji. Da bi se pisali ugnježdeni if -ovi koristi se naredba elif, pošto Lua nema naredbu switch.
+
+while, repeat i for
+Kao i kod drugih programskih jezika Lua prvo testira uslov while naredbe i ako je uslov ispunjen onda se izvršava telo petlje, a ako
+uslov nije ispunjen onda se izvršavanje tela while naredbe prekida.
+
+repeat naredba ima slično značenje kao i u programskom jeziku paskal. Telo naredbe se izvršava sve dok uslov naredbe ne postane zadovoljen.
+
+Lua poseduje dve vrste for naredbi: numerički for i generički for. Numerički for ima sledeću sintaksu:
+
+Naredba for će izvršavati telo petlje za vrednosti promenljive var koje idu od exp1 do exp2 sa korakom exp3. Generički for služi za prolzak kroz kolekcije.
+
+break, return
+Naredbe break i return nam dozvoljavaju da iskočimo iz bloka. Naredbu break koristimo da prekinemo izvršavanje petlje. Naredba break prekida izvršavanje for, while i repeat petlji i ne može se koristiti izvan njih, takodje ona se mora nalaziti unutar blokova kao poslednja naredba. Posle prekida izvršavanja petlji program nastavlja sa radom odmah nakon prekinute petlje.
+
+return naredba se koristi da se prekine izvršavanje funkcija i da se vrati vrednost funkcije.
+
+Funkcije
+Funkcije su glavni mehanizam za apstrahovanje naredbi i izraza u programskom jeziku Lua. Funkcije mogu da izvršavaju specifične zadatke ili da izračunavaju i vraćaju vrednosti. U prvom slučaju funkciju koristimo kao naredbu, a u drugom slučaju je koristimo kao izraz.
+
+U oba slučaja argumenti funkcije se nalaze unutar zagrada, zagrade se moraju pisati i kada funkcija nema arugmenata koje bi dobila.
+Definicija funkcije u Lui ima sličnu sintaksu kao i u drugim programskim jezicima.
+
+Funkcija počinje sa reči function pa ide ime funkcije praćeno listom argumenata koje se nalazi unutar zagrada. Telo funkcije se završava se reči end. Ako funkcija vraća vrednost nekog izračunavanja ili želimo da prekinemo izvršavanje funkcije pre kraja bloka tada se unutar tela funkcije nalazi i reč return.
+
+Standardna biblioteka
+Biblioteka za rad sa matematičkim funkcijama
+Biblioteka math sadrži standardne funkcije: trigonometrijske (sin, cos, tan, asin, acos, ...), eksponencijalne (exp, log, log10), funkcije za zaokruživanje brojeva (floor, ceil), max, min, funkcije za generisanje pseudo-slučajnih brojeva (random, randomseed) ali i promenljive pi i huge, koja označava najveći predstavljiv broj. Sve trigonometrijske funkcije rade u radijanima. Možemo koristiti funkcije deg i rad unutar ove biblioteke za konvertovanje u jedinicu koja nam odgovara. Funkciju math.random možemo pozivati na tri različita načina. Ako je pozivamo bez argumenata, vraća nam pseudo-slučajan realni broj sa uniformnom raspodelom na intervalu [0,1). Kada je pozivamo sa jednim parametrom, celim brojem n, vraća nam pseudo-slučajan ceo broj između 1 i n. I konačno, možemo je pozvati sa dva argumenta, dva cela broja, i ona će nam vratiti pseudo-slučajan ceo broj iz intervala određenog sa tim brojevima. Ako ponovimo poziv ove funkcije math.random više puta, generisaće nam stalno isti niz brojeva. To je dobro kada testiramo neki program, ali loše ako je to npr. deo neke igrice. Da bi to sprečili, koristi se funkcija:
+
+Funkcija os.time() nam vraća trenutno vreme, obično broj sekundi protekao od neke epohe.
+
+Biblioteka za rad sa tabelama
+U ovoj biblioteci nalaze se funkcije za sortiranje, umetanje, brisanje i nadovezivanje. Funkcija table.insert ubacuje element u niz, pomerajući druge elemente na slobodna mesta. Npr. ako je t niz {10, 20, 30}, nakon poziva table.insert(t, 1, 15) dobićemo kao rezultat niz {15, 10, 20, 30}. Ako pozovemo ovu funkciju bez navođenja pozicije, staviće element na poslednje mesto.
+Program koji čita liniju po liniju ulaza, čuvajući pritom linije u nekom nizu:
+
+Funkcija table.remove uklanja element sa date pozicije u nizu, pomerajući druge da se slože i vraća skinuti element. Ukoliko pozicija nije data, skida poslednji.
+Sa ove dve funkcije prilično pravolinijski se implementriaju stek, red, dvostruki red. Ovu strukturu možemo inicijalizovati sa t={}. Operacija push ekvivalentna je sa table.insert(t, x); operacija pop ekvivalentna je sa table.remove(t). Poziv table.insert(t, 1, x) dodaje elemente na početak i table.remove(t, 1) uklanja elemente sa kraja. S obzirom da su ove funkcije implementirane u C-u, njihovi pozivi nisu mnogo skupi, i dovoljno dobro rade za nizove od npr. stotinak elemenata.
+
+Biblioteka za rad sa niskama
+Lua interpreter kao zasebna jedinica ima veoma ograničenu podršku za rad sa niskama. Njegove mogućnosti zaustavljaju se na formiranju literala, njihovom spajanju, i računanju dužine niske. Biblioteka za rad sa niskama pruža daleko veće mogućnosti. Osnovne mogućnosti biblioteke za niske su jednostavne transformacije i izdvajanje informacija iz niski. Funkcije string.tolower(s) i string.toupper(s)- vraćaju kopije niske s, u kojoj su sva slova transformisana u mala, odnosno velika slova. Funkcija string.sub(s, i, j)- vraća podnisku niske s koja se nalazi od i-te do j-te pozicije, uključujući i karakter na j-toj poziciji. Primer jednostavnog korišćenja osnovnih funkcija:
+
+Osim toga, ova biblioteka sadrži i mogućnost formatiranja niski prilikom štampanja, kao i napredne mehanizme za traženje obrazaca u niskama (funkcije gsub, find, match), koji se ne zasnivaju ni na POSIX, ni na Perl regularnim izrazima. Implementacija se vrši u manje od 500 linija koda, i doseg mogućnosti je manji od prethodno pomenutih implementacija, koje zauzimaju znatno više memorije.
+
+Biblioteka za ulaz i izlaz
+Jednostavan I/O model
+Jednostavan model za ulaz i izlaz zasniva se na dve datoteke, standardnom ulazu i standardnom izlazu. Sve operacije koje se primenjuju u funkcijama io.read i io.write odnose se na ove dve datoteke, koje se mogu promeniti pozivima funkcija io.input i io.output. Primer korišćenja jednostavnog I/O modela:
+
+Kompletan I/O model
+Kompletan I/O model zasnovan je na principu objekta tipa FILE* iz C-a. Objekat ovog tipa može se dobiti pozivom funkcije io.open, čiji su argumenti putanja do datoteke koju treba da otvorimo, i niska koja sadrži način na koji želimo da otvorimo datoteku. Ukoliko datoteka nepostoji, vraća se nul. Nakon uspešnog otvaranja fajla, na njega se mogu primeniti iste funkcije kao i na standardni ulaz i izlaz, ali se koristi objektna sintaksa. Datoteke treba zatvoriti pre završetka programa, pozivanjem funkcije close. Primer:
+
+Biblioteka sistemskih funkcija
+Biblioteka operativnog sistema sadrži funkcije za manipulaciju datotekama i fasciklama, trenutni datum i vreme, kao i funkcije uže vezane za operativni sistem.
+
+Datum i vreme
+Dve funkcije u biblioteci operativnog sistema namenjene su pribavljanju informacija o trenutnom datumu i vremenu, kao i formatiranju i transformaciji različitih oblika predstavljanja datuma i vremena. Funkcija os.time, pozvana bez argumenata, vraća trenutno vreme kodirano kao broj (na većini operativnih sistema Unix Time). Ako se prosledi tabela kao argument, ova funkcija čita odgovarajuće ključeve u tabeli, koji treba da predstavljaju godinu, mesec, datum, sat, minut, sekund, i vraća ih kodirane kao broj. Prva tri ključa (godina - "year", mesec - "month" i datum - "day") su obavezna, a ako neki od preostala tri ključa nedostaju, za njihovu vrednost uzeće se 12 (u slučaju sata) ili 0 (minuti i sekunde). Funkcija date, uprkos svom imenu, najbolje se može opisati kao suprotna funkcija od funkcije time. Ova funkcija vraća tabelu sa odgovarajućim ključevima, koji odgovaraju godini, mesecu, datumu, satu, minutu i sekundi, na osnovu niske i broja koji su prosleđeni kao argumenti (niska odgovara formatu u koji želimo da pretvorimo datum). Primer:
+
+Funkcija os.clock može da se koristi za merenje performansi procesora. Ona vraća vreme proteklo od početka izvršavanja programa u sekundama.
+
+Ostale sistemske funkcije
+os.exit() prekida program. os.execute(command) izvršava komandu na nivou operativnog sistema.
+
+Primer koda
+Klasični "Pozdrav svete" program:
+
+ili:
+
+print() dodaje karakter za prelaz u novi red, za razliku od io.write() gde se on mora dodati u samom kodu.
+
+Faktorijel je primer rekurzivne funkcije:
+
+Drugi oblik za funkciju faktorijela potiče od Luinog načina izračuna logičkog operatora, po kome Lua vraća vrednost poslednje izračunatog operanda u izrazu:

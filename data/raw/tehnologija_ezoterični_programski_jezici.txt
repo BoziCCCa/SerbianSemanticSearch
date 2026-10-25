@@ -1,0 +1,167 @@
+Ezoterični programski jezici (kraće engl. esolang ) su programski jezici dizajnirani da testiraju granice dizajna programskih jezika. Koriste se kao softverska umetnost, kao hakerski interfejs za druge jezike (posebno funkcionalni i proceduralni programski jezici) ili kao šala. Reč ezoterični pravi razliku između ovih programskih jezika i programskih jezika koji koriste programeri za pisanje softvera. Najčešće, ovi programski jezici nisu namenjeni za široku upotrebu, iako neke karakteristike imaju praktičnu primenu u umetnosti. Ovi jezici su često popularni među hakerima i programerima kojima je programiranje hobi.
+Upotrebljivost je retko cilj ovih programskih jezika, često je sasvim suprotno. Njihov cilj je da uklone ili zamene standardizovane karakteristike jezika dok zadržavaju karakteristiku da su Tjuring potpuni.
+
+Istorija
+Najstariji ezoterični programski jezik je INTERCAL. Njega su 1972. godine dizajnirali Don Woods i James M. Lyon sa namerom da ismeju tadašnje prograske jezike kao što su Fortran, COBOL i asemblerski jezici.
+ Godinama je INTERCAL bio predstavljan samo kopijama priručnika INTERCAL-a. Implementacija u C-u pod Unix-om je 1990. godine oživela ovaj jezik što je podstaklo talas interesovanja za ezoterične programske jezike.
+ Godine 1993, Wouter van Oortmerssen je kreirao FALSE, mali složeni programski jezik, sa sintaksom dizajniranom da učini kod zbunjujućim i nečitljivim. On je imao kompajler od samo 1024 bajtova. Ovo je inspirisalo Urban Müller-a da kreira još manji jezik, sada ozloglašeni Brainfuck, koji se sastoji od samo osam prepoznatljivih karaktera. Uporedo sa Chris Pressey-ovim Befunge-om (kao FALSE, ali sa dvodimenzionalnim pokazivačem instrukcija), Brainfuck je sada jedan od najbolje podržanih ezoterničnih programskih jezika. Ovo su kanonski primeri minimalnog Turing tarpits-a i nepotrebno pomućenih jezičkih karakteristika.
+Brainfuck je povezan sa P′′ familijom Tjuring mašina.
+
+Terminologija ezoteričnih programskih jezika
+Turing tarpit
+Tjuring tarpit (engl. Turing tarpit) su Tjuring potpuni programski jezici koji su nepraktični zato što su minimalistički, tj. imaju veoma ograničen broj instrukcija.
+
+Kodiranje sa stanjima
+Kodiranje sa stanjima (engl. Stateful encoding) je metod kodiranja u kome svaki podstring koda ima ulogu u:
+
+pronalaženju sledeće instrukcije u listi instrukcija
+izvršavanju te instrukcije, pri čemu se menja stanje programa
+Obrada instrukcija vrši se u dve faze: dohvatanje operacije i izvršavanje te operacije.
+Liste instrukcija mogu biti :
+
+statičnke - kao što su reMorse i THRAT
+dinamičke - poput reMorse4ever-a
+Primer statičke operacije:
+
+Select Next Operation in list
+Perform Operation
+
+Paradigme programskih jezika
+Paradigme programskih jezika se mogu smestiti u više kategorija:
+
+imperativni jezici (npr. Brainfuck) gde instrukcije određuju kako se menjaju podaci
+funkcionalni jezici (npr. Unlambda) gde se primenjuju samo funkcije, tako što jedna funkcija pokreće drugu
+transformacioni jezici (engl. rewriting languages) (npr. Thue) gde se izvršavanjem transformacionih funkcija menja polazno stanje programa
+
+Funge
+Funge je ezoterični programski jezik koji kreira svoje programe kao metričke prostore sa koordinatnim sistemom (uglavnom, ali ne nužno, Dekartovim koordinatnim sistemom). Program izvršava instrukcije koje se nalaze u prostoru tako što pomera pokazivač (vektor položaja koji inicira trenutno pokrenutu instrukciju) po tom prostoru. Različite instrukcije određuju pravac u kom će se kretati pokazivač, i samim tim niz instrukcija koje će se izvršiti.
+Trenutni zvanični standard koji određuje ponašanje ovih programskih jezika je Funge-98 specifikacija. Ova specifikacija predstavlja generalizaciju semantike jezika Befunge, koji ima dvodimenzionalnu torusnu topologiju. Jezici koji se drže ovih standarda, kao što su Unefunge (jednodimenzonalan) i Trefunge (trodimenzionlan), se nekada nazivaju funges. Dok se "dalji srodnici" sa razlikama u značajnijim aspektima, poput Wierd-a, nazivaju fungeoids.
+
+Kompjuter sa jednom instrukcijom
+Kompjuter sa jednom instrukcijom (engl. A one instruction set computer) je mašina koja podržava samo jednu instrukciju.
+
+Nedeterministički jezici
+Za deterministične jezike je karakteristično da ako je dato trenutno stanje programa, sledeća faza se može uvek predvideti. Ovo ne važi za nedeterminističke jezike. Najveći deo jezika je deterministički, ali neki jezici poput Befunge-a, podržavaju ugrađenu instrukciju za nasumičnost. Štaviše, jezici poput Java2k imaju samo nasumične instrukcije. Stoga je dobijanje pouzdanog izlaza čak i za trivijalne programe skoro nemoguć zadatak.
+Nedeterministički programski jezici se mogu koristiti za pretraživanje velikih prostora, poput gramatike, gde je potpuna pretraga nepraktična. Generatori nasumičnog teksta poput Dada Engine i rmu su primeri ovog tipa nedeterminističkih jezika.
+Nedeterministički algoritmi se koriste u istrazi hiperizračunljivosti.
+
+Primeri
+U nastavku se nalaze primeri ezoteričnih programskih jezika:
+
+Arnoldc
+Arnoldc je ezoterični programski jezik baziran na citatima Arnolda Švarcenegera. U nastavku se nalazi sintaksa za program koji ispisuje "Hello, World!".
+
+AsciiDots
+AsciiDots je ezoterični programski jezik koji je zasnovan na aski umetnosti.Sledi primer "code-golf" programa.
+
+Befunge
+Befunge je program koji dozvoljava da se pokazivač instrukcija prebaci u više dimenzije kroz kod. Na primer, sledeći program prikazuje "Hello World" izbacajući znakove naslagane u obrnutom redosledu i štampajući ih u petlji koja cirkuliše u smeru kazaljke na satu kroz instrukcije [>], [:], [v], [_], [,], i [^].
+
+Binary lambda calculus
+Binarni lambda račun je dizajniran iz perspektive algoritamske informacione teorije koja dozvoljava najgušći mogući kod sa najmanjim mogućim sredstvima. Programski jezik između ostalog uključuje 29 bajtova interpretatora i 112 bajtova Brainfuck interpretatora.
+
+Brainfuck
+Brainfuck je ekstremno minimlistički jezik koji se sastoji od 8 karaktera i kod je obično nečitljiv. Ovaj jezik zahteva poseban kompajler ili interpreter. Sledeći primer ispisuje "Hello World":
+
+Chef
+Chef je stek-orijentisan programski jezik koji je David Morgan-Mar dizajnirao da pravi programe koji izgledaju kao kuhinjski recepti. Program se sastoji od naslova, liste promenljivih i njihovih vrednosti podataka i od liste uputstava sa manipulacionim instrukcijama. Princip šaljivog dizajna se sastoji u tome da "programski recepti ne bi trebalo da generišu samo validan izlaz već da budu i laki za pripremanje i ukusni". David Morgan-Mar, tvorac ovog programskog jezika, napominje da bi jedan primer Hello World program programa sa "101 jajetom" i "111 čaša ulja" proizveo "mnogo hrane za jednu osobu."
+
+Dark
+Dark je programski jezik dizajniran da bude suštinsko zlo. Dizajnirao ga je David Catt. Program je baziran na manipulaciji celog sveta i dimenzija da bi stvorio što neugodniju stvarnost. Svaki program se čita kao niz komandi sa ciljem da svaku reč izmeni što više. U nastavku se nalazi kod za program koji ispisuje "Hello World":
+
++hello hell
+hello$twist sign hws
+hello$twist stalker io
+io$stalk
+io$personal
+hws$scrawl " Hello, world!
+hws$read
+io$echo
+hello$empty
+hello$apocalypse
+
+FALSE
+FALSE je stek-orijentisan programski jezik (eng. Stack-oriented programming) čije se komande i promenljive sastoje od jednog karaktera. Na primer 3 + 1 se može napisati na sledeći način (λ x → x + 1)(3).
+
+3[1+]!
+
+Fim++
+Fim++ je objektno-orijentisan programski jezik koji je inspirisan televizijskim programom "Moj mali poni". FiM++ programi se pišu u stilu "friedship reports" .Sledeći primer ispisuje "Hello world":
+
+FRACTRAN
+Program FRACTRAN je uređena lista pozitivnih razlomaka sa inicijalnim pozitivnim celobrojnim ulazom n. Program se pokreće množenjem broja n sa prvim razlomkom f na listi za koji je nf ceo broj. Broj n je tada zamenjen sa nf i pravilo se ponavlja. Ako nijedan razlomak u listi ne proizvodi ceo broj kada se pomnoži sa n, onda se program zaustavi. Matematičar John Conway, tvorac ovog programskog jezika, je napisao sledeći program za ispisivanje prostih brojeva:
+
+17/91, 78/85, 19/51, 23/38, 29/33, 77/29, 95/23, 77/19, 1/17, 11/13, 13/11, 15/14, 15/2, 55/1
+
+.Gertrude
+.Gertrude je osmislio Gerson Kurz. Programi napisani u ovom jeziku imaju elemente poezije Gertrude Stein, po kojoj je ovaj programski jezik nazvan. Program se sastoji od rečenica na bilo kom jeziku. Program izračunava prosečnu dužinu reči u svakoj rečenici, a zatim se broj reči dužih od prosečne dužine deli sa brojem reči kraćim od prosečne dužine. Dobijene vrednosti predstavljaju instrukcije i operande.
+
+GolfScript
+GolfScript se sastoji od lista koje se smeštaju u stek, a promenljive su predstavljene pomoću blokova koda. Ovaj programski jezik podržava opseg tipova podataka uključujući precizne cele brojeve, i veći opseg standardnih operacija od ostalih ezoteričnih programa.
+
+Grass
+Grass je funkcionalan programski jezik koji koristi jedino karaktere "W", "w", i "v". Prema tome, programi u Grass-u izgledaju kao trava. Grass ima formalne specifikacije zasnovane na neutvrđenom lambda računu i SECD mašini. Grass ne treba mešati sa GRASS-om, drugačijim programskim jezikom.
+
+INTERCAL
+INTERCAL, skraćeno od "Compiler Language With No Pronounceable Acronym", je nastao 1972. godine kao parodija sa namerom da satirično ismeje razne programske jezike tadašnjeg vremena.
+
+Jsfuck
+Jsfuck je ezoterični JavaSkript, gde se kod sastoji od 6 karaktera: [, ], (, ), !, +. Za razliku od Brainfuck-a, Jsfuck je validan JavaSkript kod što znači da se svi programi koji se napišu u ovom jeziku mogu pokrenuti u bilo kom internet pretraživaču koji interpretira JavaSkript.. Zbog malog broja validnih karaktera, za pisanje običnog "Hello World!" programa je neophodno više od 10000 karaktera.
+
+LOLCODE
+LOLCODE je često kritikovan što nije toliko ezoteričan, već više liči na običan proceduralni jezik sa neobičnim rečnikom. Sledeći primer je "Hello,World!"
+
+HAI
+CAN HAS STDIO?
+VISIBLE "HAI WORLD!"
+KTHXBYE
+
+Malbolge
+Malbolge (Danteov osmi krug pakla) je dizajniran da bude najteži i najezoteričniji programski jezik. Kreirao ga je Ben Olmstead in 1998. godine. Između ostalog, kod se sam modifikuje po dizajnu, a dejstvo instrukcije zavisi od njenog mesta u memoriji.
+
+Modiscript
+Modiscript je ezoteričan programski jezik koji se sastoji od citata indijskog ministra Narendra Modi. Ovaj jezik sadrži mnogo njegovih ideologija kao na primer citat "No important rule" koji je deo njegove kampanje "Make in India". Sledeći kod ispisuje "Mandir Wahin Banayenge":
+
+Piet
+Piet je jezik koji je dizajnirao David Morgan-Mar, čiji su programi mape bitova koje izgledaju kao apstraktna umetnost. Sastavljanjem mapa rukovodi pokazivač koji se kreće oko slike, od jednog kontinualnog obojenog regiona do sledećeg. Procedure se prenose kada pokazivač napušta region.
+Postoji 20 boja za čije ponašanje je određeno: 18 "šarenih" boja, koje se naručuju ciklusom nijanse od 6 koraka i ciklusom osvetljenja od 3 koraka, i crna i bela koje nisu naručene. Kada se napušta "šarena" boja i ulazi u novu boju, izvršeni postupak je određen brojem koraka promene u nijansi i osvetljenosti. U crno polje se ne može ući. Kada pokazivač pokuša da uđe u crnu regiju pravila biranja sledećeg polja se menjaju. Ako su sva moguća pravila isprobana, program se završava. Regije van granica slike takođe se tretiraju kao crne. Bela ne vrši operacije, ali omogućava pokazivaču da "prolazi" kroz nju. Ponašanje ostalih boja van ovih 20 specifičnih je prepušteno kompajleru ili interpretatoru.
+ Promenljive se čuvaju u memoriji kao označeni celi brojevi u jednom steku. Većina procedura se odnosi na operacije na tom steku, druge se odnose na ulaz/izlaz i na pravila kojima se pokazivač pomera.
+ Piet je dobio ime po holandskom slikaru Pitu Mondrijanu. Prvobitno ime koje je bilo namenjeno, Mondrian, je već bilo zauzeto.
+
+Pikachu
+Pikachu je programski jezik razvijen od strane Nilabhro Datta, čiji program izgleda kao dijalekat pikačua. Njegova svrha je da može biti korišćen od strane bilo kog pikačua. U tom cilju, Pikachu koristi samo 3 validna sintaksna elementa- "pi", "pika" i "pikachu".
+
+Rockstar
+Rockstar je jezik čiji se kod sastoji od reči balada ili hard rok pesama iz 1980-ih godina. Ovaj jezik je dinamičan i Tjuring potpun. Sledeći primer množi vrednost "your heart" sa "the whole" i čuva je u "my hands".
+
+"your heart", "the whole" i "my hand" su varijable
+of se koristi za množenje
+put/into kombinacija se koristi pri dodeli
+
+Shakespeare
+Shakespeare je dizajniran da pravi programe koji liče na Šekspirove komade. Na primer, sledeća komanda deklariše tačku u programu koja može da se dostigne putem komande GOTO-tipa:
+
+ Akt 1: Hamletova vređanja i laskanje.
+
+Starfish
+Starfish je dvodimenzijonalni programski jezik baziran na steku. Zasnovan je direktno na ><>. Kreirao ga je redstarcoder 2016. godine. U nastavku se nalazi kod "Hello, world!" programa:
+
+"Hello, world!"r>Ool?u!|;
+
+$ starfish helloworld.sf 
+Hello, world!
+
+Unlambda
+Unlambda je minimalistički funkcionalni programski jezik. Većina programa se sastoji isključivo od karaktera "s", "k", i "`". U nastavku se nalazi kod programa "Hello, world!":
+
+`.!`.d`.l`.r`.o`.w`. `.,`.o`.l`.l`.e`.Hi
+
+Whitespace
+Whitespace koristi samo beline (space, tab, return), pri čemu ignoriše sve ostale karaktere. Ovaj jezik predstavalja suprotnost u odnosu na tradicionalne programske jezike koji ne razlikuju beline, što omogućava da se ovi programi kriju u kodovima drugih jezika kao što je C. Whitespace je dizajnirao Chris Morris. Program je objavljen 1og aprila 2003. godine, zbog čega je prvobitno shvaćen kao prvoaprilska šala.
+
+Primer funkcionalnih ezoteričnih programskih jezika
+~ath
+~ath je programski jezik koji koriste "Earthlings" i "Alternians" iz veb stripa "Homestuck". Ime je dobio na osnovu šale koja predstavlja "tilde ath" kao "til death". Iako mu je sintaksa prilično jednostavna, zapravo je komplikovano raditi sa njim. Program se može kompajlirati samo ako sadrži beskonačne petlje. Ovaj jezik takođe razlikuje boju teksta kojim je napisan program i prihvata neobične karaktere.
+
+Kulturni kontekst esolanga
+Kulturni kontekst esolanga su proučavali ljudi poput Geoff Cox-a, koji navodi da ezolang "skreće pažnju sa komandi i kontrole na kulturni izraz i odbijanje". On vidi sličnost između ezolanga i umetnosti koda i poezije koda, poput mezangelle Mez Breeze-a. Daniel Temkin opisuje brainfuck kao "odbijanje da ublaži granicu između ljudskog izraza i asemblerskog koda čime nas vodi na smešno putovanje logike". On time otkriva nerazdvojivo neslaganje između ljudskog razmišljanja i kompjuterske logike i povezuje programiranje u sklopu ezolanga sa rezultatom izvođenja događaja poput Fluxus-a, gde igra izvan pravila logike čini tačku gledišta jasnoće jezika.

@@ -1,0 +1,197 @@
+Embarkadero Delfi je integrisano razvojno okruženje (IRO) za konzole, desktop grafičke, veb, i mobilne aplikacije.
+Delfijevi kompajleri koriste svoj Objektni Paskal dijalekat Paskala i generišu mašinski jezik za nekoliko platformi: Windows NT (IA-32 i x64), OS X (samo IA-32), iOS i Android.
+Borland je razvio Delfi kao alat za brz razvoj aplikacija za Windows, i kao naslednika Borland Paskala. Delfi i njegov C++ duplikat, C++Builder, su delili mnoge osnovne komponente, značajno IDE i Vizuelno komponentnu biblioteku (VKB), ali ostali odvojeni do izvacivanja BRA Studia 2007. BRA Studio je zajednički domaćin za Delfi, C++Builder, i ostale.
+Borlandov odsek razvijačkih alata je, 2006. godine, prebačen u produžnicu, u potpunom vlasništvu, poznatu kao KodGir, koja je prodata Embarkadero Tehnologijama 2008. godine.
+
+Istorija
+Delfi je, originalno, bio jedan od mnogih kod imena beta verzija projekta alata za razvoj u Borladnu. Borland razvijač Deni Trop je predložio Delfi ime koda, upućivajući se na arheološko nalazište u Delfiju. Jedan od ciljeva dizajniranja ovog produkta jeste da obezvedi bazu podataka, koja će imati ključnu osobinu da poveže programere, i popularan paket baze podataka tada bio je Orakl; otuda, "Ako želite da razovarate sa Oraklom, idite u Delfi".
+Kako se nastavljao razvoj do prve verzije, Delfi ime koda je postalo popularno u timu za razvijanje i grupi za beta testiranje. Međutim, Borlandovo marketing rukovodstvo je preferiralo funkcionalno ime produkta pre ikonskog imena i spremalo se da izvaci produkt pod imenom "Borland AppBuilder".
+Neposredno pre izvacivanja Borlandovog produkta, izbačen je Novell AppBuilder, čime je Borlandu bilo potrebno drugo ime. Nakon dosta rasprave i dosta istražibačkih anketi, Delfi ime koda je postalo i Delfi ime produkta.
+Glavni arhitekta, koji stoji iza Delfija, bio je Anders Hejlsberg, koji je, takođe, razvio Turbo Paskal. Ubeđen je da pređe u Majkrosoft, 1996. godine.
+Borland je, 8. februara 2006 godine, objavio da traži kupca za svoj IDE i nekoliko produkata baze podataka, uključujući Delfi, kako bi se koncentrisali na ALM liniju. Na 14. novembar 2006., Borland je prebacio grupu za razvijanje alata u nezavisnu "produžnicu" kompanije KodGir, umesto da je proda. Borland je prodao KodGir Embarkadero Tehnologijama, 2008. godine. Embrakadero je održao KodGir odeljenje, koje je Borland napravio, da identifikuje ponude alata i baza podataka, ali je legitimisao svoje alate baze podataka pod imenom "DatabaseGear".
+
+Verzije
+Ranije godine Borlanda (1995—2004)
+Borland Delfi
+Delfi (kasnije poznat kao Delfi 1) objavljen je 1995. za 16-bitni Windows 3.1, i bio je rani primer onoga što je kasnije postalo poznato kao brz razvoj aplikcionih (BRA) alata. Delfi je prevazišao Borlandov "Turbo Paskal za Windows", sebe kao evoluciju za Windows podršku od Borlandovog Turbo Paskala i Borland Paskala, veoma brzog 16-bitnog maternjeg koda MS-DOS kompajlera sa svojim sofisticiranim integrisanim razvojnim okruženjem (IDE) i tekstualnih korisničkih inferfejs alata za DOS (Turbo Vizija). Rani Turbo Paskal (za MS-DOS) je napisan u dijalektu Paskala; u kasnijim dodacima verzije dodat je objekat, i nazvan Objektivni Paskal. Delfi je oduvek koristio Objektivni Paskal, koji je nastavio da se razvija, kao osnovni objektivno-orijentisani jezik.
+
+Borland Delfi 2
+Delfi 2, objavljen 1996., podržavao je tridesetdvobitna Windows okruženja. Delfi 1 je bio u paketu sa šesnaestobitnim Windows 3.1 aplikacijama. Nova "Brz izvveštaj" komponenta menja Borland ReportSmith. Kasnije je pretvorena u Javu.
+
+Borland Delfi 3
+Delfi 3, ovjavljen 1997, je dodao VCL komponente inkapsulirajući 4.71 verziju Vinodus čestih kontrola (kao što su "Rebar" i "Toolbar"), TDataset arhitektura se odvojila od BDE, DLL debagovanja, uviđajne tehnologije koda, paketa komponenti, šablona komponenti, DecisionCuba i Tičart komponenti za statističko grafisanje, VebBrokera, ActiveFormsa, MIDAS three tier architecture, paketa komponenti i integracija sa COM putem interfejsa.
+
+Inprajs Delfi 4
+Inprajs Delfi 4 je objavljen 1998. IDE je došao sa potpuno remontovanim editorom i time postao pričvrščen. VCL je dodao dodatak za ActionLists sidra i ograničenja. Dodatna poboljšanja bila su metodska preopterećenja, dinamički nizovi, Windows 98 dodatak, Java interoperabilnost, drajveri baza podataka sa visokim preformancama, CORBA razvoj, i Majkrosoft BekOfis dodatak. To je bila poslednja isporučena verzija sa Delfijem 1 za šesnaestobitno programiranje.
+
+Borland Delfi 5
+Borland Delfi 5 je objavljen 1999. godine. Dodao je koncept frejmova, paralelno razvijanje, sposobnosti prevoda, unapređene integrisane debagere, XML dodatak, ADO dodatak baze podataka i interfejs brojanja referenci.
+
+Kylix (Kajlik)
+Borland je, 2001. godine, izbacio Linuks verziju Delfija, pod nazivom Kajlik. Kako bi izbacili produkt brže i jeftinije, napravili su da IDE zavisi od Vajn biblioteka umesto Linuks izvornih sistemtskih biblioteka (glibc). Trošak za razvijanje maternje glibc verzije Kajlika, u kombinaciji sa manjkom Linuks adaptiranja među programerima, u to vreme, naterali su da prodaje ne prođu najbolje, i Kajlik je "napušten" nakon verzije 3. Ovo je bio prvi pokušaj da se doda Linuks dodatak u Delfi porodicu produkta.
+Kajlik je koristio novi "CLX cross-platform framework", umesto Delfijevog VCL-a.
+
+Borland Delfi 6
+Pokušali su da porže i Linuks i Windows za "cross-platform" razvijanje, i "cross-platform" alternativa za VCL poznata kao CLX isporučena je 2001. izbacivanjem Delfija 6. Ovo je bio drugi pokušaj da se doda Linuks podrška u Delfijevu porodicu (videti Kajlik iznad).
+Delfi 6 je imao istu CLX verziju (CLX 1) kao i prva verzija Kajlika. CLX 1 je napravljen pre Delfija 6; njegove osobine su bazirane na VCL 5 i neke su nedostajale, međutim, one su uključene u VCL 6, i isporučene sa Delfijem 6.
+
+Borland Delfi 7
+Delfi 7, objavljen avgusta 2002., je postao standardna verzija koju su Delfi programeri koristili više od bilo koje druge verzije. To je jedan od najuspešnijih IDEsa, koje je napravio Borland, zbog svoje stabilnosti, brzine i malih hardver zahteva, i ostao je u aktivnom korišćenju od 2011. Delfi 7 je dodao pordšku za Viondous HP teme, i još više dodataka za pravljenje veb aplikacija. Bio je poslednja verzija Delfija koja nije zahtevala obaveznu software activation.
+
+Borland Delfi 8
+Delfi 8, objavljen decembra 2003., je bio ".NET-only" distribucija koja je kompajlovala Delfi Objekt Paskal kod u .NET CIL; IDE je prerađen samo zbog toga. IDE se promenio u spojen interfejs (nazvan Galileo) sličan Majkrosoftovom "Visual Studio.NET". Delfi 8 je bio dosta kritikovan za svoj loš kvalitet i svoje nesposobnosti da napravi maternje aplikacije (Win32 API/x86 kod). Neposobnost da generiše maternje aplikacije je bila osobina samo ove verzije; sposobnost je vraćena sledećom verzijom (Delfi 2005).
+
+Kasnije godine Borlanda (2004—2008)
+Borland Delfi 2005
+Sledeća verzija, Delfi 2005 (Delfi 9, takođe Borland Razvijački Studio 3.0), uključio je Win32 i .NET razvoj u samo jednom IDE, ponavljajući Borlandovu vezanost za Win32 programere. Delfi 2005 uključuje manipulaciju dizajniranja vremena direktnih podataka iz baze podataka. Takođe, sadrži unapređeni IDE i dodao je for ... in iskaz (kao C#'s forič) jeziku. Međutim, bio je široko kritikovan za svoje bagove; i Delfi 8 i Delfi 2005 su imali probleme sa stabilnošću u periodu kada su izbačeni, koji su bili samo delimično sređeni pomoću servis paketa. Sposobnost za kompajlovanje maternjih Windows aplikacija (*.exe) je vraćena nazad u Delfi 2005 nakon što je bila izbačena iz Delfija 8. CLX podrška je opala za nove aplikacije od ove verzije pa na dalje.
+
+Borland Delfi 2006
+Krajem 2005. Delfi 2006 (Delfi 10, Borland razvijčki sutdio 4.0) je izbačen i bio je kombinacija razvoja C# i Delphi.NET, Delphi Win32 i C++ u samo jednom IDE. Bio je mnogo stabilniji od Delfija 8 i Delfija 2005, i bio je još više unapređen puštanjem servis paketa i nekoliko hitnih ispravki.
+
+Turbo Delfi i C++
+Grupa razvijača alata (ime, tada ne baš toliko poznate kompanije), Boralndove Softver Koorporacije, je, 6. septembra 2006. godine, izbacila jednojezičnu verziju komponenti Borlandovog Razvijačkog Studija, čime su vratili Turbo ime. Turbo produkt komplet je sadržao Turbo Delfi za "Win32", Turbo Delfi za .NET, Turbo C++, i Turbo C#. Postojale su dve varijante svakog izdanja: Istraživač, verzija koju je moguće skinuti besplatno, i Profesionalna verzija, čija je cena bila 899 američkih dolara za nove korisnike i 399 američkih dolara ažuriranje, manje od kompletnog Borland Delfija, koji je imao pristup hiljadama trećestranih komponenti. Za razliku od ranijih Profesionalnih izdanja Delfija, Istraživač izdanja su mogla da se koriste za komercijalno razvijanje.
+
+Kodgir Delfi 2007
+Delfi 2007 (Delfi 11), prva verzija koju je razvio KodGir, objavljena je 16. marta 2007. godine. "Win32" ličnost je prva ovjavljena, pre nego što je .NET ličnosti Delfija 2007 baziranoj na ".NET Framework 2.0" objavljena, kao deo KodGir BRA Studio 2007 produkta. Nove osobine su uključivale podršku za MSBuild i poboljnjanja VCLa za Windows Vistu, ali C#Builder su izvačene iz ove verzije jer program nije prodat kao što je očeivano, jer je Vizual Studio takođe nudio C#. Dizajner Windows formi za Delfi .NET je takođe izbačen 2007. godine, jer je baziran na delu .NET framework API, koji je Majkrosoft toliko drastično prommenio .NET 2.0 da bi ažuriranje IDEa bilo veliki podvig. Delfi 2007 je, takođe, predstavio "DBX4" kao novu verziju "dbExpress". Po prvi put, Delfi je bilo moguće skinuti preko interneta i aktivirati licencnim ključem, mogućnost omogućena novom "InstallAware" instalacionom tehnologijom. Internacionalizovana verzija Delfija 2007 se istovremeno isporučila na engleskom, francuskom, nemačkom i japanskom jeziku. BRA Stido 2007 (kod imena "Highlander"), koji uključuje .NET i C++Builder razvoj objavljena je 5. septembra 2007. godine.
+
+Delfi Prizma
+Delfi Prizmu je razvio RemObjects Software i distribuirao Embarkadero kako bi zamenio Delfi .NET. Predstavlja kombinaciju RemObjektovog uglavnom Delfi kompatibilog .NET kompajlera (bez RTL ili VCL), verzije Majkrosoft Vizual Studio Ljuske bez C# ili VB podrške, i pojedinih Embarkadero tehnologija kakva je "dbExpress". Prizma je sposobna za krst-platformu u meri u kojoj podržava Mono .NET biblioteke. Prizma je odvojena linija produkta sa novim izdanjima; Embarkadero Delfi Prizma XE2 je izbačena istovremeno kad i Delfi XE2.
+
+Godine Embarkadera (2008-)
+Embarkadero Delfi 2009
+Delfi 2009 (Delfi 12, ime koda "Tiburón"), je dodao mnogo novih osobina kao što je potpuno prerađen VCL i RTL za potpunu Unikod podršku, i dodatim generičkih i anonimnih metoda za Win32 prirodno razvijanje. Podrška za .NET razvijanje je izbačena iz mejnstrim Delfi IDEa počevši od ove verzije, i snabdevena novom Delfi Prizmom.
+
+Embarkadero Delfi 2010
+Delfi 2010 (ime koda "Weaver", zvani Delfi 14; nije bilo verzije 13), je izbačen 25. avgusta 2009. godine i on je drugo Unikod izdanje Delfija. Uključuje novi kompajler run-time type information (RTTI) sistem, podršku za Windows 7 direkt 2D, tač skrin i gestove, formater izvornog koda, vizuelni debager i opciju za staromodnu paletu komponenti u IDEu. Novi "RTTI" sistem pravi veće izvršne datoteke od prethodnih verzija.
+
+Embarkadero Delfi XE
+Delfi XE (zvani Delfi 2011, ime koda "Fulcrum"), je objavljen 30. avgusta 2010. godine za Delfi podrškom za Amazon EC2, Majkrosoft Azure su upakovane.
+
+Delfi Početničko izdanje
+Embarkadero je, 27. januara 2011. godine, najavio dostupnost novog "Početničkog" izdanja daje nezavisnim programerima, studentima i mikro preduzećima malo redukovan komplet osobina za cenu manju od četvrtinme od sledeće najjeftinije verzije.
+
+Embarkadero Delfi XE2
+
+Embarkadero je, 1. septembra 2011. godine, izbacio BRA Studio XE2 (ime koda "Pulsar") koji uključuje Delfi XE2, "C++Builder", Prizmu XE2 i "RadPHP XE2".
+Delfi XE2 prirodno podržava 64-bitni Windows (osim početničkog izdanja), dodatno dugo podržanoj 32-bitnoj verziji, sa unazadnom kombatibilnošću. Aplikacije za 64-bitne platforme mogu biti kompajlovane, ali ne i testirane ili pokrenute, na 32-bitnim platformama. "XE2" IDE ne može da debaguje 64-bitne programe na Windows 8 ili jačim.
+Delfi XE2 je opremljen i sa VCLom, i alternativnom bibliotekom pod imenom "FireMonkey" koja podržava Windows, Mek OS X i Eplove Ajfon, Ajpod tač i Ajpad prenosne uređaje. "FireMonkey" i VCL nisu kompatibilni; jedan ili drugi moraju biti korišćeni, i starije VCL aplikacije ne mogu da koriste "Firemonkey" osim ako korisnički interfejs nije rekonstruisan novim "FireMonkey" formama i kontrolama. "Treće strane" su objavile informacije kako koristiti "Firemonkey" forme u VCL softveru, kako bi olakšali postepenu migraciju, ali VCL i "Firemonkey" kontrole nije moguće koristiti u istoj formi. Embarkadero kaže da se podrška za Linuks operativni sistem "uzima u razmatranje za putokaze", kao što je Android, i oni su "u obavezi da ... "FireMonkey". ... očekujte regularna i česta ažuriranja za "FireMonkey"".
+Verzije pre 2013. su podržavale samo "iOS" razvijanje platformi sa "Xcode" 4.2.1 i nižim, "OS X" verzijom 10.7 i slabijom, i "iOS SDK" 4.3 i ranijim.
+
+Embarkadero Delfi XE3
+Embarkadero je, 4. septembra 2012. godine, izbacio BRA Studio HE3, koji ukljuluje Delfi HE3 i C++Builder.
+Delfi XE3 prirodno podržava i 32-bitna i 64-bitna izdanja Windows-a (uključujući Windows 8), i obezbeđuje podršku za Mek OS X sa "Firemonkey" 2/FM² okvirom. iOS podrška je, u početku, izbačena XE3 izdanjem (sa namerom da podršku vrate odvojenim produktom - Mobilnim Studiom), ali aplikacije mogu da nastave sa usmeravanjem na tu platformu, razvijanjem sa Delfijem XE2.
+
+Embarkadero Delfi XE4
+Embarkadero je, 22. aprila 2013. godine, izbacio BRA Studio HE4, koji ukljuluje Delfi HE4 i C++Builder.
+Delfi XE4 je prvo izdanje "FireMonkey" mobilne platforme, u glavnoj ulozi prikazanom krst-platformno razvijanje mobilnih aplikacija za iOS Simulatore i iOS Uređaje.
+U ovoj verziji, Embarkadero nas upozanje sa dva nova kompajlera za Delfi mobilne aplikacije, Delfi Krst Kompajler za iOS Simluatore i Delfi Krst Kompajler za iOS Uređaje. Ovi kompajleri se značajno razlikuju od Win64 dekstop kompajlera jer oni ne podžavaju "COM", redno sklapanje CPU instrukcija, i šest starijih "niz" verzija kao što je "PChar".
+Novi mobilni kompajleri unapređuju pojam eliminisanih pokazivača. Novi kompajleri zahtevaju eksplicitni stil organizovanih podataka i formu spoljašnjih APIova i biblioteka.
+Delfi XE4 "Run-Time Library" (RTL) je optimizovana za 0-bazurane, samo-za-čitanje (nepromenljivih) Unikod nizova, koji se ne mogu indeksovati za svrhu menjanja pojedinačnih karaktera. "RTL" takođe dodaje rutine baziranim na statusobitnim izucezima za "ARM CPUs" koji ne generišu prekidanje izuzecima.
+
+Embarkadero Delfi XE5
+Embarkadero je, 12. septembra 2013. godine, izbacio BRA Studio HE5, koji ukljuluje Delfi HE5 i C++Builder.
+Dodaje podršku za Android (konkretno: ARM v7 uređaje koji pokreću "Gingerbread" (2.3.3-2.3.7), "Ice Cream Sandwich" (4.0.3-4.0.4) i "Jelly Bean" (4.1.x, 4.2.x, 4.3.x)) i iOS 7.
+
+Embarkadero Delfi XE6
+Embarkadero je, 15. aprila 2014. godine, izbacio BRA Studio HE6, koji ukljuluje Delfi HE6 i C++Builder.
+Dozvoljava kreiranje prirodno kompajlovanih aplikacija za sve platforme, desktop, mobilne, i "nosive" uređaje kakav je "Google Glass", sa jednom C++ ili Objektini Paskal (Delfi) kod bazom. BRA Studio XE6 ima podršku za Android 4.4 KitKet. Takođe je postalo moguće napraviti "FireMonkey" mobilne aplikacije za Android.
+
+Embarkadero Delfi XE7
+Embarkadero je, 2. septembra 2014. godine, izbacio BRA Studio HE7, koji ukljuluje Delfi HE7 i C++Builder.
+Omogućuje Delfi/Objektivni Paskal i C++ programerima da produže postojeće Windows aplikacije i naprave aplikacije koje povezuju desktop i mobilne uređaje uz pomoć gadžeta, uslugama "oblaka", i preduzetničkih podataka i API. Takođe, omogućuje programerima da produže Windows aplikacije koristeći Vaj-Faj i blutut aplikaciono privezivanje, i prave zajedničke korisničke interfejs kodove preko više uređaja.
+
+Embarkadero Delfi XE8
+Embarkadero je, 7. aprila 2015. godine, izbacio BRA Studio HE8, koji ukljuluje Delfi HE8 i C++Builder.
+
+Embarkadero Delfi 10 Sijetl
+Embarkadero je, 31. avgusta 2015. godine, izbacio BRA Studio 10 Sijetl, koji ukljuluje Delfi i C++Builder.
+
+Putokazi
+Embarkadero izbacuje "putokaze" koji opisuju njihove planove.
+
+Izdanja i cene
+Svaka verzija je izbačena u drugačijem izdanju, što daje ceni i osobinama u odnosu na najosnovnije distribucije. Kao indikacija izdanja i cena, Delfi XE2 je direktno prodao Embarkadero, 2011. godine, kao izdanje pod nazivom "Početnik" (US$199), "Profesionalac" ($899), "Preduzeće" ($1,999), "Konačan" ($2,999), i "Arhitekta" ($3,499). Cene variraju od prodavca do prodavca, od podsticaja do podsticaja, i od regiona do regiona, i Delfi je, takođe, uključen u BRA Studio korpe. Embarkadero objavljuje svojstvene matrice koje sumiraju razlike u funkcionalnosti.
+
+Prepoznatljive odlike
+Delfi podržava brz razvoj aplikacija (BRA). Među osobinama koje podržavaju BRA su aplikacioni okvir i dizajner vizuelnog izgleda prozora. Podržava, takođe, krst-kompilaciju.
+Delfi koristi programski jezik koji je baziran na Paskal programskom jeziku, koji se zove Objektivni Paskal, predstavljen od strane Borlanda, i kompajluje Delfi izvorni kod u prirodni x86 kod. Uključuje VCL, podršku za COM nezavisni interfejs sa reference counted klasu implementacija, i podršku za mnoge trećepartijske komponente. Interfejs implementacije mogu biti poverene poljima ili osobinama klasa.
+Povezivanje baza podataka je podržano, i Delfi obezbeđuje nekoliko komponenti baza podataka. VCL uključuje mnogo "database-aware" i "database access" komponenti.
+Kasnije verzije su uključile ažuriranjnja i unapređene rutine "Runtime" biblioteka obezbeđene od zajednice BrziKod, nastale 2003. godine.
+
+Karakteristike
+Delfi je jak tip programskog jezika visokog nivoa, nameren za lako korišćenje i prvobitno je baziran na ranoj verziji Objektivnog Paskala. Paskal je prvobitno napraljen kao jezik za podučavanje, bez niskokvalitetnih programskih postrojenja ili pristupa hardveru i bez isticanja efikasnosti; Turbo Paskal i njegovi naslednici, uključujući Delfi, su dizajnirani za efikasnost i podržani pristupu hardveru i programiranje na niskom nivou, sa osobinom da pripoje kodove napisane u asembler jeziku i drugim. Delfijeve obkeltovno orijentisane osobine su bazirane na klasnom i interfejs polimorfizmu. Metaklase su prvoklasni objekti. Objekti su zapravo reference objekata (kao kod Jave), koje Delfi "prećutno" ponovo referencira, dakle, obično nema potrebe za ručnim lociranjem memorije za pokazivače objekata ili korišćenjem sličnih tehnika, koje koriste drugi programski jezici. Postoje posebni tipovi nizova koji broje reference, kao i nulom okončane nizove.
+Nizove je moguće kontaktirati korišćenjem '+' operacije, umesto korišćenja funkcija. Za posebne tipove nizova Delfi "barata" organizacijom memorije bez intervencije programra. Od Borlandovog Studio Razvijača 2006 postoje funkcije koje lociraju curenje memorije.
+Delfi sadrži integrisani IDE. Svi Delfijevi produkti otpremaju Biblioteku Vizuelnih Komponenti (engleska skraćenica VCL), uključujući većinski izvorni kod. Dostupne su komponente treće partije (ponekad sa kompletnim izvornim kodom) i alati za unapređivanje IDEa ili drugi zadaci vezani za razvoj Delfija, neki besplatno, neki ne. IDE uključuje GUI za lokalizaciju i prevod već napisanih kodova koji mogu biti predati prevodiocu; takođe postoje alati treće strane sa još osobina za ovu svrhu. VCL okvir održava visok nivo kompatibilnosti izvora između verzija, što pojednostavljuje ažuriranje postojećeg koda. Bibliotekama treće strane možda zatrebaju ažuriranja od prodavca, ali ako je izvorni kod snabdeven, ponovna kompilacija novijom verzijom može biti dovoljna. VCL je bio raniji usvojitelj Injekcije zavisnosti ili Inverzije Kontrola; koristi model komponenti za višekratnu upotrebu, što programer može da produši. Uz klasne pomagače moguće je "upoznati" nove funkcionalnosti RTL i VCL klasama, bez menjanja originalnog izvornog koda RTLa ili VCLa.
+Kompajler optimizuje i jedan jedini pročaz. Opciono može da kompajluje do jednog jedinog izvršnog modula koji ne zahteva DLL, čime pojednostavljuje ažuriranje programa. Delfi, takođe, može da generiše standardne DLL-ove, ActiveX DLL-ove, COM automotizovane servere i Windows servise.
+Delfijev IDE, od Delfija 2005, u porastu, podržava refaktorisane osobine kao što je metod izvlačenja i mogućnost kreiranja UML modela iz izvornog koda ili modifikovanje izvora kroz promene koje su napravljene u modelu.
+Delfi ima velike zajednice na Juznetu i internetu. Kada je vlasnik Delfija bio KodGir, mnogi zaposleni su aktivno učestvovali.
+
+Kompatibilnost unazad
+Svako novo izdanje Delfija se trudi da bude što je više moguće kompatibilno sa ranijim verzijama, tako da već napisani softveri i biblioteke mogu biti održane. Nekompatibilnost nužno raste kako se dodaju nove osovine, npr., podrškom koju daje "Firemonkey" drugim platformama pre Windows-a.
+
+Ograničenja
+Kompatibilnost unazad
+Svako novo izdanje Delfija se trudi da zadrži što je više moguće kompatibilnosti unazad, jer bi time dozvolili ponovno korišćenje već napisanih kodova. Dizajn standardnih klasnih biblioteka (VCL/RTL) je, u neku ruku, prevaziđen i ograničen; Embarkadero je objavio, 2011. godine, kao deo Delfija XE2 novi kompajler i zamenu za VCL krst-platformu, tzv. "FireMonkey", baziran na "Direct3D" i "OpenGL", koji je moguće pokrenuti i na ostalim platformama, pored Windows-a, podržavajući njihove osobine, ali nije u potpunosti kompatibilno unazad sa VCL aplikacijama. "FireMonkey" aplikacije, međutim, dozvoljavaju lako deljenje nevizuelnih kodovnih jedinica sa VCL aplikacijama, čime omogućava lako portovanje kodova među platformama.
+
+Problemi
+Neka izdanja Delfija su prijavljena kao nestabilna. Delfi XE7, konkretno, je često prijavljivan kao spor i podložan curenju memorije.
+
+Okruženje za kreiranje aplikacija
+Aplikacija u Delfi programu se sastoji od:
+
+formi
+programskih modula
+slika
+ikonica
+spoljašnjih biblioteka itd.
+Svaki od ovih elemenata se snima u posebnom fajlu, a svi oni zajedno čine projekat. Kad se izvrši kompilacija dobije se izvršni fajl ili aplikacija. Složenije aplikacije u sebi mogu sadržati na desetine i stotine fajlova raznih tipova.
+Pri pokretanju Delfija dobija se prozor na ekranu koji sadrži sledeće delove:
+
+naslovnu liniju
+meni glavnog prozora
+liniju alatki
+liniju komponenti
+prozor za prikaz komponenti upotrebljenih u aplikaciji
+prozor za dodeljivanje osobina i događaja objektima u aplikaciji
+forma ili prozor obrasca za dizajniranje aplikacije
+prozor za pisanje programskog koda.
+Ovi delovi su grupisani u tri celine:
+
+prvu celinu čine linije naslova, menija, alatki i komponenti
+drugu celinu čine prozori za prikaz komponenti i dodeljivanje osobina i događaja objektima
+treću celinu čine forma i prozor za pisanje koda.
+U Delfiju se izgled prozora aplikacije pravi u vidu forme. Na formi se postavljaju elementi, meni, dodaju slike, postavljaju natpisi, zaglavlja itd. Delfi sam automatski kreira kostur aplikacije. Na programeru je da dalje razvije aplikaciju koja će odraditi sve što je projektom zamišljeno. Formi se automatski dodeljuje programski modul. Taj modul je u posebnom prozoru za editovanje prekriven formom. Takođe kada je editor programskog koda ispred, onda je forma prekrivena njime.
+Delfi aplikacije uglavnom reaguju na događaje. Kada se pritisne dirka tastature, dugme miša ili nešto nezavisno od aktivnosti korisnika izaziva se događaj. Ako je u aplikaciji napisana procedura za obradu izazvanog događaja, ona će se onda izvršiti kao reakcija na događaj. Programiranje u Delfiju se sastoji u kreiranju programskog koda aplikacije koja reaguje na događaje, posredno ili neposredno.
+Pokretanjem Delfi aplikacija, pojavi se prozor koji ima osobine Windows programa, to jest, može se premeštati, menjati dimenzija, minimizirati i zatvoriti, a pri minimizaciji mu se dodeljuje ikonica.
+
+Povezani softveri
+BRA Studio
+Embarkadero prodaje BRA Studio, komplet razvojnih alata koji podržava Delfi, C++Builder, Embarkadero Przizmu, i "HTML5 Builder". Kao kod Delfija, postoje različita izdanja BRA Studija: Profesionalno izdanje, Preduzetničko izdanje, Potpuno izdanje i Arhitektonsko izdanje.
+
+InterBaza
+InterBaza se prirodno integriše sa Delfijem i C++Builder programskim jezikom za klijent/server ili ugrađeno razvijanje i može joj se pristupiti preko svih velikih programskih jezika ili platformi na tržištu, sa bazom podataka povezivajućih protokola poput "ODBC", "ADO", "ADO.NET" čak i sa Javom preko "JDBC/ODBC" Mosta ili Java tip 4 konektora.
+
+"JBuilder"
+Alat za razvijanje Jave baziran na Eklipsu od verzije "JBuilder" 2007.
+
+"RadPHP" (ranije Delfi za PHP)
+"RadPHP" (sada ga je već prebazišao "HTML5 Builder") je bio IDE za PHP koji omogućuje istinsku BRA funkcionalnost. Ima sličnog dizajnera formi Delfiju ili Vužual bejsiku, i integrisani debager baziran na Apač veb serveru. Takođe sadrži VCL biblioteku, portovanu na PHP. Za razliku od osalih IDEova on podržava "Web 2.0" izdanja poput Ajaksa.
+Delfi za PHP je najavljen 20. marta 2007. godine, preimenovan oktobra 2010. godine u RadPHP, i baziran na "Qadram Q" studiu. Embarkadero je stekao "Qadram" u januaru 2011. godine.
+
+Delfi Prizma
+Delfi prizma (ranije poznata kao Embarkadero Prizma) izvedena je iz "Oxygene" programskog jezika (ranije poznatog kao "Chrome") iz "RemObjects"-a. Radio je u IDE Majkrosoftovog Vizuelnog studia pre nego u BRA Studiz. Bio je licenciran i preimenovan kako bi zamenio Delfi.NET, kada je taj produkt obustavljen.
+Iako je "RemObjects Oxygene" idalje razvijan i iako mu je pripojena podrška za Java, Android, iOS i OS X razvoj, verzija koju je Embrakadero licencirao je bila ograničena na samo podržavanje .NET. Embarkadero je kasnije obustavio projekat izbacivanjem Delfija XE4, ostavljajući Delfi liniju produkta bez podrške za .NET razvijanje.
+
+Slobodni Paskal i Lazarus
+Slodobni Paskal je iszvorno-otvoreni Paskal krst-platforma krst-kompajler koji podržava većinu kodova Delfijevog Objektivnog Paskala. Lazarus je krst-platformni BRA IDE koji koristi kompajler slobodnog paskala. Lazarus i Slobodni Paskal, besplatni softveri koje je razvio Embrakadero, su uglavnom kompatibilni za kodovima napisanim u Delfiju.
+
+Biblioteke Treće Strane
+Džedaj Projekat (zajednički produkat Delfi inovatora) - Zajednički pokušaj zajednice Delfi programera da obezbede prevode Windows API interfejsa, dodatnih komponenti i kontrola, i algoritama i struktura podataka.
+FestKod - Poboljšane biblioteke izvršavanja i upravljanja memorijom.
+Tičart - Biblioteka za crtanje dijagrama.
+OtvorenaŽica (biblioteka) - Biblioteka protoka datoteka, događaja i komponenti sinhronizacija.
+Hrabar za Delfi - Kartograf upornosti koji podržava "OCL" i derivaciju.
+Quadruple D - "DirectX" biblioteka za Delfi.
+
+Primeri kodova
+Za prikazivanje poruke:Za davanje naslova slici korišćenjem VCLa:Za davanje naslova tekstu korišćenjem "FireMonkey"-a:

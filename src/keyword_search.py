@@ -7,12 +7,11 @@ Qdrant, so the comparison against semantic search stays clean.
 Primary index: BM25Okapi from the `rank_bm25` package. BM25 is the standard
 unsupervised baseline — scores a query/document pair by term frequency and
 inverse document frequency, with length normalization. It nails exact-term
-queries and is blind to paraphrase (that's the comparison we're going to
-quantify in Step 7).
+queries and is blind to paraphrase; the analysis notebook quantifies the
+gap against semantic search.
 
 Optional second baseline: TF-IDF + cosine similarity via scikit-learn.
-Lighter weight than BM25, no length normalization, included because the
-assignment asks for it.
+Lighter weight than BM25, no length normalization.
 
 Both indices:
   * operate on **full articles**, not chunks — BM25 benefits from the extra
@@ -20,8 +19,8 @@ Both indices:
     articles anyway
   * preprocess with text_utils.tokenize so queries and documents go through
     the same transliteration / lowercasing / stop-word pipeline
-  * return the same result shape as semantic_search_grouped so the CLI in
-    Step 6 can show them side by side with no shape juggling
+  * return the same result shape as the semantic backend so the interactive
+    CLI can show them side by side with no shape juggling
 """
 from __future__ import annotations
 
@@ -119,7 +118,7 @@ class BM25Index:
 # ============================================================================
 
 class TfidfIndex:
-    """TF-IDF + cosine similarity. Second lexical baseline for Step 7."""
+    """TF-IDF + cosine similarity. Second lexical baseline alongside BM25."""
 
     def __init__(self, articles: list[dict]):
         self.articles = articles

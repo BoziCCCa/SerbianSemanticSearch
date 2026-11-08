@@ -35,7 +35,7 @@ report.md                   1–2 page prose summary
 * Docker Desktop (for Qdrant)
 * Anaconda or Miniconda (for the Python environment)
 
-## Step 1 — Start Qdrant
+## 1. Start Qdrant
 
 Qdrant is the only service that runs in Docker. The Python code runs on
 the host so the embedding model can use a host GPU if present.
@@ -54,7 +54,7 @@ docker compose down          # stop, keep data
 docker compose down -v       # stop AND delete the named volume (fresh start)
 ```
 
-## Step 2 — Python environment
+## 2. Python environment
 
 ```bash
 conda create -n serbian-search python=3.11 -y
@@ -65,7 +65,7 @@ pip install -r requirements.txt
 Copy `.env.example` to `.env` if you want to override the default Qdrant
 host, port, or collection name.
 
-## Step 3 — Collect the corpus
+## 3. Collect the corpus
 
 ```bash
 python src/collect.py
@@ -79,7 +79,7 @@ on first run; subsequent runs skip articles that already exist on disk.
 To expand or change the corpus, edit `CATEGORIES_LAT` at the top of
 `src/collect.py`.
 
-## Step 4 — Embed and index
+## 4. Embed and index
 
 ```bash
 python src/embed.py
@@ -93,7 +93,7 @@ so the raw vectors can be inspected without the DB.
 
 Takes ~5 min on CPU, seconds on GPU.
 
-## Step 5 — Try it interactively
+## 5. Interactive search
 
 **One-shot query:**
 
@@ -114,7 +114,7 @@ Queries can be either Cyrillic or Latin — the transliteration layer
 handles both. Each query prints the top 5 semantic hits and the top 5
 BM25 hits as two labeled sections.
 
-## Step 6 — Batch comparison
+## 6. Batch comparison
 
 ```bash
 python src/main.py
@@ -124,7 +124,7 @@ Runs 20 handpicked Serbian queries through all three backends (semantic,
 BM25, TF-IDF) and prints side-by-side top-5 tables. Useful for a quick
 feel; the real analysis is in the notebook.
 
-## Step 7 — Read the analysis
+## 7. Read the analysis
 
 ```bash
 jupyter notebook notebooks/analysis.ipynb

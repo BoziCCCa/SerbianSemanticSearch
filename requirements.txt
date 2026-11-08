@@ -1,24 +1,23 @@
 # Python dependencies for the Serbian semantic search project.
-# Pin exact versions so re-runs are reproducible.
-# Grouped by pipeline step; later steps add rows to this file.
+# Pinned to exact versions for reproducible installs.
 
-# --- Step 1: Wikipedia data collection ---
+# --- Wikipedia data collection ---
 Wikipedia-API==0.16.0
 requests==2.34.2
 tqdm==4.70.1
 
-# --- Step 3: embeddings + Qdrant indexing ---
+# --- Embeddings and vector indexing ---
 torch==2.5.1                # CPU build; swap to a CUDA/DirectML variant if you have a GPU
 sentence-transformers==3.4.1
 qdrant-client==1.19.1
 numpy==2.4.6
 python-dotenv==1.2.4
 
-# --- Step 5: keyword search ---
+# --- Keyword search ---
 rank_bm25==0.2.2
-scikit-learn==1.9.1       # installed early as a sentence-transformers dep
+scikit-learn==1.9.1
 
-# --- Step 7/8: analysis notebook ---
+# --- Analysis notebook ---
 jupyter==1.1.1
 ipykernel==7.4.0
 matplotlib==3.11.2

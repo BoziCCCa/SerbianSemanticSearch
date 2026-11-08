@@ -1,3 +1,4 @@
+#Batch runner: 20 queries through all three methods.
 from __future__ import annotations
 
 import os
@@ -13,63 +14,56 @@ from embed import MODEL_NAME, QUERY_PREFIX
 from keyword_search import BM25Index, SearchHit, TfidfIndex
 
 if hasattr(sys.stdout, "reconfigure"):
-    sys.stdout.reconfigure(encoding="utf-8")
-    sys.stderr.reconfigure(encoding="utf-8")
+    sys.stdout.reconfigure(encoding="utf-8")   # type: ignore[attr-defined]
+    sys.stderr.reconfigure(encoding="utf-8")   # type: ignore[attr-defined]
 
 
-# Hand-picked queries
-
+#Query type expectations:
+#  exact_title     - BM25 should win
+#  paraphrase      - semantic should win
+#  conceptual      - semantic should win
+#  cyrillic/latin  - identical results via transliteration
+#  misspelled      - both degrade; semantic less so
+#  out_of_corpus   - both return weak hits
 QUERIES: list[dict] = [
-    #exact article-title matches (BM25 territory)
-    {"q": "Beograd",                            "type": "exact_title",   "intent": "geografija"},
-    {"q": "Rambo Amadeus",                      "type": "exact_title",   "intent": "muzika"},
-    {"q": "Burek",                              "type": "exact_title",   "intent": "hrana"},
-    {"q": "Programski jezik Lua",               "type": "exact_title",   "intent": "tehnologija"},
+    {"q": "Beograd",                                        "type": "exact_title",   "intent": "geografija"},
+    {"q": "Rambo Amadeus",                                  "type": "exact_title",   "intent": "muzika"},
+    {"q": "Burek",                                          "type": "exact_title",   "intent": "hrana"},
+    {"q": "Programski jezik Lua",                           "type": "exact_title",   "intent": "tehnologija"},
 
-    #paraphrase: different words than the article uses
-    {"q": "glavni grad Srbije",                 "type": "paraphrase",    "intent": "geografija"},
-    {"q": "srpski kantautor i tekstopisac",     "type": "paraphrase",    "intent": "muzika"},
-    {"q": "jelo od lisnatog testa",             "type": "paraphrase",    "intent": "hrana"},
-    {"q": "jezik za skriptovanje",              "type": "paraphrase",    "intent": "tehnologija"},
+    {"q": "glavni grad Srbije",                             "type": "paraphrase",    "intent": "geografija"},
+    {"q": "srpski kantautor i tekstopisac",                 "type": "paraphrase",    "intent": "muzika"},
+    {"q": "jelo od lisnatog testa",                         "type": "paraphrase",    "intent": "hrana"},
+    {"q": "jezik za skriptovanje",                          "type": "paraphrase",    "intent": "tehnologija"},
 
-    # --- conceptual / descriptive questions ---
-    {"q": "ko je osvojio Balkan u srednjem veku",       "type": "conceptual", "intent": "istorija"},
-    {"q": "najveći grad u Srbiji",                      "type": "conceptual", "intent": "geografija"},
-    {"q": "srpski naučnik koji je radio na elektrotehnici", "type": "conceptual", "intent": "nauka"},
-    {"q": "slatko jelo sa orasima",                     "type": "conceptual", "intent": "hrana"},
+    {"q": "ko je osvojio Balkan u srednjem veku",           "type": "conceptual",    "intent": "istorija"},
+    {"q": "najveći grad u Srbiji",                          "type": "conceptual",    "intent": "geografija"},
+    {"q": "srpski naučnik koji je radio na elektrotehnici", "type": "conceptual",    "intent": "nauka"},
+    {"q": "slatko jelo sa orasima",                         "type": "conceptual",    "intent": "hrana"},
 
-    #same query, both scripts (transliteration sanity check)
-    {"q": "Ђорђе Балашевић",                    "type": "cyrillic",      "intent": "muzika"},
-    {"q": "Đorđe Balašević",                    "type": "latin",         "intent": "muzika"},
+    {"q": "Ђорђе Балашевић",                                "type": "cyrillic",      "intent": "muzika"},
+    {"q": "Đorđe Balašević",                                "type": "latin",         "intent": "muzika"},
 
-    #misspelled
-    {"q": "Rabmo Admeus",                      "type": "misspelled",    "intent": "muzika"},
-    {"q": "Beogrogad",                           "type": "misspelled",    "intent": "geografija"},
+    {"q": "Rambbo Amedus",                                  "type": "misspelled",    "intent": "muzika"},
+    {"q": "Beogradd",                                       "type": "misspelled",    "intent": "geografija"},
 
-    #topics absent from the corpus
-    {"q": "kvantna mehanika",                   "type": "out_of_corpus", "intent": None},
-    {"q": "veštačka inteligencija",             "type": "out_of_corpus", "intent": None},
+    {"q": "kvantna mehanika",                               "type": "out_of_corpus", "intent": None},
+    {"q": "veštačka inteligencija",                         "type": "out_of_corpus", "intent": None},
 
-    #exact phrase from an article + multi-concept
-    {"q": "austrougarski ultimatum Srbiji 1913", "type": "exact_phrase", "intent": "istorija"},
-    {"q": "srpski fudbaler rođen u Beogradu",   "type": "multi_concept", "intent": "sport"},
+    {"q": "austrougarski ultimatum Srbiji 1913",            "type": "exact_phrase",  "intent": "istorija"},
+    {"q": "srpski fudbaler rođen u Beogradu",               "type": "multi_concept", "intent": "sport"},
 ]
-
-
-
-# Backend adapters
 
 
 def semantic_search(client, collection_name: str,
                     model: SentenceTransformer,
                     query: str, k: int = 5) -> list[SearchHit]:
-    """Encode with the required E5 query prefix, hit Qdrant's grouped search."""
     vec = model.encode([QUERY_PREFIX + query],
                        normalize_embeddings=True)[0].tolist()
     response = vs.semantic_search_grouped(client, collection_name, vec, limit=k)
     hits: list[SearchHit] = []
     for group in response.groups:
-        best = group.hits[0]              # group_size=1 → single best chunk
+        best = group.hits[0]
         p = best.payload or {}
         hits.append(SearchHit(
             article_id=int(p.get("article_id", 0)),
@@ -82,8 +76,6 @@ def semantic_search(client, collection_name: str,
     return hits
 
 
-
-# Pretty-printing
 def _fmt(hits: list[SearchHit]) -> str:
     if not hits:
         return "  (no results)"
@@ -109,7 +101,6 @@ def print_query_block(idx: int, total: int, q: dict,
     print(_fmt(tf))
 
 
-# Main
 def main() -> None:
     load_dotenv()
     host = os.getenv("QDRANT_HOST", "localhost")

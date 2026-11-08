@@ -1,18 +1,4 @@
-"""
-src/collect.py
-
-Download Serbian Wikipedia articles across a handful of topic buckets and
-save each one as a plain-text file plus a metadata row.
-
-Per bucket:
-  1. Gather candidate article titles from the bucket's seed categories.
-  2. Fetch each article's plain text via the Wikipedia-API package.
-  3. Drop stubs, disambiguation pages, and titles we already have on disk.
-  4. Clean the text (trim housekeeping sections, strip refs) and save it.
-
-The script is idempotent: on re-run it skips titles whose files already
-exist, so you can top up a thin bucket by editing CATEGORIES and re-running.
-"""
+#Download sr.wikipedia articles, transliterate, save to disk.
 from __future__ import annotations
 
 import csv
@@ -27,20 +13,22 @@ from tqdm import tqdm
 
 from text_utils import transliterate, to_cyrillic
 
-# Windows PowerShell defaults stdout to cp1252 and crashes on Cyrillic logs.
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")   # type: ignore[attr-defined]
     sys.stderr.reconfigure(encoding="utf-8")   # type: ignore[attr-defined]
 
+
+#Config
 USER_AGENT = "SerbianSemanticSearchHomework/1.0"
 API_URL = "https://sr.wikipedia.org/w/api.php"
 LANG = "sr"
 
 ARTICLES_PER_BUCKET = 32
-OVERFETCH = 3          # fetch 3× candidates per bucket
-MIN_CHARS = 1500       # anything shorter is treated as a stub
-REQUEST_DELAY = 0.2    # 5 reqest/s 
+OVERFETCH = 3
+MIN_CHARS = 1500
+REQUEST_DELAY = 0.2
 
+#Latin for readability; API needs Cyrillic cmtitles.
 CATEGORIES_LAT: dict[str, list[str]] = {
     "istorija":    ["Kategorija:Istorija Srbije", "Kategorija:Srpski vladari", "Kategorija:Bitke"],
     "sport":       ["Kategorija:Srpski fudbaleri", "Kategorija:Srpski košarkaši", "Kategorija:Srpski teniseri"],
@@ -57,17 +45,13 @@ CATEGORIES: dict[str, list[str]] = {
     for slug, seeds in CATEGORIES_LAT.items()
 }
 
+#Section headers that mark the end of real article content.
 STOP_SECTIONS = [
-    "Vidi još",
-    "Napomene",
-    "Reference",
-    "Literatura",
-    "Izvori",
-    "Spoljašnje veze",
+    "Vidi još", "Napomene", "Reference", "Literatura", "Izvori", "Spoljašnje veze",
 ]
 
+
 def api_get(**params) -> dict:
-    #One MediaWiki API call
     params["format"] = "json"
     r = requests.get(API_URL, params=params,
                      headers={"User-Agent": USER_AGENT}, timeout=30)
@@ -77,11 +61,12 @@ def api_get(**params) -> dict:
 
 
 def iter_category_members(category: str, kind: str):
+    #kind = "page" (articles, ns=0) or "subcat" (sub-categories, ns=14).
     params = {
         "action": "query",
         "list": "categorymembers",
         "cmtitle": category,
-        "cmnamespace": 0 if kind == "page" else 14, # 0 - main , 14 - category
+        "cmnamespace": 0 if kind == "page" else 14,
         "cmlimit": 500,
     }
     while True:
@@ -95,6 +80,7 @@ def iter_category_members(category: str, kind: str):
 
 
 def gather_candidate_titles(seeds: list[str], target: int) -> list[str]:
+    #Try seeds, descend one level if needed.
     seen: set[str] = set()
     titles: list[str] = []
 
@@ -118,10 +104,11 @@ def gather_candidate_titles(seeds: list[str], target: int) -> list[str]:
 
 
 def slugify(title: str) -> str:
-    # \w in Python matches Cyrillic letters, so filenames keep their script.
+    #\w matches Cyrillic; script is preserved.
     return re.sub(r"[^\w]+", "_", title.lower()).strip("_") or "article"
 
 
+#Matches section headers, with or without =.
 _STOP_PATTERN = re.compile(
     r"(?m)^(?:=+\s*)?(?:" + "|".join(re.escape(s) for s in STOP_SECTIONS) + r")(?:\s*=+)?\s*$"
 )
@@ -143,7 +130,6 @@ def looks_like_disambiguation(text: str) -> bool:
     return "višeznačna odrednica" in head or "disambiguation" in head
 
 
-# Main
 CSV_FIELDS = ["id", "title", "category", "url", "char_count", "filename"]
 
 
@@ -151,7 +137,7 @@ def load_existing(meta_path: Path, raw_dir: Path) -> dict[str, dict]:
     if not meta_path.exists():
         return {}
     rows: dict[str, dict] = {}
-    with meta_path.open(encoding="utf-8", newline="") as f:
+    with meta_path.open(encoding="utf-8-sig", newline="") as f:
         for row in csv.DictReader(f):
             if (raw_dir / row["filename"]).exists():
                 rows[row["title"]] = row
@@ -159,7 +145,8 @@ def load_existing(meta_path: Path, raw_dir: Path) -> dict[str, dict]:
 
 
 def write_metadata(meta_path: Path, rows: dict[str, dict]) -> None:
-    with meta_path.open("w", encoding="utf-8", newline="") as f:
+    #UTF-8-sig so Excel double-click renders diacritics correctly.
+    with meta_path.open("w", encoding="utf-8-sig", newline="") as f:
         w = csv.DictWriter(f, fieldnames=CSV_FIELDS)
         w.writeheader()
         for row in sorted(rows.values(), key=lambda r: int(r["id"])):
@@ -185,18 +172,17 @@ def main() -> None:
         print(f"\n{cat_slug}:")
         kept = sum(1 for r in rows.values() if r["category"] == cat_slug)
         if kept >= ARTICLES_PER_BUCKET:
-            print(f"  Already has {kept}/{ARTICLES_PER_BUCKET}, skipping")
+            print(f"  already have {kept}/{ARTICLES_PER_BUCKET}, skipping")
             continue
 
-        candidates = gather_candidate_titles(
-            seeds, target=ARTICLES_PER_BUCKET * OVERFETCH
-        )
+        candidates = gather_candidate_titles(seeds, target=ARTICLES_PER_BUCKET * OVERFETCH)
         print(f"  {len(candidates)} candidate titles")
 
         bar = tqdm(candidates, desc=cat_slug, unit="art")
         for raw_title in bar:
             if kept >= ARTICLES_PER_BUCKET:
                 break
+            #Dedup on the Latin form that will be stored.
             title = transliterate(raw_title)
             if title in rows:
                 continue
@@ -205,6 +191,7 @@ def main() -> None:
             if not page.exists():
                 continue
 
+            #Transliterate first; downstream works on Latin only.
             text = clean_article_text(transliterate(page.text or ""))
             if len(text) < MIN_CHARS or looks_like_disambiguation(text):
                 continue

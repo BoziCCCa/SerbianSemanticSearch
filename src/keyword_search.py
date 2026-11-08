@@ -1,27 +1,4 @@
-"""
-src/keyword_search.py
-
-Classic lexical search over the Serbian Wikipedia corpus — independent of
-Qdrant, so the comparison against semantic search stays clean.
-
-Primary index: BM25Okapi from the `rank_bm25` package. BM25 is the standard
-unsupervised baseline — scores a query/document pair by term frequency and
-inverse document frequency, with length normalization. It nails exact-term
-queries and is blind to paraphrase; the analysis notebook quantifies the
-gap against semantic search.
-
-Optional second baseline: TF-IDF + cosine similarity via scikit-learn.
-Lighter weight than BM25, no length normalization.
-
-Both indices:
-  * operate on **full articles**, not chunks — BM25 benefits from the extra
-    context and IDF statistics, and we'd just re-group chunks back to
-    articles anyway
-  * preprocess with text_utils.tokenize so queries and documents go through
-    the same transliteration / lowercasing / stop-word pipeline
-  * return the same result shape as the semantic backend so the interactive
-    CLI can show them side by side with no shape juggling
-"""
+#BM25 + TF-IDF over the Latin corpus.
 from __future__ import annotations
 
 import csv
@@ -38,7 +15,6 @@ from text_utils import normalize, tokenize
 
 @dataclass
 class SearchHit:
-    """A single result row — same shape BM25, TF-IDF, and semantic search emit."""
     article_id: int
     title: str
     category: str
@@ -48,16 +24,11 @@ class SearchHit:
 
 
 def _article_snippet(text: str, limit: int = 220) -> str:
-    """Collapse whitespace and take the first `limit` characters."""
     snippet = " ".join(text.split())
     return snippet[:limit] + ("…" if len(snippet) > limit else "")
 
 
 def _load_corpus(meta_path: Path, raw_dir: Path) -> list[dict]:
-    """
-    Read metadata.csv and attach each row's full article text (plus a short
-    snippet) in memory. ~236 articles × ~5 KB each = ~1.2 MB — trivial.
-    """
     with meta_path.open(encoding="utf-8-sig", newline="") as f:
         rows = list(csv.DictReader(f))
     for row in rows:
@@ -67,17 +38,10 @@ def _load_corpus(meta_path: Path, raw_dir: Path) -> list[dict]:
     return rows
 
 
-# ============================================================================
-# BM25
-# ============================================================================
-
 class BM25Index:
-    """Full-corpus BM25 index with payload filtering (currently: category)."""
-
     def __init__(self, articles: list[dict]):
         self.articles = articles
-        token_lists = [tokenize(a["text"]) for a in articles]
-        self.bm25 = BM25Okapi(token_lists)
+        self.bm25 = BM25Okapi([tokenize(a["text"]) for a in articles])
 
     @classmethod
     def build(cls, meta_path: Path, raw_dir: Path) -> "BM25Index":
@@ -90,8 +54,7 @@ class BM25Index:
             return []
         scores = self.bm25.get_scores(q_tokens)
 
-        # Rank first, then filter by category if asked. Filtering AFTER
-        # ranking preserves relative scores and only drops the losers.
+        #Rank first, then filter — preserves scores.
         order = np.argsort(scores)[::-1]
         hits: list[SearchHit] = []
         for idx in order:
@@ -113,18 +76,9 @@ class BM25Index:
         return hits
 
 
-# ============================================================================
-# TF-IDF (optional baseline)
-# ============================================================================
-
 class TfidfIndex:
-    """TF-IDF + cosine similarity. Second lexical baseline alongside BM25."""
-
     def __init__(self, articles: list[dict]):
         self.articles = articles
-        # Documents go through normalize() so we match the BM25 preprocessing;
-        # we skip tokenize() because TfidfVectorizer's own whitespace analyzer
-        # with sublinear_tf gives sensible results on normalized text.
         docs = [normalize(a["text"]) for a in articles]
         self.vectorizer = TfidfVectorizer(
             analyzer="word",
@@ -162,10 +116,6 @@ class TfidfIndex:
                 break
         return hits
 
-
-# ============================================================================
-# Smoke test
-# ============================================================================
 
 if __name__ == "__main__":
     import sys

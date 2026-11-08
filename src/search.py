@@ -1,17 +1,4 @@
-"""
-src/search.py
-
-Interactive search CLI.
-
-Usage:
-  python src/search.py                 # REPL loop; "exit" or Ctrl+C quits
-  python src/search.py "nikola tesla"  # single query, one-shot
-
-For each query it prints top-5 from semantic search (E5 + Qdrant) and top-5
-from BM25. The query is accepted in either script — tokenize() transliterates
-Cyrillic to Latin before BM25 scoring, and the E5 encoder handles both
-scripts natively.
-"""
+#Interactive CLI: semantic + BM25 side by side.
 from __future__ import annotations
 
 import os
@@ -34,7 +21,6 @@ if hasattr(sys.stdout, "reconfigure"):
 def semantic_search(client, collection_name: str,
                     model: SentenceTransformer,
                     query: str, k: int = 5) -> list[SearchHit]:
-    """Encode with E5's required 'query: ' prefix, hit Qdrant grouped search."""
     vec = model.encode([QUERY_PREFIX + query],
                        normalize_embeddings=True)[0].tolist()
     response = vs.semantic_search_grouped(client, collection_name, vec, limit=k)
@@ -92,12 +78,12 @@ def main() -> None:
         print("Run `docker compose up -d` from the project root and try again.")
         sys.exit(1)
 
-    # Single-query mode: everything after the script name is the query.
+    #Single-query mode; args form the query.
     if len(sys.argv) > 1:
         run_query(" ".join(sys.argv[1:]), bm25, model, client, collection)
         return
 
-    # REPL mode
+    #REPL
     print("\nReady. Type a query (or 'exit' to quit).")
     while True:
         try:

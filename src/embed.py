@@ -1,20 +1,4 @@
-"""
-src/embed.py
-
-Reads data/metadata.csv, chunks every article, embeds each chunk with
-intfloat/multilingual-e5-base, and upserts the whole thing into Qdrant.
-
-Why chunking: the E5 encoder has a 512-token input limit. Our Serbian
-articles routinely run several thousand tokens — if we just truncated them,
-only the lead section would be searchable. Splitting into ~350-word chunks
-with 50-word overlap keeps every paragraph reachable, and Qdrant's grouping
-query (see vector_store.semantic_search_grouped) collapses the chunks back
-to one hit per article at search time.
-
-Why the "passage: " prefix: the E5 family was trained with asymmetric
-prefixes — passages at ingest, "query: " at search. Skipping them silently
-tanks retrieval quality. See https://huggingface.co/intfloat/multilingual-e5-base
-"""
+#Chunk, embed with E5, upsert to Qdrant.
 from __future__ import annotations
 
 import csv
@@ -36,27 +20,21 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stderr.reconfigure(encoding="utf-8")   # type: ignore[attr-defined]
 
 
-# ============================================================================
-# Config
-# ============================================================================
-
+#Config
 MODEL_NAME = "intfloat/multilingual-e5-base"
-PASSAGE_PREFIX = "passage: "            # required by E5 for documents
-QUERY_PREFIX = "query: "                # exported for search.py / compare.py
+#E5 requires asymmetric prefixes.
+PASSAGE_PREFIX = "passage: "
+QUERY_PREFIX = "query: "
 
-CHUNK_WORDS = 350                       # roughly the 512-token budget
-CHUNK_OVERLAP = 50                      # context carry-over between chunks
-ENCODE_BATCH = 32                       # bump to 64 on GPU, drop to 8 on tight CPU
+#~350 words stays under E5's 512-token limit.
+CHUNK_WORDS = 350
+CHUNK_OVERLAP = 50
+ENCODE_BATCH = 32
 
-
-# ============================================================================
-# Chunking
-# ============================================================================
 
 def chunk_text(text: str,
                size: int = CHUNK_WORDS,
                overlap: int = CHUNK_OVERLAP) -> list[str]:
-    """Split on whitespace and emit overlapping fixed-width windows."""
     words = text.split()
     if not words:
         return []
@@ -73,12 +51,8 @@ def chunk_text(text: str,
     return chunks
 
 
-# ============================================================================
-# Main
-# ============================================================================
-
 def main() -> None:
-    load_dotenv()  # read QDRANT_HOST/PORT/COLLECTION from .env if present
+    load_dotenv()
     qdrant_host = os.getenv("QDRANT_HOST", "localhost")
     qdrant_port = int(os.getenv("QDRANT_PORT", "6333"))
     collection = os.getenv("QDRANT_COLLECTION", "serbian_wiki")
@@ -89,14 +63,14 @@ def main() -> None:
     results_dir = root / "results"
     results_dir.mkdir(parents=True, exist_ok=True)
 
-    # --- Load model -----------------------------------------------------
+    #Load model
     device = "cuda" if torch.cuda.is_available() else "cpu"
     print(f"Loading {MODEL_NAME} on {device} (first run downloads ~450 MB)…")
     model = SentenceTransformer(MODEL_NAME, device=device)
     vector_size = model.get_sentence_embedding_dimension()
     print(f"  vector size: {vector_size}")
 
-    # --- Build chunk list -----------------------------------------------
+    #Build chunk list
     print(f"Reading {meta_path.name} and chunking articles…")
     with meta_path.open(encoding="utf-8-sig", newline="") as f:
         articles = list(csv.DictReader(f))
@@ -116,19 +90,19 @@ def main() -> None:
             })
     print(f"  {len(chunks)} chunks total")
 
-    # --- Embed ----------------------------------------------------------
+    #Normalize so cosine distance works.
     print("Embedding chunks…")
     passages = [PASSAGE_PREFIX + c["text"] for c in chunks]
     embeddings = model.encode(
         passages,
         batch_size=ENCODE_BATCH,
         show_progress_bar=True,
-        normalize_embeddings=True,         # cosine distance needs unit vectors
+        normalize_embeddings=True,
         convert_to_numpy=True,
     ).astype(np.float32, copy=False)
     print(f"  embeddings shape: {embeddings.shape}")
 
-    # --- Connect to Qdrant ---------------------------------------------
+    #Connect to Qdrant
     print(f"Connecting to Qdrant at {qdrant_host}:{qdrant_port}…")
     try:
         client = vs.get_client(qdrant_host, qdrant_port)
@@ -140,7 +114,7 @@ def main() -> None:
     print(f"Recreating collection '{collection}' (dim={vector_size}, cosine)…")
     vs.recreate_collection(client, collection, vector_size)
 
-    # --- Build + upsert points -----------------------------------------
+    #Build + upsert points
     print("Building point structs…")
     point_ids: list[str] = []
     points: list[PointStruct] = []
@@ -163,7 +137,7 @@ def main() -> None:
     print(f"Upserting {len(points)} points…")
     vs.upsert_points(client, collection, points)
 
-    # --- Export embeddings + id map ------------------------------------
+    #Export for offline inspection.
     print("Exporting embeddings.npy and embedding_ids.csv to results/…")
     np.save(results_dir / "embeddings.npy", embeddings)
     with (results_dir / "embedding_ids.csv").open("w", encoding="utf-8-sig", newline="") as f:
